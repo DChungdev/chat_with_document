@@ -1,0 +1,101 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docchat"
+version = "0.1.0"
+description = "Chat với tài liệu — api, worker, core và hạ tầng (monorepo, một distribution)"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "fastapi>=0.111",
+    "uvicorn[standard]>=0.30",
+    "sqlalchemy[asyncio]>=2.0.30",
+    "psycopg[binary]>=3.2",
+    "alembic>=1.13",
+    "prometheus-client>=0.20",
+    "opentelemetry-api>=1.25",
+    "opentelemetry-sdk>=1.25",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.5",
+    "black>=24.4",
+    "mypy>=1.10",
+    "pytest>=8.2",
+    "pytest-asyncio>=0.23",
+    "pytest-cov>=5.0",
+    "httpx>=0.27",
+    "import-linter>=2.0",
+    "testcontainers[postgres]>=4.7",
+    "pre-commit>=3.7",
+    "pglast>=6.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["packages/core", "infra", "apps/api", "apps/worker"]
+include = ["docchat_*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["packages/core", "infra", "apps/api", "apps/worker"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S", "ASYNC"]
+ignore = ["S101"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["S105", "S106", "S608"]
+"db/migrations/**" = ["S608"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+mypy_path = ["packages/core", "infra", "apps/api", "apps/worker"]
+explicit_package_bases = true
+namespace_packages = true
+
+[tool.pytest.ini_options]
+testpaths = ["packages/core/tests", "infra/tests", "apps/api/tests", "apps/worker/tests", "db/tests"]
+addopts = "--import-mode=importlib -m 'not integration'"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+markers = ["integration: cần Docker (Postgres + pgvector); chạy bằng `pytest -m integration`"]
+
+[tool.coverage.run]
+source = ["docchat_core", "docchat_infra", "docchat_api", "docchat_worker"]
+
+[tool.importlinter]
+root_packages = ["docchat_core", "docchat_infra", "docchat_api", "docchat_worker"]
+include_external_packages = true
+
+[[tool.importlinter.contracts]]
+name = "core không phụ thuộc hạ tầng hay ứng dụng (ADR-01)"
+type = "forbidden"
+source_modules = ["docchat_core"]
+forbidden_modules = ["docchat_infra", "docchat_api", "docchat_worker"]
+
+[[tool.importlinter.contracts]]
+name = "core không import thư viện hạ tầng"
+type = "forbidden"
+source_modules = ["docchat_core"]
+forbidden_modules = ["sqlalchemy", "fastapi", "psycopg", "alembic", "boto3", "prometheus_client"]
+
+[[tool.importlinter.contracts]]
+name = "infra không phụ thuộc ứng dụng"
+type = "forbidden"
+source_modules = ["docchat_infra"]
+forbidden_modules = ["docchat_api", "docchat_worker"]
+
+[[tool.importlinter.contracts]]
+name = "api và worker độc lập nhau"
+type = "independence"
+modules = ["docchat_api", "docchat_worker"]

@@ -1,0 +1,36 @@
+# Job migration chạy TRƯỚC mỗi lần deploy (CD xóa job cũ rồi áp dụng lại; Job không sửa tại chỗ được).
+# Không nằm trong `base` để `kubectl apply -k overlays/...` thường không chạy lại migration ngoài ý muốn.
+# Dùng: (cd deploy/k8s/migrate && kustomize edit set image docchat-migrate=<ảnh>:<tag>) && kubectl -n <ns> apply -k deploy/k8s/migrate
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: docchat-migrate
+  labels: { app: docchat, component: migrate }
+spec:
+  backoffLimit: 0 # lỗi migration cần người xem, không tự thử lại
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata:
+      labels: { app: docchat, component: migrate }
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile: { type: RuntimeDefault }
+      containers:
+        - name: migrate
+          image: docchat-migrate
+          envFrom:
+            - configMapRef: { name: docchat-config }
+          env:
+            - name: MIGRATOR_DATABASE_URL
+              valueFrom: { secretKeyRef: { name: docchat-secrets, key: MIGRATOR_DATABASE_URL } }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits: { cpu: 500m, memory: 256Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: [ALL] }

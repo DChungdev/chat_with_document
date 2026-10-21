@@ -1,0 +1,37 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: docchat-production
+resources:
+  - namespace.yaml
+  - ../../base
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: docchat-config
+    behavior: merge
+    literals:
+      - ENVIRONMENT=prod
+
+# CD đặt tag thật bằng `kustomize edit set image`; tên ảnh là registry của repo (ví dụ ghcr.io/<owner>/<repo>/api)
+images:
+  - name: docchat-api
+    newName: ghcr.io/OWNER/docchat/api
+    newTag: latest
+  - name: docchat-worker
+    newName: ghcr.io/OWNER/docchat/worker
+    newTag: latest
+  - name: docchat-web
+    newName: ghcr.io/OWNER/docchat/web
+    newTag: latest
+
+patches:
+  - target: { kind: Ingress, name: docchat }
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: docchat.example.invalid # [TBD: OQ-012] tên miền thật
+      - op: replace
+        path: /spec/tls/0/hosts/0
+        value: docchat.example.invalid

@@ -1,0 +1,28 @@
+# Điểm vào duy nhất từ Internet: TLS tại ingress (>= 1.2). /metrics KHÔNG được định tuyến ra ngoài.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: docchat
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # SSE: tắt đệm để token đến ngay, cho phép kết nối lâu
+    nginx.ingress.kubernetes.io/proxy-buffering: "off"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-body-size: "30m" # >= giới hạn PDF [TBD: OQ-008]
+    nginx.ingress.kubernetes.io/ssl-protocols: "TLSv1.2 TLSv1.3"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts: [docchat.example.invalid] # thay ở overlay
+      secretName: docchat-tls
+  rules:
+    - host: docchat.example.invalid # thay ở overlay
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend: { service: { name: api, port: { number: 8000 } } }
+          - path: /
+            pathType: Prefix
+            backend: { service: { name: web, port: { number: 8080 } } }

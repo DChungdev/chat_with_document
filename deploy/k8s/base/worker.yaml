@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+  labels: { app: docchat, component: worker }
+spec:
+  replicas: 1 # tăng theo độ dài hàng đợi ingest (SAD 3.2); an toàn khi chạy song song nhờ SKIP LOCKED
+  selector:
+    matchLabels: { app: docchat, component: worker }
+  template:
+    metadata:
+      labels: { app: docchat, component: worker }
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile: { type: RuntimeDefault }
+      terminationGracePeriodSeconds: 120 # để job đang chạy kịp kết thúc
+      containers:
+        - name: worker
+          image: docchat-worker
+          ports:
+            - { name: metrics, containerPort: 9101 }
+          envFrom:
+            - configMapRef: { name: docchat-config }
+          env:
+            # Worker dùng vai trò đăng nhập riêng (thành viên app_worker), khác với api
+            - name: DATABASE_URL
+              valueFrom: { secretKeyRef: { name: docchat-secrets, key: WORKER_DATABASE_URL } }
+            - name: S3_ENDPOINT_URL
+              valueFrom: { secretKeyRef: { name: docchat-secrets, key: S3_ENDPOINT_URL, optional: true } }
+            - name: S3_ACCESS_KEY
+              valueFrom: { secretKeyRef: { name: docchat-secrets, key: S3_ACCESS_KEY } }
+            - name: S3_SECRET_KEY
+              valueFrom: { secretKeyRef: { name: docchat-secrets, key: S3_SECRET_KEY } }
+            - name: EMBEDDING_API_KEY
+              valueFrom: { secretKeyRef: { name: docchat-secrets, key: EMBEDDING_API_KEY, optional: true } }
+          resources:
+            requests: { cpu: "1", memory: 1Gi }
+            limits: { cpu: "2", memory: 2Gi }
+          livenessProbe:
+            tcpSocket: { port: metrics }
+            periodSeconds: 20
+            failureThreshold: 3
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: [ALL] }
+          volumeMounts:
+            - { name: tmp, mountPath: /tmp } # trích xuất PDF cần thư mục tạm
+      volumes:
+        - name: tmp
+          emptyDir: { sizeLimit: 1Gi }

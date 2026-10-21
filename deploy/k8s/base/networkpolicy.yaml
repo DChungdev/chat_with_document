@@ -1,0 +1,80 @@
+# Mặc định chặn hết; chỉ mở đúng đường cần thiết (SAD 3.5: egress allow-list tới LLM/Embedding/IdP).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny
+spec:
+  podSelector: {}
+  policyTypes: [Ingress, Egress]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-dns
+spec:
+  podSelector: {}
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels: { kubernetes.io/metadata.name: kube-system }
+      ports:
+        - { protocol: UDP, port: 53 }
+        - { protocol: TCP, port: 53 }
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-to-web-and-api
+spec:
+  podSelector:
+    matchExpressions:
+      - { key: component, operator: In, values: [web, api] }
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels: { kubernetes.io/metadata.name: ingress-nginx }
+    # web (nginx) chuyển /api sang api khi dùng trực tiếp image web
+    - from:
+        - podSelector:
+            matchLabels: { component: web }
+      ports:
+        - { protocol: TCP, port: 8000 }
+---
+# Prometheus (namespace `monitoring`) cào /metrics của api và worker qua mạng nội bộ
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-metrics-scrape
+spec:
+  podSelector:
+    matchExpressions:
+      - { key: component, operator: In, values: [api, worker] }
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels: { kubernetes.io/metadata.name: monitoring }
+      ports:
+        - { protocol: TCP, port: 8000 }
+        - { protocol: TCP, port: 9101 }
+---
+# Egress của api/worker/migrate tới CSDL, object storage, LLM, Embedding, IdP.
+# !! CIDR dưới đây là địa chỉ TEST-NET (RFC 5737) làm chỗ giữ chỗ — chặn mọi thứ cho tới khi thay bằng
+# !! địa chỉ thật của từng dịch vụ [TBD: OQ-012: vùng/đám mây và nhà cung cấp]. Cách khác: dùng
+# !! chính sách FQDN của CNI (Cilium) hoặc egress proxy nếu cluster hỗ trợ.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-allowlist
+spec:
+  podSelector:
+    matchExpressions:
+      - { key: component, operator: In, values: [api, worker, migrate] }
+  policyTypes: [Egress]
+  egress:
+    - to: [{ ipBlock: { cidr: 192.0.2.0/24 } }] # PostgreSQL
+      ports: [{ protocol: TCP, port: 5432 }]
+    - to: [{ ipBlock: { cidr: 198.51.100.0/24 } }] # Object storage / LLM / Embedding / IdP (HTTPS)
+      ports: [{ protocol: TCP, port: 443 }]

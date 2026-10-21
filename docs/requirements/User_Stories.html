@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>User Stories — Chat với tài liệu</title>
+<style>
+:root{--bg:#f7f8fa;--panel:#fff;--fg:#1f2328;--mut:#5b6470;--bd:#d8dee4;--ac:#1f5fbf;--acbg:#eaf1fb;
+--p0:#b3261e;--p0bg:#fdecea;--p1:#8a5a00;--p1bg:#fff4dc;--p2:#4b5563;--p2bg:#eef0f3;--ok:#1b7f3b;--code:#f0f2f4}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1117;--panel:#161b22;--fg:#e6edf3;--mut:#9aa4af;--bd:#30363d;--ac:#6ea8ff;--acbg:#16243a;
+--p0:#ff8a80;--p0bg:#3a1a18;--p1:#f0c36d;--p1bg:#3a2e12;--p2:#b6bec8;--p2bg:#23282f;--ok:#56d364;--code:#1f242c}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 system-ui,"Segoe UI",Roboto,sans-serif}
+a{color:var(--ac)}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:26px;margin:0 0 4px}
+h2{font-size:20px;margin:40px 0 8px;padding-bottom:6px;border-bottom:2px solid var(--bd)}
+.lead{color:var(--mut);margin:0 0 16px}
+.meta,.note{background:var(--panel);border:1px solid var(--bd);border-radius:8px;padding:12px 16px;font-size:14px}
+.note{border-left:4px solid var(--p1);margin:12px 0}
+.meta dl{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;margin:0}
+.meta dt{color:var(--mut)}.meta dd{margin:0}
+table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--panel)}
+th,td{border:1px solid var(--bd);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--acbg)}
+.tw{overflow-x:auto}
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:1px 8px;border-radius:99px;white-space:nowrap}
+.P0{color:var(--p0);background:var(--p0bg)}.P1{color:var(--p1);background:var(--p1bg)}.P2{color:var(--p2);background:var(--p2bg)}
+.tbd{font-size:12px;background:var(--p1bg);color:var(--p1);padding:0 6px;border-radius:4px}
+.story{background:var(--panel);border:1px solid var(--bd);border-radius:10px;margin:16px 0;padding:16px 20px}
+.story header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px}
+.story h3{margin:0;font-size:17px}
+.sid{font-family:ui-monospace,Consolas,monospace;font-weight:700;color:var(--ac)}
+.stmt{background:var(--acbg);border-left:4px solid var(--ac);padding:8px 12px;border-radius:4px;margin:8px 0}
+.lbl{font-weight:600;margin:14px 0 4px;font-size:13px;text-transform:uppercase;letter-spacing:.03em;color:var(--mut)}
+.ac{margin:0;padding-left:0;list-style:none}
+.ac li{margin:6px 0;padding:8px 12px;border:1px solid var(--bd);border-radius:6px}
+.ac b{color:var(--ok)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12px;background:var(--code);padding:1px 8px;border-radius:4px}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:14px}
+@media(max-width:560px){.shots{grid-template-columns:1fr}}
+figure{margin:0;border:1px solid var(--bd);border-radius:8px;overflow:hidden;background:var(--bg)}
+figcaption{padding:8px 12px;font-size:13px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.frame{position:relative;overflow:hidden;width:100%;background:#fff}
+.frame iframe{position:absolute;left:0;top:0;width:1280px;height:760px;border:0;transform-origin:0 0;pointer-events:none}
+.noscr{color:var(--mut);font-style:italic;border:1px dashed var(--bd);border-radius:8px;padding:10px 14px}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+nav.toc a{padding:4px 10px;border:1px solid var(--bd);border-radius:6px;background:var(--panel);text-decoration:none;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Tài liệu User Stories — Công cụ “Chat với tài liệu”</h1>
+<p class="lead">Mỗi story kèm tiêu chí chấp nhận, truy vết và màn hình thiết kế tương ứng (nhúng trực tiếp từ prototype HTML).</p>
+
+<div class="meta"><dl>
+<dt>Số tài liệu</dt><dd>US-DOCCHAT-001 v0.1 — Bản nháp</dd>
+<dt>Ngày lập</dt><dd>2026-10-21</dd>
+<dt>Tài liệu nguồn</dt><dd>
+<a href="BRD.md">BRD-DOCCHAT-001</a> v0.1 · <a href="PRD.md">PRD-DOCCHAT-001</a> v0.1 (mục 3, 4) · <a href="../design/UIUX_Blueprint_SDD.md">SDD-UIUX-DOCCHAT-001</a> v0.1 (mục 3.5, 5)</dd>
+<dt>Màn hình</dt><dd>Prototype <a href="../04-design/UI_UX_design/app.html">app.html</a> (SCR-01…08) và <a href="../04-design/UI_UX_design/report.html">report.html</a> (SCR-09); xem <a href="../04-design/UI_UX_design/index.html">index.html</a></dd>
+<dt>Trạng thái</dt><dd>Chưa sẵn sàng baseline — kế thừa các câu hỏi mở chặn của PRD</dd>
+</dl></div>
+
+<div class="note"><b>Quy ước.</b> P0 = bắt buộc cho MVP, P1 = nên có, P2 = nếu còn nguồn lực. Tiêu chí chấp nhận của story P0 lấy nguyên văn từ PRD; với P1/P2 PRD chưa có AC nên các AC ở đây là <span class="tbd">Đề xuất</span>, suy ra từ PRD mục 4 và SDD. <span class="tbd">TBD: OQ-xxx</span> là câu hỏi mở kế thừa, chưa phải quyết định. Các màn hình là prototype tương tác: bấm “Mở toàn màn hình” để thao tác.</div>
+
+<h2>1. Tổng quan</h2>
+<h3 style="margin-bottom:6px">Persona</h3>
+<div class="tw"><table>
+<tr><th>Persona</th><th>Vai trò</th><th>Mối quan tâm chính</th></tr>
+<tr><td><b>Lan</b> (STK-001)</td><td>Chuyên viên phát triển kinh doanh — người dùng chính</td><td>Hỏi tự nhiên, nhanh; thấy ngay nguồn để kiểm chứng</td></tr>
+<tr><td><b>Minh</b> (STK-002)</td><td>Quản lý / người yêu cầu sáng kiến</td><td>Số liệu MET-001/002 từ buổi thử nghiệm</td></tr>
+<tr><td><b>Hà</b> (STK-004)</td><td>Chủ sở hữu dữ liệu / pháp chế–bảo mật</td><td>Thông báo dữ liệu minh bạch, cô lập, xóa, nhật ký</td></tr>
+</table></div>
+
+<h3 style="margin-bottom:6px">Ma trận Epic và bản đồ story → màn hình</h3>
+<div class="tw"><table id="matrix"></table></div>
+
+<h3 style="margin-bottom:6px">Kiểm kê màn hình</h3>
+<div class="tw"><table id="scrtable"></table></div>
+
+<nav class="toc" id="toc"></nav>
+<div id="stories"></div>
+
+<h2>Khoảng trống và rủi ro cần chốt</h2>
+<div class="tw"><table>
+<tr><th>Nội dung</th><th>Ảnh hưởng đến story</th><th>Liên kết</th></tr>
+<tr><td>Giới hạn PDF, OCR, ngôn ngữ chưa chốt</td><td>US-101, US-102 (thông điệp lỗi, giới hạn trên màn hình)</td><td>OQ-008</td></tr>
+<tr><td>Thông báo dữ liệu, thời hạn lưu/xóa chưa chốt</td><td>US-103, US-401</td><td>OQ-012, OQ-013</td></tr>
+<tr><td>Cơ chế xác thực chưa chốt; SCR-07 là khung trung lập</td><td>US-402</td><td>OQ-014</td></tr>
+<tr><td>Nguồn dẫn có thuộc P0 hay không chưa được xác nhận</td><td>US-301, US-302</td><td>OQ-010</td></tr>
+<tr><td>Vị trí điều khiển <code>task_marked_done</code> và hình thức báo cáo chưa chốt</td><td>US-501 (SCR-09)</td><td>OQ-005</td></tr>
+<tr><td>US-403 (nhật ký tải/xóa) chưa có màn hình thiết kế</td><td>US-403</td><td>OQ-014</td></tr>
+<tr><td>Kill switch (SCR-08) chưa có story riêng trong PRD; được tham chiếu từ US-201</td><td>US-201</td><td>PRD 5.1 (Vận hành)</td></tr>
+</table></div>
+</div>
+
+<script>
+const BASE = '../04-design/UI_UX_design/';
+const SCR = {
+  'SCR-01': {t:'Màn chào + Thông báo dữ liệu', u:BASE+'app.html#SCR-01'},
+  'SCR-02': {t:'Màn chính — trạng thái rỗng', u:BASE+'app.html#SCR-02'},
+  'SCR-03': {t:'Màn chính — đang xử lý', u:BASE+'app.html#SCR-03'},
+  'SCR-04': {t:'Màn chính — hỏi đáp', u:BASE+'app.html#SCR-04'},
+  'SCR-05': {t:'Panel nguồn dẫn', u:BASE+'app.html#SCR-05'},
+  'SCR-06': {t:'Xác nhận xóa tài liệu', u:BASE+'app.html#SCR-06'},
+  'SCR-07': {t:'Hết phiên / đăng nhập lại', u:BASE+'app.html#SCR-07'},
+  'SCR-08': {t:'Banner lỗi / Kill switch', u:BASE+'app.html#SCR-08'},
+  'SCR-09': {t:'Báo cáo đánh giá MVP', u:BASE+'report.html'}
+};
+const EPICS = {
+  E1:{n:'Quản lý tài liệu', trace:'BR-001, BRU-001'},
+  E2:{n:'Hỏi đáp trên tài liệu', trace:'BR-002, BR-003'},
+  E3:{n:'Nguồn dẫn và kiểm chứng', trace:'BRU-002, OQ-010'},
+  E4:{n:'Dữ liệu và quyền riêng tư', trace:'BRU-001, RSK-002, OQ-012/013'},
+  E5:{n:'Đo lường và đánh giá MVP', trace:'BR-004, MET-001/002'}
+};
+const G = (g,w,t)=>({g,w,t});
+const S = [
+// ---------- E1
+{id:'US-101',e:'E1',p:'P0',who:'Lan',want:'tải một hoặc nhiều tệp PDF lên',so:'có thể hỏi về nội dung của chúng',
+ trace:['BR-001','AC-001','CN-01','IF-03'],
+ ac:[G('tôi đang ở màn hình chính và chọn một PDF hợp lệ (đúng định dạng, trong giới hạn kích thước/số lượng [TBD: OQ-008])','tôi xác nhận tải lên','tệp xuất hiện trong danh sách với trạng thái “Đang xử lý” trong vòng 2 giây'),
+     G('tôi chọn tệp không phải PDF hoặc vượt giới hạn','tôi xác nhận','hệ thống từ chối tệp, nêu rõ lý do và giới hạn cho phép, và không ảnh hưởng đến các tệp đã tải'),
+     G('tôi chọn nhiều PDF','một tệp lỗi','các tệp còn lại vẫn được xử lý bình thường và lỗi được hiển thị riêng cho tệp đó')],
+ scr:[['SCR-02','Nút “Tải PDF đầu tiên” và giới hạn tệp ở trạng thái rỗng'],['SCR-03','Nhiều tệp ở các trạng thái khác nhau, lỗi hiển thị riêng từng tệp']],
+ note:'Tải lên bị khóa đến khi người dùng xác nhận thông báo dữ liệu (US-401, SCR-01). Giới hạn đọc từ cấu hình (DD-09).'},
+{id:'US-102',e:'E1',p:'P0',who:'Lan',want:'xem danh sách PDF đã tải cùng trạng thái xử lý',so:'biết khi nào có thể bắt đầu hỏi',
+ trace:['BR-001','AC-001','CN-01','IF-04'],
+ ac:[G('tôi đã tải ít nhất một PDF','tôi mở danh sách tài liệu','mỗi tệp hiển thị tên, kích thước, thời điểm tải và trạng thái (Đang xử lý / Sẵn sàng / Lỗi)'),
+     G('tệp ở trạng thái “Đang xử lý”','quá trình hoàn tất','trạng thái tự chuyển thành “Sẵn sàng” mà không cần tải lại trang')],
+ scr:[['SCR-03','Danh sách tài liệu với thanh tiến trình, biểu tượng + chữ cho từng trạng thái']],
+ note:'Trạng thái luôn kèm biểu tượng và chữ, không chỉ dựa vào màu (DD-07). Có thể hỏi trên tệp đã sẵn sàng khi tệp khác còn đang xử lý (DD-04).'},
+{id:'US-103',e:'E1',p:'P0',who:'Lan',want:'xóa một PDF khỏi tập tài liệu của mình',so:'loại bỏ tài liệu không còn dùng hoặc không được phép lưu',
+ trace:['BR-001','BRU-001','CN-06','IF-05'],
+ ac:[G('tôi có một PDF trong danh sách','tôi chọn xóa và xác nhận','tệp biến mất khỏi danh sách và các câu hỏi mới không còn dùng nội dung tệp đó'),
+     G('tôi đã xóa một PDF','tôi đặt câu hỏi','câu trả lời không chứa trích dẫn đến tệp đã xóa. Thời hạn xóa vật lý toàn bộ dữ liệu theo quyết định [TBD: OQ-012]')],
+ scr:[['SCR-06','Hộp thoại xác nhận xóa (xóa trong ≤ 2 thao tác)']],
+ note:'Trường hợp tải nhầm tài liệu nhạy cảm: xóa trong một thao tác (menu ⋯ → Xóa → Xác nhận) kèm liên kết hướng dẫn báo cáo.'},
+{id:'US-104',e:'E1',p:'P1',who:'Lan',want:'chọn tài liệu nào tham gia vào câu hỏi hiện tại',so:'câu trả lời chỉ dựa trên các tệp liên quan',
+ trace:['CN-11'],
+ ac:[G('danh sách có tệp ở nhiều trạng thái','tôi xem hộp chọn từng tệp','chỉ tệp “Sẵn sàng” chọn được; tệp khác không có checkbox hoạt động'),
+     G('tôi bỏ chọn một tệp','tôi gửi câu hỏi','câu trả lời và trích dẫn chỉ đến từ các tệp đang được chọn'),
+     G('tôi bỏ chọn tất cả tệp','tôi muốn gửi câu hỏi','Gửi bị vô hiệu hóa kèm lý do bằng văn bản')],
+ scr:[['SCR-03','Checkbox từng tệp trong danh sách tài liệu'],['SCR-04','Tệp được chọn đi kèm câu hỏi']],
+ draft:true},
+{id:'US-105',e:'E1',p:'P2',who:'Lan',want:'kéo-thả tệp vào trang',so:'thao tác nhanh hơn',
+ trace:['PRD 4.1(1)'],
+ ac:[G('tôi kéo một hoặc nhiều PDF vào trang','tôi thả tệp','các tệp được kiểm tra hợp lệ phía client và đưa vào luồng tải như khi chọn tệp (cùng quy tắc của US-101)'),
+     G('tôi kéo tệp không hợp lệ','tôi thả tệp','hệ thống nêu lý do và giới hạn, danh sách không đổi')],
+ scr:[['SCR-02','Khu vực tải lên (DropZone) ở màn hình rỗng']],
+ draft:true},
+// ---------- E2
+{id:'US-201',e:'E2',p:'P0',who:'Lan',want:'đặt câu hỏi bằng ngôn ngữ tự nhiên về các PDF đã tải',so:'lấy thông tin mà không phải đọc từng tệp',
+ trace:['BR-002','AC-002','CN-02','IF-06'],
+ ac:[G('có ít nhất một PDF ở trạng thái “Sẵn sàng”','tôi gửi một câu hỏi không rỗng','câu hỏi hiển thị trong khung chat và hệ thống bắt đầu trả lời, có chỉ báo “đang tạo câu trả lời”'),
+     G('chưa có PDF nào sẵn sàng','tôi cố gửi câu hỏi','hệ thống chặn gửi và hướng dẫn tôi tải PDF trước')],
+ scr:[['SCR-02','Ô chat bị tắt kèm lý do khi chưa có tài liệu'],['SCR-04','Câu hỏi, chỉ báo đang tạo và luồng trả lời'],['SCR-08','Ô chat tắt khi bật kill switch']],
+ note:'Enter để gửi, Shift+Enter xuống dòng. Token đầu mục tiêu ≤ 5 giây (p95) [Đề xuất].'},
+{id:'US-202',e:'E2',p:'P0',who:'Lan',want:'nhận câu trả lời dựa trên nội dung tài liệu và được báo rõ khi tài liệu không chứa thông tin',so:'không bị đưa thông tin bịa',
+ trace:['BR-003','AC-003','CN-04','BRU-002'],
+ ac:[G('câu hỏi có đáp án nằm trong tài liệu','hệ thống trả lời','nội dung nhất quán với đoạn nguồn và đạt ngưỡng đánh giá trên bộ câu hỏi chuẩn [TBD: OQ-009]'),
+     G('câu hỏi không có thông tin trong tập PDF hiện tại','hệ thống trả lời','nội dung nêu rõ “không tìm thấy trong tài liệu đã tải” thay vì suy đoán từ kiến thức bên ngoài')],
+ scr:[['SCR-04','Nhãn AI cố định và câu trả lời “không tìm thấy”']],
+ note:'Nhãn “Câu trả lời do AI tạo, hãy kiểm tra nguồn trước khi sử dụng” hiển thị trên 100% câu trả lời, không thể đóng (DD-03). Thử trong prototype: hỏi “Thời tiết hôm nay?”.'},
+{id:'US-203',e:'E2',p:'P0',who:'Lan',want:'hệ thống tổng hợp thông tin từ nhiều PDF trong một câu trả lời',so:'không phải tự đối chiếu',
+ trace:['BR-003','AC-003','CN-03'],
+ ac:[G('≥ 2 PDF sẵn sàng và câu hỏi cần thông tin từ nhiều tệp','hệ thống trả lời','câu trả lời nêu thông tin từ từng tệp liên quan và mỗi ý có nguồn dẫn tương ứng (xem E3)')],
+ scr:[['SCR-04','Một câu trả lời kèm nhiều chip trích dẫn từ các tệp khác nhau']]},
+{id:'US-204',e:'E2',p:'P1',who:'Lan',want:'hỏi tiếp dựa trên ngữ cảnh cuộc hội thoại trước',so:'không phải lặp lại thông tin',
+ trace:['IF-06 (conversationId)'],
+ ac:[G('tôi đã nhận một câu trả lời','tôi gửi câu hỏi nối tiếp có đại từ/tham chiếu (“còn điều khoản phạt thì sao?”)','hệ thống hiểu theo ngữ cảnh các lượt trước trong cùng hội thoại'),
+     G('hội thoại dài','tôi cuộn lên','tin nhắn mới nhất không tự cuộn đè; có nút “Cuộn xuống” khi có nội dung mới')],
+ scr:[['SCR-04','Hội thoại nhiều lượt trong khung chat']],
+ draft:true},
+{id:'US-205',e:'E2',p:'P1',who:'Lan',want:'dừng một câu trả lời đang được tạo',so:'không mất thời gian chờ khi tôi đã hỏi sai',
+ trace:['CN-12','IF-07','answer_stopped'],
+ ac:[G('một câu trả lời đang streaming','tôi bấm Dừng','việc sinh dừng, phần đã nhận được giữ lại với nhãn “Đã dừng”'),
+     G('câu trả lời bị dừng hoặc bị gián đoạn','tôi muốn thử lại','có nút “Tạo lại” / “Hỏi lại” và câu hỏi gốc không bị mất')],
+ scr:[['SCR-04','Nút Gửi chuyển thành Dừng khi đang stream; trạng thái Bị gián đoạn / Đã dừng']],
+ note:'Prototype: dùng thanh demo để chọn “Lần hỏi tiếp theo” nhằm thấy các trạng thái Interrupted / Failed / Stopped.',
+ draft:true},
+{id:'US-206',e:'E2',p:'P2',who:'Lan',want:'xuất hoặc sao chép lịch sử hỏi đáp',so:'dùng lại trong email hoặc ghi chú',
+ trace:['copy_answer'],
+ ac:[G('một câu trả lời đã hoàn tất','tôi bấm “Sao chép”','nội dung câu trả lời kèm trích dẫn được chép vào clipboard và hiện thông báo thành công tự ẩn sau 5 giây'),
+     G('tôi muốn xuất cả hội thoại','tôi chọn xuất','nhận được bản sao toàn bộ lượt hỏi–đáp của phiên hiện tại (định dạng [TBD])')],
+ scr:[['SCR-04','Hành động Sao chép dưới câu trả lời']],
+ draft:true},
+// ---------- E3
+{id:'US-301',e:'E3',p:'P0',who:'Lan',want:'mỗi câu trả lời kèm trích dẫn (tên tệp, số trang)',so:'biết thông tin đến từ đâu',
+ trace:['BR-003','BRU-002','CN-03','KR2.2'],
+ ac:[G('hệ thống đưa ra câu trả lời dựa trên tài liệu','câu trả lời hoàn tất','mỗi khẳng định chính có ít nhất một trích dẫn gồm tên tệp và số trang'),
+     G('câu trả lời là “không tìm thấy thông tin”','hiển thị','không bắt buộc có trích dẫn')],
+ scr:[['SCR-04','Chip trích dẫn dạng “tên tệp · tr.N” dưới câu trả lời']],
+ note:'Yêu cầu nguồn dẫn đang để mở tại OQ-010; cần xác nhận trước khi khóa phạm vi P0.'},
+{id:'US-302',e:'E3',p:'P0',who:'Lan',want:'bấm vào trích dẫn để xem đoạn văn gốc',so:'tự xác minh trước khi dùng',
+ trace:['BRU-002','CN-03','IF-08','citation_opened'],
+ ac:[G('câu trả lời có trích dẫn','tôi bấm vào một trích dẫn','hệ thống hiển thị đoạn văn bản gốc được dùng, cùng tên tệp và số trang'),
+     G('đoạn gốc không thể hiển thị (ví dụ tệp đã bị xóa)','tôi bấm','hệ thống báo rõ lý do (“Nguồn không còn khả dụng”) thay vì hiển thị trống')],
+ scr:[['SCR-05','Panel nguồn mở bên phải: đoạn gốc + tên tệp + trang; Esc đóng và trả focus về chip']],
+ note:'Không dẫn người dùng ra khỏi trang (DD-01). Dưới 1024px panel chuyển thành bottom sheet.'},
+{id:'US-303',e:'E3',p:'P2',who:'Lan',want:'mở PDF tại đúng trang được trích dẫn',so:'đọc thêm ngữ cảnh',
+ trace:['PRD 3.0 (E3)'],
+ ac:[G('panel nguồn đang hiển thị một trích dẫn hợp lệ','tôi chọn “Mở PDF tại trang này”','tệp PDF được mở tại đúng số trang trích dẫn'),
+     G('tệp đã bị xóa','tôi chọn mở','hệ thống báo “Nguồn không còn khả dụng”')],
+ scr:[['SCR-05','Panel nguồn — vị trí đặt hành động mở PDF (chưa có trong prototype)']],
+ draft:true},
+// ---------- E4
+{id:'US-401',e:'E4',p:'P0',who:'Lan',want:'thấy thông báo rõ về loại tài liệu được phép tải và cách dữ liệu được xử lý',so:'không vô tình tải tài liệu bị cấm',
+ trace:['BRU-001','SN-004','CN-06','IF-02','data_notice_accepted'],
+ ac:[G('tôi lần đầu truy cập hoặc chính sách thay đổi','tôi muốn tải tệp','tôi phải xác nhận đã đọc thông báo sử dụng dữ liệu trước khi tải lên được kích hoạt. Nội dung thông báo theo [TBD: OQ-012, OQ-013]')],
+ scr:[['SCR-01','Màn chào: nội dung lưu ý dữ liệu, checkbox đồng ý, nút Tiếp tục tắt đến khi tích chọn']],
+ note:'Nút “Thông báo dữ liệu” trên header luôn truy cập được để xem lại.'},
+{id:'US-402',e:'E4',p:'P0',who:'Hà',want:'tài liệu và hội thoại của mỗi người dùng được tách biệt',so:'không bị người khác truy cập',
+ trace:['SN-004','CN-07','OQ-014'],
+ ac:[G('hai người dùng A và B','A tải PDF và hỏi đáp','B không thể thấy, truy vấn hoặc nhận trích dẫn từ tài liệu và hội thoại của A'),
+     G('một phiên không hợp lệ hoặc hết hạn','gọi truy cập tài liệu','hệ thống từ chối và yêu cầu đăng nhập lại')],
+ scr:[['SCR-07','Overlay hết phiên / đăng nhập lại, giữ bản nháp câu hỏi']],
+ note:'Cô lập dữ liệu chủ yếu thực thi ở backend; UI phụ trách từ chối và khôi phục bản nháp. Cơ chế đăng nhập chưa chốt (OQ-014).'},
+{id:'US-403',e:'E4',p:'P1',who:'Hà',want:'có nhật ký ai tải/xóa tài liệu và khi nào',so:'phục vụ kiểm tra khi cần',
+ trace:['SN-004','document_deleted','upload_succeeded'],
+ ac:[G('người dùng tải hoặc xóa một tài liệu','sự kiện xảy ra','nhật ký ghi người thực hiện, hành động, thời điểm, mã tài liệu (không ghi nội dung)'),
+     G('tôi cần kiểm tra','tôi truy vấn nhật ký','xem được danh sách theo thời gian và lọc theo người dùng')],
+ scr:[],
+ note:'Chưa có màn hình trong bộ thiết kế hiện tại; cần bổ sung nếu giữ ở P1.',
+ draft:true},
+// ---------- E5
+{id:'US-501',e:'E5',p:'P0',who:'Minh',want:'có số liệu MET-001 và MET-002 từ buổi thử nghiệm',so:'quyết định có tiếp tục đầu tư hay không',
+ trace:['BR-004','AC-004','CN-08','MET-001','MET-002'],
+ ac:[G('kết thúc giai đoạn thử nghiệm','Minh xem báo cáo đánh giá','báo cáo gồm dữ liệu đầu vào, kết quả MET-001/MET-002, so sánh với baseline/mục tiêu và ghi rõ “chưa thể kết luận” nếu mục tiêu chưa được duyệt'),
+     G('sự kiện telemetry của PRD mục 5.2','trích xuất dữ liệu','tính được MET-001 và MET-002 mà không cần xử lý thủ công ngoài định nghĩa đã duyệt')],
+ scr:[['SCR-09','Báo cáo đánh giá MVP dành cho Minh']],
+ note:'Vị trí điều khiển task_marked_done (“Tôi đã có thông tin cần tìm”) và hình thức báo cáo chưa chốt (OQ-005).'},
+{id:'US-502',e:'E5',p:'P1',who:'Lan',want:'đánh giá mỗi câu trả lời (hữu ích / không hữu ích, kèm lý do)',so:'giúp cải thiện chất lượng',
+ trace:['IF-09','answer_feedback','KR2.1'],
+ ac:[G('một câu trả lời đã hoàn tất','tôi bấm 👍 hoặc 👎','đánh giá được ghi nhận, nút hiển thị trạng thái đã chọn, nếu thất bại sẽ thử lại nền mà không làm phiền tôi'),
+     G('tôi chọn 👎','hộp lý do hiện ra','tôi chọn được mã lý do tùy chọn; telemetry chỉ gửi rating và reason_code, không gửi nội dung')],
+ scr:[['SCR-04','Nút Hữu ích / Không hữu ích dưới mỗi câu trả lời']],
+ draft:true}
+];
+
+const $ = (s,r=document)=>r.querySelector(s);
+const el = (h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const esc = (s)=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const tbd = (s)=>esc(s).replace(/\[(TBD[^\]]*)\]/g,'<span class="tbd">$1</span>');
+
+// tables
+$('#matrix').innerHTML = '<tr><th>Epic</th><th>Truy vết BRD</th><th>Story (P0 / P1 / P2)</th><th>Màn hình</th></tr>' +
+ Object.entries(EPICS).map(([k,v])=>{
+   const ss=S.filter(s=>s.e===k), c=p=>ss.filter(s=>s.p===p).length;
+   const scrs=[...new Set(ss.flatMap(s=>s.scr.map(x=>x[0])))].sort().join(', ')||'—';
+   return `<tr><td><a href="#${k}"><b>${k}</b> ${v.n}</a></td><td>${v.trace}</td><td>${ss.map(s=>s.id.replace('US-','')).join(', ')} &nbsp;(${c('P0')} / ${c('P1')} / ${c('P2')})</td><td>${scrs}</td></tr>`;
+ }).join('');
+$('#scrtable').innerHTML = '<tr><th>Màn hình</th><th>Tên</th><th>Story sử dụng</th></tr>' +
+ Object.entries(SCR).map(([k,v])=>{
+   const ids=S.filter(s=>s.scr.some(x=>x[0]===k)).map(s=>`<a href="#${s.id}">${s.id}</a>`).join(', ')||'—';
+   return `<tr><td><b>${k}</b></td><td><a href="${v.u}" target="_blank" rel="noopener">${v.t}</a></td><td>${ids}</td></tr>`;
+ }).join('');
+$('#toc').innerHTML = Object.entries(EPICS).map(([k,v])=>`<a href="#${k}">${k} · ${v.n}</a>`).join('');
+
+// stories
+const root = $('#stories');
+for (const [k,v] of Object.entries(EPICS)) {
+  root.append(el(`<h2 id="${k}">${k}. ${v.n}</h2>`));
+  for (const s of S.filter(x=>x.e===k)) {
+    const shots = s.scr.length ? `<div class="shots">${s.scr.map(([id,cap])=>`
+      <figure>
+        <div class="frame"><iframe loading="lazy" title="${id}" src="${SCR[id].u}"></iframe></div>
+        <figcaption><span><b>${id}</b> — ${esc(SCR[id].t)}<br><span style="color:var(--mut)">${esc(cap)}</span></span>
+        <a href="${SCR[id].u}" target="_blank" rel="noopener">Mở toàn màn hình ↗</a></figcaption>
+      </figure>`).join('')}</div>` : '<div class="noscr">Chưa có màn hình thiết kế cho story này.</div>';
+    root.append(el(`
+    <article class="story" id="${s.id}">
+      <header><span class="sid">${s.id}</span><span class="badge ${s.p}">${s.p}</span>${s.draft?'<span class="tbd">AC đề xuất</span>':''}</header>
+      <div class="stmt">Là <b>${s.who}</b>, tôi muốn <b>${esc(s.want)}</b>, để <b>${esc(s.so)}</b>.</div>
+      <div class="lbl">Tiêu chí chấp nhận</div>
+      <ol class="ac">${s.ac.map(a=>`<li><b>Given</b> ${tbd(a.g)}, <b>When</b> ${tbd(a.w)}, <b>Then</b> ${tbd(a.t)}.</li>`).join('')}</ol>
+      ${s.note?`<div class="lbl">Ghi chú</div><div>${tbd(s.note)}</div>`:''}
+      <div class="lbl">Truy vết</div>
+      <div class="tags">${s.trace.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}${s.scr.map(x=>`<span class="tag">${x[0]}</span>`).join('')}</div>
+      <div class="lbl">Màn hình thiết kế</div>
+      ${shots}
+    </article>`));
+  }
+}
+
+// scale iframes to container
+function fit(){
+  document.querySelectorAll('.frame').forEach(f=>{
+    const k=f.clientWidth/1280;
+    f.style.height=(760*k)+'px';
+    f.firstElementChild.style.transform='scale('+k+')';
+  });
+}
+addEventListener('resize',fit);fit();
+</script>
+</body>
+</html>

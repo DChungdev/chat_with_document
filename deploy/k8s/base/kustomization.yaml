@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Namespace và ảnh được đặt ở overlay. Secret `docchat-secrets` tạo ngoài repo (xem deploy/README.md).
+resources:
+  - api.yaml
+  - worker.yaml
+  - web.yaml
+  - ingress.yaml
+  - networkpolicy.yaml
+  - pdb.yaml
+
+configMapGenerator:
+  - name: docchat-config
+    literals:
+      - ENVIRONMENT=staging
+      - LOG_LEVEL=INFO
+      - S3_BUCKET=docchat-documents
+      - S3_REGION=us-east-1
+      - EMBEDDING_DIM=1024
+      - APP_CONFIG_TTL_SECONDS=30
+      # Mặc định giả lập cho tới khi pháp chế duyệt nhà cung cấp [TBD: OQ-012/013]
+      - LLM_PROVIDER=fake
+      - EMBEDDING_PROVIDER=fake
+      - AUTH_PROVIDER=dev # [TBD: OQ-014]
+
+# Job migrate tham chiếu `docchat-config` theo tên cố định nên không dùng hậu tố băm
+generatorOptions:
+  disableNameSuffixHash: true

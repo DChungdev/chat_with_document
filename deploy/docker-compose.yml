@@ -1,0 +1,145 @@
+# Môi trường dev: `docker compose -f deploy/docker-compose.yml up --build` (hoặc `make dev`).
+# Chỉ publish ra host: web (5173) và api (8000). Postgres/MinIO chỉ mở trên 127.0.0.1 để debug.
+name: docchat
+
+x-python-env: &python-env
+  ENVIRONMENT: dev
+  LOG_LEVEL: INFO
+  S3_ENDPOINT_URL: http://minio:9000
+  S3_BUCKET: docchat-documents
+  S3_ACCESS_KEY: minioadmin
+  S3_SECRET_KEY: minioadmin
+  LLM_PROVIDER: fake
+  EMBEDDING_PROVIDER: fake
+  EMBEDDING_DIM: "1024"
+  AUTH_PROVIDER: dev
+
+x-python-service: &python-service
+  build:
+    context: ..
+    dockerfile: deploy/docker/python.Dockerfile
+    target: dev
+  volumes:
+    - ../packages:/app/packages
+    - ../infra:/app/infra
+    - ../apps/api:/app/apps/api
+    - ../apps/worker:/app/apps/worker
+    - ../db:/app/db
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: docchat
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Chạy một lần khi khởi tạo volume: vai trò, owner CSDL, extension vector
+      - ../db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d docchat"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    ports:
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:9001:9001"
+    volumes:
+      - miniodata:/data
+
+  minio-init:
+    image: minio/mc:latest
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      until mc alias set local http://minio:9000 minioadmin minioadmin; do sleep 1; done &&
+      mc mb --ignore-existing local/docchat-documents &&
+      mc anonymous set none local/docchat-documents
+      "
+    restart: "no"
+
+  migrate:
+    <<: *python-service
+    command: ["alembic", "upgrade", "head"]
+    environment:
+      MIGRATOR_DATABASE_URL: postgresql+psycopg://migrator:docchat_dev@postgres:5432/docchat
+      EMBEDDING_DIM: "1024"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    <<: *python-service
+    command:
+      - uvicorn
+      - docchat_api.main:app_factory
+      - --factory
+      - --host=0.0.0.0
+      - --port=8000
+      - --reload
+      - --reload-dir=/app
+      - --no-access-log
+    environment:
+      <<: *python-env
+      DATABASE_URL: postgresql+psycopg://docchat_api:docchat_dev@postgres:5432/docchat
+    ports:
+      - "8000:8000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      minio-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=2)"
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  worker:
+    <<: *python-service
+    command: ["python", "-m", "docchat_worker.main"]
+    environment:
+      <<: *python-env
+      DATABASE_URL: postgresql+psycopg://docchat_worker:docchat_dev@postgres:5432/docchat
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      minio-init:
+        condition: service_completed_successfully
+
+  web:
+    build:
+      context: ..
+      dockerfile: deploy/docker/web.Dockerfile
+      target: dev
+    environment:
+      VITE_API_PROXY: http://api:8000
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../apps/web:/app/apps/web
+      - web_node_modules:/app/apps/web/node_modules
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  miniodata:
+  web_node_modules:

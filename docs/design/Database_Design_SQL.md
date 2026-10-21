@@ -189,6 +189,7 @@ CREATE TABLE ingest_jobs (
     locked_at     timestamptz,
     locked_by     text,
     last_error    text,                                      -- chỉ mã lỗi, KHÔNG nội dung tài liệu
+    trace_context jsonb,                                     -- carrier W3C traceparent để nối trace api → worker (thêm khi triển khai A6)
     created_at    timestamptz NOT NULL DEFAULT now(),
     CONSTRAINT uq_ingest_jobs_document UNIQUE (document_id)
 );

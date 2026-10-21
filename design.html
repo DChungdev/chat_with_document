@@ -1,0 +1,3002 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Design - Tổng hợp</title>
+<style>
+:root{--bg:#fff;--fg:#1f2328;--mut:#656d76;--bd:#d0d7de;--sb:#f6f8fa;--ac:#0969da;--code:#f0f2f4}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mut:#8b949e;--bd:#30363d;--sb:#161b22;--ac:#58a6ff;--code:#1f242c}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 system-ui,Segoe UI,sans-serif;display:flex}
+nav{width:300px;flex:none;height:100vh;position:sticky;top:0;overflow:auto;background:var(--sb);border-right:1px solid var(--bd);padding:12px}
+nav .g{font-weight:600;margin:14px 0 4px;color:var(--mut);font-size:12px;text-transform:uppercase}
+nav a{display:block;padding:3px 8px;color:var(--fg);text-decoration:none;border-radius:4px;font-size:13px;word-break:break-all}nav a:hover{background:var(--bd)}
+main{flex:1;min-width:0;padding:24px 32px;max-width:1200px}
+section{padding-bottom:32px;margin-bottom:32px;border-bottom:2px solid var(--bd)}
+h2.st{background:var(--sb);border:1px solid var(--bd);padding:8px 12px;border-radius:6px;color:var(--ac);font-size:18px}
+pre{background:var(--code);padding:12px;border-radius:6px;overflow:auto}code{background:var(--code);padding:1px 4px;border-radius:4px}pre code{padding:0}
+.tw{overflow:auto;margin:8px 0}table{border-collapse:collapse;font-size:13px}th,td{border:1px solid var(--bd);padding:4px 8px;vertical-align:top;text-align:left}th{background:var(--sb);position:sticky;top:0}
+.md table{display:block;overflow:auto}
+@media(max-width:800px){body{display:block}nav{width:auto;height:auto;position:static;max-height:30vh}main{padding:16px}}
+</style></head><body><nav><b>Design (29 files)</b><div class="g">Prompts (.md)</div><a href="#activitydiagram-prompt-md">activityDiagram_prompt.md</a><a href="#apidesign-prompt-md">apiDesign_prompt.md</a><a href="#blueprint-design-prompt-md">bluePrint_design_prompt.md</a><a href="#classdiagram-prompt-md">classDiagram_prompt.md</a><a href="#componentdiagram-prompt-md">componentDiagram_prompt.md</a><a href="#databasedesign-graphrdb-prompt-md">databaseDesign_GraphrDB_prompt.md</a><a href="#databasedesign-nosql-prompt-md">databaseDesign_NoSQL_prompt.md</a><a href="#databasedesign-sql-prompt-md">databaseDesign_SQL_prompt.md</a><a href="#databasedesign-vectordb-prompt-md">databaseDesign_VectorDB_prompt.md</a><a href="#deploymentdiagram-prompt-md">deploymentDiagram_prompt.md</a><a href="#sad-prompt-md">SAD_prompt.md</a><a href="#sad-prompt-ieee-standard-md">SAD_Prompt_IEEE_standard.md</a><a href="#sad-prompt-with-template-md">SAD_Prompt_with_template_.md</a><a href="#sequencediagram-prompt-md">sequenceDiagram_prompt.md</a><a href="#ui-ux-design-prompt-md">UI-UX-Design_prompt.md</a><a href="#usecase-prompt-md">useCase_prompt.md</a><div class="g">Checklists (.xlsx)</div><a href="#activity-diagram-uml2-0-checklist-xlsx">Activity_Diagram_UML2.0_Checklist.xlsx</a><a href="#api-design-ieee-1016-2009checklist-xlsx">API_Design_IEEE-1016-2009Checklist.xlsx</a><a href="#blueprint-design-ieee-1016-2009-checklist-xlsx">BluePrint_Design_IEEE_1016_2009_Checklist.xlsx</a><a href="#checklist-database-design-review-xlsx">Checklist_Database Design Review.xlsx</a><a href="#class-diagram-uml2-0-checklist-xlsx">Class_Diagram_UML2.0_Checklist.xlsx</a><a href="#component-diagram-uml2-0-checklist-xlsx">Component_Diagram_UML2.0_Checklist.xlsx</a><a href="#database-design-checklist-xlsx">Database_Design_Checklist.xlsx</a><a href="#deployment-diagram-uml2-0-checklist-xlsx">Deployment_Diagram_UML2.0_Checklist.xlsx</a><a href="#polyglot-db-design-checklist-xlsx">Polyglot_DB_Design_Checklist.xlsx</a><a href="#sad-ieee-1016-checklist-xlsx">SAD_IEEE_1016_Checklist.xlsx</a><a href="#sequence-diagram-uml2-0-checklist-xlsx">Sequence_Diagram_UML2.0_Checklist.xlsx</a><a href="#ui-ux-design-ieee-1016-2009-checklist-xlsx">UI_UX_Design_IEEE-1016-2009_Checklist.xlsx</a><a href="#usecase-document-uml2-0-checklist-xlsx">UseCase_Document_UML2.0_Checklist.xlsx</a></nav><main><section id="activitydiagram-prompt-md"><h2 class="st">activityDiagram_prompt.md</h2><div class="md"><p>Create a professional UML 2.0 Activity Diagram for [SYSTEM/PROCESS NAME] in Draw.io XML format. The diagram should follow strict UML 2.0 standards and include comprehensive workflow modeling.</p>
+<p><strong>PROCESS OVERVIEW:</strong>
+[Provide detail description of your system - or attach your SRS/PRD or/and SAD documents at here]</p>
+<p><strong>ACTIVITY DIAGRAM SPECIFICATIONS:</strong></p>
+<p><strong>1. INITIAL NODE:</strong>
+- Start point with solid circle (●)
+- Clear entry point for the workflow</p>
+<p><strong>2. ACTIVITY NODES (Actions):</strong>
+[List all activities/actions in the process]
+1. [Action 1] - [Brief description]
+2. [Action 2] - [Brief description]
+3. [Action 3] - [Brief description]
+4. [Action 4] - [Brief description]
+5. [Action 5] - [Brief description]
+[... continue as needed]</p>
+<p><strong>3. DECISION NODES (Branching):</strong>
+[List all decision points with conditions]
+- Decision 1: [Condition]
+  * [Yes/True path]: [Action/Outcome]
+  * [No/False path]: [Action/Outcome]</p>
+<ul>
+<li>Decision 2: [Condition]</li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<p><strong>4. MERGE NODES:</strong>
+[Specify where multiple paths converge]
+- Merge Point 1: [Converging paths]
+- Merge Point 2: [Converging paths]</p>
+<p><strong>5. FORK &amp; JOIN NODES (Parallel Processing):</strong>
+[List parallel activities]
+- Fork Point: [Activities that happen simultaneously]
+- Join Point: [Where parallel activities synchronize]</p>
+<p><strong>6. SWIMLANES (If applicable):</strong>
+Organize activities by:
+- Role 1: [List activities under this role]
+- Role 2: [List activities under this role]
+- Role 3: [List activities under this role]</p>
+<p><strong>7. FINAL NODE:</strong>
+- Solid circle with surrounding border (◉)
+- Clear end point(s) for the workflow</p>
+<p><strong>8. FLOW RELATIONSHIPS:</strong>
+- Control Flow: Connect nodes in sequence
+- Object Flow: Show data/object movement
+- Guard Conditions: Label decision paths clearly</p>
+<p><strong>9. ADDITIONAL ELEMENTS:</strong>
+- Action Pins (input/output pins)
+- Object Nodes (data storage)
+- Exception Handlers (error handling)
+- Activity Interrupts (cancellation points)</p>
+<p><strong>TECHNICAL REQUIREMENTS:</strong></p>
+<p><strong>VISUAL STYLING:</strong>
+- Node shapes:
+  * Actions: Rounded rectangles
+  * Decisions: Diamond shapes
+  * Initial/Final: Solid circles (with/without border)
+  * Fork/Join: Solid bars (horizontal/vertical)
+  * Swimlanes: Vertical or horizontal partitions
+- Colors:
+  * Action nodes: Light blue (#DAE8FC)
+  * Decision nodes: Light yellow (#FFF2CC)
+  * Swimlanes: Light green (#D5E8D4) or custom
+  * Initial node: Black fill
+  * Final node: Black fill with border
+- Font: Arial/Helvetica, 11pt
+- Line style: Solid for control flow, dashed for object flow</p>
+<p><strong>LAYOUT REQUIREMENTS:</strong>
+- Top-to-bottom flow (or left-to-right)
+- Consistent spacing between elements (minimum 40px)
+- Clear, non-overlapping paths
+- Proper alignment and organization
+- Margin: 50px from page edges
+- Page size: 1200 x 1200 pixels (or adjustable)</p>
+<p><strong>UML 2.0 STANDARDS:</strong>
+- Use correct notation for all elements
+- Include stereotypes where applicable
+- Proper arrowheads for control flow
+- Proper labels on all decision paths
+- Clear guard conditions on decision branches</p>
+<p><strong>OUTPUT FORMAT:</strong>
+Generate valid Draw.io XML that:
+- Can be imported directly into diagrams.net
+- Is properly structured and editable
+- Includes all UML 2.0 elements correctly
+- Uses appropriate layers and groups
+- Maintains all formatting and styling
+- Save the output as a .drawio file into [your document folder such as ./docs]</p></div></section><section id="apidesign-prompt-md"><h2 class="st">apiDesign_prompt.md</h2><div class="md"><p>You are a professional software developer, please generate a complete, standards-compliant Software API Design with full traceability from stakeholder concerns to design elements that following the <strong>Standard:</strong> IEEE 1016-2009.
+<strong>Output:</strong>
+- Save the output as a .md or [.sql] file into [your document folder such as ./docs]</p>
+<hr />
+<h2>1. Context &amp; Subject</h2>
+<h3>1.1 System Identification</h3>
+<p>[Provide detail description of your system - or attach your SRS/PRD or/and SAD documents at here]</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>System Name</strong></td>
+<td>[INSERT SYSTEM NAME]</td>
+</tr>
+<tr>
+<td><strong>SDD Version</strong></td>
+<td>[e.g., v1.0]</td>
+</tr>
+<tr>
+<td><strong>Document Date</strong></td>
+<td>[YYYY-MM-DD]</td>
+</tr>
+<tr>
+<td><strong>Document Owner</strong></td>
+<td>[Lead Architect / UX Lead / API Lead / Team]</td>
+</tr>
+<tr>
+<td><strong>Revision History</strong></td>
+<td>[Version, Date, Author, Changes]</td>
+</tr>
+</tbody>
+</table>
+<h3>1.2 System Scope and External Boundaries</h3>
+<p>Define the <strong>external boundaries</strong> of the system—what is inside the architecture versus what exists outside.</p>
+<table>
+<thead>
+<tr>
+<th>Boundary Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>System Purpose</strong></td>
+<td>[Briefly describe what the system does and its primary business value]</td>
+</tr>
+<tr>
+<td><strong>User Personas</strong></td>
+<td>[List primary user types with roles, goals, and pain points—see Section 2.1]</td>
+</tr>
+<tr>
+<td><strong>API Consumers</strong></td>
+<td>[List all API consumers: internal services, external partners, third-party integrations, mobile apps]</td>
+</tr>
+<tr>
+<td><strong>User Journey Context</strong></td>
+<td>[Where does this system fit in the user's overall workflow?]</td>
+</tr>
+<tr>
+<td><strong>External Systems</strong></td>
+<td>[List all external systems, services, APIs, and third-party dependencies]</td>
+</tr>
+<tr>
+<td><strong>External Interfaces</strong></td>
+<td>[e.g., REST APIs, GraphQL, gRPC, Webhooks, Message Queues, File Transfers]</td>
+</tr>
+<tr>
+<td><strong>UI Channels</strong></td>
+<td>[e.g., Web Application, Mobile App, Desktop App, Voice Interface, Chatbot]</td>
+</tr>
+<tr>
+<td><strong>API Channels</strong></td>
+<td>[e.g., Public API, Partner API, Internal API, Webhook endpoints]</td>
+</tr>
+<tr>
+<td><strong>Touchpoints</strong></td>
+<td>[All user interaction points: login, dashboard, forms, notifications, reports]</td>
+</tr>
+<tr>
+<td><strong>API Touchpoints</strong></td>
+<td>[All API interaction points: authentication, data access, webhook callbacks]</td>
+</tr>
+<tr>
+<td><strong>Trust Boundaries</strong></td>
+<td>[Security boundaries—internal network, DMZ, public internet, third-party domains]</td>
+</tr>
+<tr>
+<td><strong>Deployment Environment</strong></td>
+<td>[e.g., AWS Cloud, On-premise, Hybrid, Edge Devices]</td>
+</tr>
+<tr>
+<td><strong>Device Support</strong></td>
+<td>[e.g., Desktop (1920x1080+), Tablet (768x1024), Mobile (375x667+)]</td>
+</tr>
+<tr>
+<td><strong>Browser Support</strong></td>
+<td>[e.g., Chrome 90+, Firefox 88+, Safari 14+, Edge 90+]</td>
+</tr>
+</tbody>
+</table>
+<h3>1.3 Assumptions and Constraints</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Technical Constraints</strong></td>
+<td>[e.g., Must use React 18, Must support OAuth2, Must follow WCAG 2.1 AA, Must use OpenAPI 3.0]</td>
+</tr>
+<tr>
+<td><strong>Business Constraints</strong></td>
+<td>[e.g., Budget cap, Timeline, Regulatory deadlines, Brand guidelines]</td>
+</tr>
+<tr>
+<td><strong>UX/UI Assumptions</strong></td>
+<td>[e.g., Users have basic computer literacy, Average session duration 5 minutes]</td>
+</tr>
+<tr>
+<td><strong>API Assumptions</strong></td>
+<td>[e.g., API consumers have technical expertise, Average API call volume 10k/min]</td>
+</tr>
+<tr>
+<td><strong>Device Assumptions</strong></td>
+<td>[e.g., 80% desktop users, 15% mobile, 5% tablet]</td>
+</tr>
+<tr>
+<td><strong>Network Assumptions</strong></td>
+<td>[e.g., 4G/LTE or better, Latency &lt;300ms for mobile, &lt;100ms for API]</td>
+</tr>
+<tr>
+<td><strong>Data Assumptions</strong></td>
+<td>[e.g., Maximum dataset size, Data growth rate, Data retention policy]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Stakeholders &amp; Concerns</h2>
+<h3>2.1 User Personas</h3>
+<p>Define the primary users of the system with their goals, needs, and pain points.</p>
+<table>
+<thead>
+<tr>
+<th>Persona</th>
+<th>Role</th>
+<th>Demographics</th>
+<th>Goals</th>
+<th>Pain Points</th>
+<th>Tech Proficiency</th>
+<th>Usage Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>[e.g., Sarah]</strong></td>
+<td>[e.g., Financial Analyst]</td>
+<td>[e.g., 35-45, MBA]</td>
+<td>[e.g., Generate reports quickly, Identify trends]</td>
+<td>[e.g., Complex UI, Slow loading]</td>
+<td>[Medium-High]</td>
+<td>[Daily]</td>
+</tr>
+<tr>
+<td><strong>[e.g., Mike]</strong></td>
+<td>[e.g., IT Administrator]</td>
+<td>[e.g., 25-40, Technical]</td>
+<td>[e.g., Monitor system health, Manage users]</td>
+<td>[e.g., Lack of dashboards, Poor alerts]</td>
+<td>[High]</td>
+<td>[Weekly]</td>
+</tr>
+<tr>
+<td><strong>[e.g., Emily]</strong></td>
+<td>[e.g., Customer Service Rep]</td>
+<td>[e.g., 22-35, High School+]</td>
+<td>[e.g., Resolve tickets fast, Access customer history]</td>
+<td>[e.g., Cluttered interface, Hard to find info]</td>
+<td>[Medium]</td>
+<td>[Hourly]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2 API Consumer Personas</h3>
+<p>Define the primary API consumers of the system.</p>
+<table>
+<thead>
+<tr>
+<th>API Consumer</th>
+<th>Type</th>
+<th>Technical Level</th>
+<th>Goals</th>
+<th>Pain Points</th>
+<th>Expected Volume</th>
+<th>SLAs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>[e.g., Mobile App]</strong></td>
+<td>[First-party]</td>
+<td>[High]</td>
+<td>[Fast data sync, Offline support]</td>
+<td>[Network issues, Payload size]</td>
+<td>[High: 100k/day]</td>
+<td>[&lt;200ms]</td>
+</tr>
+<tr>
+<td><strong>[e.g., Partner Integration]</strong></td>
+<td>[Third-party]</td>
+<td>[Medium]</td>
+<td>[Easy integration, Clear docs]</td>
+<td>[Poor documentation, Rate limiting]</td>
+<td>[Medium: 10k/day]</td>
+<td>[&lt;500ms]</td>
+</tr>
+<tr>
+<td><strong>[e.g., Internal Service]</strong></td>
+<td>[First-party]</td>
+<td>[High]</td>
+<td>[Low latency, High throughput]</td>
+<td>[Versioning, Backward compatibility]</td>
+<td>[Very High: 1M/day]</td>
+<td>[&lt;50ms]</td>
+</tr>
+<tr>
+<td><strong>[e.g., Web App]</strong></td>
+<td>[First-party]</td>
+<td>[Medium]</td>
+<td>[Rich data, Good UX]</td>
+<td>[Over-fetching, Under-fetching]</td>
+<td>[High: 50k/day]</td>
+<td>[&lt;300ms]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.3 Stakeholder Identification</h3>
+<p>Identify all stakeholders who have a vested interest in the system's design and operation.</p>
+<table>
+<thead>
+<tr>
+<th>Stakeholder</th>
+<th>Role/Title</th>
+<th>Primary Interest</th>
+<th>UX/UI Specific Concern</th>
+<th>API Specific Concern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>End-Users</strong></td>
+<td>[e.g., Customers]</td>
+<td>[e.g., Usability, Performance]</td>
+<td>[e.g., Intuitive navigation, Fast page loads]</td>
+<td>[e.g., API powers the experience]</td>
+</tr>
+<tr>
+<td><strong>UX Designers</strong></td>
+<td>[e.g., Product Design]</td>
+<td>[e.g., Design consistency, User research]</td>
+<td>[e.g., Design system adherence]</td>
+<td>[e.g., API data shapes]</td>
+</tr>
+<tr>
+<td><strong>UI Developers</strong></td>
+<td>[e.g., Frontend Team]</td>
+<td>[e.g., Implementation feasibility]</td>
+<td>[e.g., Component library, Responsive]</td>
+<td>[e.g., API response formats]</td>
+</tr>
+<tr>
+<td><strong>API Developers</strong></td>
+<td>[e.g., Backend Team]</td>
+<td>[e.g., API quality, Performance]</td>
+<td>[e.g., API-driven UI]</td>
+<td>[e.g., OpenAPI specs, Versioning]</td>
+</tr>
+<tr>
+<td><strong>API Consumers</strong></td>
+<td>[e.g., Partner Devs]</td>
+<td>[e.g., Integration ease]</td>
+<td>[e.g., Documentation clarity]</td>
+<td>[e.g., Stability, Rate limits]</td>
+</tr>
+<tr>
+<td><strong>Product Owners</strong></td>
+<td>[e.g., Business]</td>
+<td>[e.g., Feature adoption]</td>
+<td>[e.g., Conversion rates]</td>
+<td>[e.g., API usage metrics]</td>
+</tr>
+<tr>
+<td><strong>Accessibility Officer</strong></td>
+<td>[e.g., Compliance]</td>
+<td>[e.g., WCAG compliance]</td>
+<td>[e.g., Screen reader support]</td>
+<td>[e.g., Accessible API responses]</td>
+</tr>
+<tr>
+<td><strong>Security Officer</strong></td>
+<td>[e.g., Compliance]</td>
+<td>[e.g., Data protection]</td>
+<td>[e.g., Secure forms, Session timeout]</td>
+<td>[e.g., OAuth2, Rate limiting]</td>
+</tr>
+<tr>
+<td><strong>DevOps/SRE</strong></td>
+<td>[e.g., Platform Team]</td>
+<td>[e.g., Scalability, Resilience]</td>
+<td>[e.g., UI performance monitoring]</td>
+<td>[e.g., API monitoring, SLAs]</td>
+</tr>
+<tr>
+<td><strong>QA Engineers</strong></td>
+<td>[e.g., Testing]</td>
+<td>[e.g., Testability]</td>
+<td>[e.g., Component testing]</td>
+<td>[e.g., API contract testing]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.4 Stakeholder Concerns (IEEE 1016-2009)</h3>
+<p>Map each stakeholder to their specific <strong>concerns</strong>—the non-functional requirements, quality attributes, and risks they care about.</p>
+<table>
+<thead>
+<tr>
+<th>Stakeholder</th>
+<th>Concern</th>
+<th>Priority</th>
+<th>UX/UI Acceptance Criteria</th>
+<th>API Acceptance Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>End-User</td>
+<td>Ease of Use</td>
+<td>High</td>
+<td>[Task completion in &lt;3 clicks]</td>
+<td>[API returns predictable data]</td>
+</tr>
+<tr>
+<td>End-User</td>
+<td>Task Completion</td>
+<td>High</td>
+<td>[95% success rate on forms]</td>
+<td>[API availability &gt;99.99%]</td>
+</tr>
+<tr>
+<td>End-User</td>
+<td>Visual Clarity</td>
+<td>High</td>
+<td>[Information hierarchy clear]</td>
+<td>[API responses well-structured]</td>
+</tr>
+<tr>
+<td>UX Designer</td>
+<td>Design Consistency</td>
+<td>High</td>
+<td>[Follow design system]</td>
+<td>[Consistent API patterns]</td>
+</tr>
+<tr>
+<td>UI Developer</td>
+<td>Component Reusability</td>
+<td>High</td>
+<td>[80% components reusable]</td>
+<td>[API responses consistent]</td>
+</tr>
+<tr>
+<td>API Developer</td>
+<td>API Quality</td>
+<td>High</td>
+<td>[API drives UI effectively]</td>
+<td>[OpenAPI 3.0 specs complete]</td>
+</tr>
+<tr>
+<td>API Consumer</td>
+<td>Developer Experience</td>
+<td>High</td>
+<td>[Clear error messages]</td>
+<td>[Self-documenting API]</td>
+</tr>
+<tr>
+<td>Product Owner</td>
+<td>User Engagement</td>
+<td>High</td>
+<td>[DAU/MAU &gt;40%]</td>
+<td>[API usage growth &gt;20% YoY]</td>
+</tr>
+<tr>
+<td>Accessibility Officer</td>
+<td>WCAG Compliance</td>
+<td>High</td>
+<td>[WCAG 2.1 AA level]</td>
+<td>[Accessible API responses]</td>
+</tr>
+<tr>
+<td>Security Officer</td>
+<td>Secure Auth</td>
+<td>High</td>
+<td>[MFA flow]</td>
+<td>[OAuth2, JWT, Rate limiting]</td>
+</tr>
+<tr>
+<td>DevOps/SRE</td>
+<td>Performance</td>
+<td>High</td>
+<td>[LCP &lt;2.5s]</td>
+<td>[API P95 &lt;200ms]</td>
+</tr>
+<tr>
+<td>QA Engineer</td>
+<td>Testability</td>
+<td>High</td>
+<td>[Component testing]</td>
+<td>[API contract testing]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.5 API Design Quality Attribute Scenarios</h3>
+<p>Define concrete, measurable API quality scenarios.</p>
+<table>
+<thead>
+<tr>
+<th>Quality Attribute</th>
+<th>API Scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Performance</strong></td>
+<td>[e.g., P95 latency &lt;200ms, P99 &lt;500ms at peak load]</td>
+</tr>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>[e.g., Handle 10k RPS with linear scaling]</td>
+</tr>
+<tr>
+<td><strong>Availability</strong></td>
+<td>[e.g., 99.99% uptime, MTTR &lt;5 minutes]</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>[e.g., OAuth2, JWT validation &lt;10ms, Rate limiting 1000/min]</td>
+</tr>
+<tr>
+<td><strong>Reliability</strong></td>
+<td>[e.g., 0% data loss, Idempotent operations]</td>
+</tr>
+<tr>
+<td><strong>Versioning</strong></td>
+<td>[e.g., Semantic versioning, 2-year deprecation policy]</td>
+</tr>
+<tr>
+<td><strong>Documentation</strong></td>
+<td>[e.g., OpenAPI 3.0, Interactive docs, Code examples]</td>
+</tr>
+<tr>
+<td><strong>Developer Experience</strong></td>
+<td>[e.g., 15-minute integration, SDKs available]</td>
+</tr>
+<tr>
+<td><strong>Observing</strong></td>
+<td>[e.g., Distributed tracing, Structured logs]</td>
+</tr>
+<tr>
+<td><strong>Backward Compatibility</strong></td>
+<td>[e.g., 100% for 2 major versions]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.6 API Design Constraints Matrix</h3>
+<table>
+<thead>
+<tr>
+<th>API Constraint</th>
+<th>Requirement</th>
+<th>Tool/Standard</th>
+<th>Verification Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>API Specification</strong></td>
+<td>[OpenAPI 3.0+ or AsyncAPI]</td>
+<td>[OpenAPI]</td>
+<td>[Swagger validator]</td>
+</tr>
+<tr>
+<td><strong>Authentication</strong></td>
+<td>[OAuth2.0 / JWT]</td>
+<td>[IETF RFC 6749]</td>
+<td>[Security audit]</td>
+</tr>
+<tr>
+<td><strong>Rate Limiting</strong></td>
+<td>[1000 req/min per API key]</td>
+<td>[IETF RFC 7234]</td>
+<td>[Load testing]</td>
+</tr>
+<tr>
+<td><strong>Pagination</strong></td>
+<td>[Cursor-based or offset-limit]</td>
+<td>[JSON:API]</td>
+<td>[API review]</td>
+</tr>
+<tr>
+<td><strong>Versioning</strong></td>
+<td>[URI versioning: /api/v1/]</td>
+<td>[Semantic Versioning]</td>
+<td>[API review]</td>
+</tr>
+<tr>
+<td><strong>Error Response</strong></td>
+<td>[RFC 7807 Problem Details]</td>
+<td>[IETF RFC 7807]</td>
+<td>[API review]</td>
+</tr>
+<tr>
+<td><strong>Idempotency</strong></td>
+<td>[Idempotency-Key header]</td>
+<td>[API best practice]</td>
+<td>[API testing]</td>
+</tr>
+<tr>
+<td><strong>CORS</strong></td>
+<td>[Secure CORS configuration]</td>
+<td>[IETF RFC 6454]</td>
+<td>[Security audit]</td>
+</tr>
+<tr>
+<td><strong>Content Negotiation</strong></td>
+<td>[Accept/Content-Type headers]</td>
+<td>[HTTP/1.1]</td>
+<td>[API testing]</td>
+</tr>
+<tr>
+<td><strong>Deprecation</strong></td>
+<td>[Deprecation header, Sunset]</td>
+<td>[RFC 8594]</td>
+<td>[API review]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. Design Views (IEEE 1016-2009 Core)</h2>
+<p>The design is documented through <strong>eight distinct views</strong>, each addressing specific stakeholder concerns. <strong>Every view now includes both UI/UX and API design elements.</strong></p>
+<hr />
+<h3>3.1 Composition View</h3>
+<p><strong>Purpose:</strong> Describes how the system is assembled from smaller units. Shows the hierarchical decomposition—<strong>including UI layer and API layer composition</strong>.</p>
+<p><strong>Viewpoint:</strong> Structural breakdown into UI, API, and backend layers.</p>
+<p><strong>Stakeholder Concerns Addressed:</strong> Maintainability, Modularity, Component Reusability, API Organization.</p>
+<h4>Full System Composition Diagram:</h4>
+<pre><code>flowchart TD
+    subgraph Presentation[Presentation Layer - UI]
+        Pages[Pages / Routes]
+        Layouts[Layout Templates]
+        Components[UI Components]
+        State[State Management]
+    end
+
+    subgraph API[API Layer]
+        subgraph Gateway[API Gateway]
+            Auth[Authentication]
+            Routing[Route Routing]
+            RateLimit[Rate Limiting]
+            Cache[Response Cache]
+        end
+
+        subgraph Public[Public API]
+            REST[REST Endpoints]
+            GraphQL[GraphQL Schema]
+            Webhooks[Webhook Publishers]
+        end
+
+        subgraph Internal[Internal API]
+            gRPC[gRPC Services]
+            Events[Event Publishers]
+            Admin[Admin API]
+        end
+    end
+
+    subgraph Backend[Backend Services]
+        SVC1[Service 1]
+        SVC2[Service 2]
+        SVC3[Service 3]
+    end
+
+    subgraph Data[Data Layer]
+        DB[(Database)]
+        CacheDB[(Redis Cache)]
+        Search[(Elasticsearch)]
+        Queue[(Message Queue)]
+    end
+
+    Pages --&gt; Components
+    Pages --&gt; State
+    State --&gt; REST
+    State --&gt; GraphQL
+
+    API --&gt; Gateway
+    Gateway --&gt; Public
+    Gateway --&gt; Internal
+    Public --&gt; SVC1
+    Public --&gt; SVC2
+    Internal --&gt; SVC3
+
+    SVC1 --&gt; DB
+    SVC1 --&gt; CacheDB
+    SVC2 --&gt; Search
+    SVC2 --&gt; Queue
+    SVC3 --&gt; DB
+</code></pre></div></section><section id="blueprint-design-prompt-md"><h2 class="st">bluePrint_design_prompt.md</h2><div class="md"><p>You are a professional software developer, please generate a complete, standards-compliant Software Blueprint Design with full traceability from stakeholder concerns to design elements that following the  <strong>Standard:</strong> IEEE 1016-2009.
+<strong>Output:</strong>
+- Save the output as a .md or [.sql] file into [your document folder such as ./docs]</p>
+<hr />
+<h2>1. Context &amp; Subject</h2>
+<h3>1.1 System Identification</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>System Name</strong></td>
+<td>[INSERT SYSTEM NAME]</td>
+</tr>
+<tr>
+<td><strong>SDD Version</strong></td>
+<td>[e.g., v1.0]</td>
+</tr>
+<tr>
+<td><strong>Document Date</strong></td>
+<td>[YYYY-MM-DD]</td>
+</tr>
+<tr>
+<td><strong>Document Owner</strong></td>
+<td>[Lead Architect / Team]</td>
+</tr>
+<tr>
+<td><strong>Revision History</strong></td>
+<td>[Version, Date, Author, Changes]</td>
+</tr>
+<tr>
+<td>[Provide detail description of your system - or attach your SRS/PRD or/and SAD documents at here]</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>1.2 System Scope and External Boundaries</h3>
+<p>Define the <strong>external boundaries</strong> of the system—what is inside the architecture versus what exists outside.</p>
+<table>
+<thead>
+<tr>
+<th>Boundary Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>System Purpose</strong></td>
+<td>[Briefly describe what the system does and its primary business value]</td>
+</tr>
+<tr>
+<td><strong>External Systems</strong></td>
+<td>[List all external systems, services, APIs, and third-party dependencies that the system interacts with]</td>
+</tr>
+<tr>
+<td><strong>User Types</strong></td>
+<td>[Identify all human actors interacting with the system]</td>
+</tr>
+<tr>
+<td><strong>External Interfaces</strong></td>
+<td>[e.g., REST APIs, Message Queues, File Transfers, Webhooks, Databases]</td>
+</tr>
+<tr>
+<td><strong>Trust Boundaries</strong></td>
+<td>[Identify security boundaries—internal network, DMZ, public internet, third-party domains]</td>
+</tr>
+<tr>
+<td><strong>Deployment Environment</strong></td>
+<td>[e.g., AWS Cloud, On-premise, Hybrid, Edge Devices]</td>
+</tr>
+</tbody>
+</table>
+<h3>1.3 Assumptions and Constraints</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Technical Constraints</strong></td>
+<td>[e.g., Must use PostgreSQL, Must support IPv6, Must run on Kubernetes]</td>
+</tr>
+<tr>
+<td><strong>Business Constraints</strong></td>
+<td>[e.g., Budget cap, Timeline, Regulatory deadlines]</td>
+</tr>
+<tr>
+<td><strong>Environmental Assumptions</strong></td>
+<td>[e.g., Network latency &lt;100ms, 99.9% uptime from cloud provider]</td>
+</tr>
+<tr>
+<td><strong>Data Assumptions</strong></td>
+<td>[e.g., Maximum dataset size, Data growth rate, Data retention policy]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Stakeholders &amp; Concerns</h2>
+<h3>2.1 Stakeholder Identification</h3>
+<p>Identify all stakeholders who have a vested interest in the system's design and operation.</p>
+<table>
+<thead>
+<tr>
+<th>Stakeholder</th>
+<th>Role/Title</th>
+<th>Primary Interest</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[e.g., End-User]</td>
+<td>[e.g., Customer]</td>
+<td>[e.g., Usability, Performance, Reliability]</td>
+</tr>
+<tr>
+<td>[e.g., System Administrator]</td>
+<td>[e.g., Ops Team]</td>
+<td>[e.g., Deployability, Monitorability, Logging]</td>
+</tr>
+<tr>
+<td>[e.g., Developer]</td>
+<td>[e.g., Engineering Team]</td>
+<td>[e.g., Maintainability, Testability, Understandability]</td>
+</tr>
+<tr>
+<td>[e.g., DevOps/SRE]</td>
+<td>[e.g., Platform Team]</td>
+<td>[e.g., Scalability, Resilience, Auto-scaling]</td>
+</tr>
+<tr>
+<td>[e.g., Product Owner]</td>
+<td>[e.g., Business]</td>
+<td>[e.g., Time-to-market, Feature agility, Cost]</td>
+</tr>
+<tr>
+<td>[e.g., Security Officer]</td>
+<td>[e.g., Compliance]</td>
+<td>[e.g., Data protection, Authentication, Audit trails]</td>
+</tr>
+<tr>
+<td>[e.g., Data Scientist]</td>
+<td>[e.g., AI/ML Team]</td>
+<td>[e.g., Model accuracy, Data pipeline, Feature store]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2 Stakeholder Concerns (IEEE 1016-2009)</h3>
+<p>Map each stakeholder to their specific <strong>concerns</strong>—the non-functional requirements, quality attributes, and risks they care about.</p>
+<table>
+<thead>
+<tr>
+<th>Stakeholder</th>
+<th>Concern</th>
+<th>Priority (High/Med/Low)</th>
+<th>Acceptance Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[Stakeholder]</td>
+<td>[Concern description]</td>
+<td>[Priority]</td>
+<td>[Measurable criterion]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.3 Quality Attribute Scenarios</h3>
+<p>For critical quality attributes, define concrete, measurable scenarios using the <strong>six-part scenario format</strong> (Source, Stimulus, Artifact, Environment, Response, Response Measure).</p>
+<table>
+<thead>
+<tr>
+<th>Quality Attribute</th>
+<th>Scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Performance</strong></td>
+<td>[e.g., Under peak load of 10k concurrent users, 95% of API requests complete within 200ms]</td>
+</tr>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>[e.g., System can horizontally scale from 3 to 30 nodes with linear throughput increase]</td>
+</tr>
+<tr>
+<td><strong>Availability</strong></td>
+<td>[e.g., System achieves 99.99% uptime with recovery time &lt; 30 seconds for any single-node failure]</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>[e.g., All sensitive data encrypted at rest (AES-256) and in transit (TLS 1.3)]</td>
+</tr>
+<tr>
+<td><strong>Maintainability</strong></td>
+<td>[e.g., A code change affecting one module impacts &lt;3 other modules]</td>
+</tr>
+<tr>
+<td><strong>Testability</strong></td>
+<td>[e.g., Unit test coverage &gt;80%, Integration tests run in &lt;5 minutes]</td>
+</tr>
+<tr>
+<td><strong>Deployability</strong></td>
+<td>[e.g., Canary deployments with automated rollback on error rate &gt;1%]</td>
+</tr>
+<tr>
+<td><strong>Observability</strong></td>
+<td>[e.g., Distributed tracing, structured logging, and metrics exposed in Prometheus format]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.4 UX/UI Quality Attribute Scenarios</h3>
+<p>Define concrete, measurable UX/UI quality scenarios.</p>
+<table>
+<thead>
+<tr>
+<th>Quality Attribute</th>
+<th>UX/UI Scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Usability</strong></td>
+<td>[e.g., A first-time user can complete the onboarding flow (5 steps) within 90 seconds with zero errors]</td>
+</tr>
+<tr>
+<td><strong>Accessibility</strong></td>
+<td>[e.g., All interactive elements are keyboard-navigable and screen-reader compatible (WCAG 2.1 AA)]</td>
+</tr>
+<tr>
+<td><strong>Performance</strong></td>
+<td>[e.g., First Contentful Paint &lt; 1.5s, Largest Contentful Paint &lt; 2.5s on a 4G connection]</td>
+</tr>
+<tr>
+<td><strong>Responsiveness</strong></td>
+<td>[e.g., UI gracefully adapts from 320px to 2560px width with no horizontal scroll]</td>
+</tr>
+<tr>
+<td><strong>Visual Consistency</strong></td>
+<td>[e.g., 100% adherence to design system for color, typography, spacing, and components]</td>
+</tr>
+<tr>
+<td><strong>Error Recovery</strong></td>
+<td>[e.g., Form validation errors are displayed inline with clear messaging; user recovers without page reload]</td>
+</tr>
+<tr>
+<td><strong>Feedback &amp; Affordance</strong></td>
+<td>[e.g., All clickable elements have hover/active states; loading states for async operations within 300ms]</td>
+</tr>
+<tr>
+<td><strong>Information Architecture</strong></td>
+<td>[e.g., User can find key functionality within 2 clicks from any page]</td>
+</tr>
+<tr>
+<td><strong>Internationalization</strong></td>
+<td>[e.g., UI supports RTL languages, text expansion (+30%), and date/time localization]</td>
+</tr>
+<tr>
+<td><strong>Mobile Experience</strong></td>
+<td>[e.g., Touch targets minimum 44px, gestures (swipe, pinch) optimized]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.5 UX/UI Constraints Matrix</h3>
+<table>
+<thead>
+<tr>
+<th>UX/UI Constraint</th>
+<th>Requirement</th>
+<th>Tool/Standard</th>
+<th>Verification Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Color Contrast</strong></td>
+<td>[e.g., Minimum 4.5:1 for normal text]</td>
+<td>[WCAG 2.1 AA]</td>
+<td>[Automated + manual testing]</td>
+</tr>
+<tr>
+<td><strong>Typography</strong></td>
+<td>[e.g., Body text 16px min, scalable]</td>
+<td>[Design System]</td>
+<td>[Design audit]</td>
+</tr>
+<tr>
+<td><strong>Touch Targets</strong></td>
+<td>[e.g., 44x44px min for touch devices]</td>
+<td>[Apple HIG / Material Design]</td>
+<td>[UI testing]</td>
+</tr>
+<tr>
+<td><strong>Loading States</strong></td>
+<td>[e.g., Show skeleton or spinner within 300ms]</td>
+<td>[UX best practice]</td>
+<td>[Performance monitoring]</td>
+</tr>
+<tr>
+<td><strong>Error Messaging</strong></td>
+<td>[e.g., Clear, actionable, not technical]</td>
+<td>[UX writing guidelines]</td>
+<td>[Content review]</td>
+</tr>
+<tr>
+<td><strong>Empty States</strong></td>
+<td>[e.g., Every empty state guides next action]</td>
+<td>[UX best practice]</td>
+<td>[UI inventory]</td>
+</tr>
+<tr>
+<td><strong>Notifications</strong></td>
+<td>[e.g., Non-intrusive, time-sensitive]</td>
+<td>[UX best practice]</td>
+<td>[User testing]</td>
+</tr>
+<tr>
+<td><strong>Help &amp; Onboarding</strong></td>
+<td>[e.g., Contextual help available]</td>
+<td>[UX best practice]</td>
+<td>[Task completion metrics]</td>
+</tr>
+<tr>
+<td>---</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>3. Design Views (IEEE 1016-2009 Core)</h2>
+<p>The design is documented through <strong>eight distinct views</strong>, each addressing specific stakeholder concerns. Every view must be explicitly linked back to the concerns identified in Section 2.</p>
+<hr />
+<h3>3.1 Composition View</h3>
+<p><strong>Purpose:</strong> Describes how the system is assembled from smaller units. Shows the hierarchical decomposition of the software into modules, subsystems, and packages.</p>
+<p><strong>Viewpoint:</strong> Structural breakdown of the system into its constituent parts.</p>
+<p><strong>Stakeholder Concerns Addressed:</strong> Maintainability, Understandability, Modularity.</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Type</th>
+<th>Parent</th>
+<th>Responsibility</th>
+<th>Dependencies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[Subsystem]</td>
+<td>[e.g., Module/Package]</td>
+<td>[e.g., System Root]</td>
+<td>[Description]</td>
+<td>[e.g., Depends on Utils]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Diagram:</strong></p>
+<pre><code>flowchart TD
+    Root[System Root] --&gt; SubsystemA[Core Domain]
+    Root --&gt; SubsystemB[Infrastructure]
+    Root --&gt; SubsystemC[API Layer]
+    Root --&gt; SubsystemD[Data Access]
+
+    SubsystemA --&gt; ModuleA1[Domain Entities]
+    SubsystemA --&gt; ModuleA2[Business Logic]
+
+    SubsystemB --&gt; ModuleB1[Logging]
+    SubsystemB --&gt; ModuleB2[Configuration]
+    SubsystemB --&gt; ModuleB3[Security]
+
+    SubsystemC --&gt; ModuleC1[REST Controllers]
+    SubsystemC --&gt; ModuleC2[GraphQL Resolvers]
+
+    SubsystemD --&gt; ModuleD1[Repository Layer]
+    SubsystemD --&gt; ModuleD2[Cache Manager]
+</code></pre></div></section><section id="classdiagram-prompt-md"><h2 class="st">classDiagram_prompt.md</h2><div class="md"><p>Create a professional UML 2.0 Class Diagram for [SYSTEM NAME] in Draw.io XML format. The diagram should follow strict UML 2.0 standards and illustrate the static structure of the system including classes, attributes, methods, and relationships.</p>
+<p><strong>SYSTEM OVERVIEW:</strong>
+[Provide detail description of your system - or attach your SRS/PRD or/and SAD documents at here]</p>
+<p><strong>CLASS DIAGRAM SPECIFICATIONS:</strong></p>
+<p><strong>1. CLASSES (List all domain classes):</strong></p>
+<p><strong>Core Domain Classes:</strong>
+1. <strong>[ClassName]</strong> - [Brief description/responsibility]
+   - Attributes:
+     * -attributeName: dataType = defaultValue
+     * -attributeName: dataType
+     * +attributeName: dataType
+   - Methods:
+     * +methodName(parameters): returnType
+     * +methodName(parameters): void
+     * -privateMethod(parameters): returnType
+   - Stereotypes: &lt;<entity>&gt;, &lt;<value object>&gt;, etc.
+   - Color: #COLOR</p>
+<ol start="2">
+<li>
+<p><strong>[ClassName]</strong> - [Brief description/responsibility]
+   - Attributes: [List with visibility]
+   - Methods: [List with visibility]
+   - Color: #COLOR</p>
+</li>
+<li>
+<p><strong>[ClassName]</strong> - [Brief description/responsibility]
+   - Attributes: [List with visibility]
+   - Methods: [List with visibility]
+   - Color: #COLOR</p>
+</li>
+</ol>
+<p><strong>Abstract Classes:</strong>
+4. <strong>&lt;<abstract>&gt; [ClassName]</strong> - [Purpose]
+   - Attributes: [List with visibility]
+   - Abstract Methods: +abstractMethod(): returnType</p>
+<p><strong>Interfaces:</strong>
+5. <strong>&lt;<interface>&gt; [InterfaceName]</strong> - [Purpose]
+   - Methods: +methodName(): returnType (all abstract)</p>
+<p><strong>Enumerations:</strong>
+6. <strong>&lt;<enumeration>&gt; [EnumName]</strong> - [Purpose]
+   - Values: VALUE1, VALUE2, VALUE3</p>
+<p><strong>2. RELATIONSHIPS (Specify all connections):</strong></p>
+<p><strong>Association (Simple Relationship):</strong>
+- [ClassA] ↔ [ClassB] : [Multiplicity A] → [Multiplicity B]
+  - Description: [Purpose of relationship]
+  - Navigation: Bi-directional/Uni-directional
+  - Role names: [roleA] and [roleB]</p>
+<p><strong>Aggregation (Whole-Part Relationship):</strong>
+- [Container] ◇→ [Contained] : [Multiplicity]
+  - Description: [Part-of relationship]
+  - Shared ownership</p>
+<p><strong>Composition (Strong Whole-Part):</strong>
+- [Container] ◆→ [Contained] : [Multiplicity]
+  - Description: [Strong ownership, lifecycle dependency]
+  - Exclusive ownership</p>
+<p><strong>Inheritance/Generalization:</strong>
+- [Parent Class] ↑ [Child Class]
+  - Description: [Is-a relationship]
+  - Abstract: Yes/No</p>
+<p><strong>Realization (Interface Implementation):</strong>
+- [Interface] - - - ↑ [Implementing Class]
+  - Description: [Implements interface methods]</p>
+<p><strong>Dependency (Usage):</strong>
+- [ClassA] - - - → [ClassB]
+  - Description: [Temporary usage relationship]</p>
+<p><strong>3. MULTIPLICITY (Specify cardinality):</strong></p>
+<ul>
+<li>1 : Exactly one</li>
+<li>0..1 : Zero or one</li>
+<li>
+<ul>
+<li>: Zero or more</li>
+</ul>
+</li>
+<li>1..* : One or more</li>
+<li>0..* : Zero or more (same as *)</li>
+<li>m..n : Between m and n</li>
+<li>2,4,6 : Specific values</li>
+</ul>
+<p><strong>4. ATTRIBUTE DETAILS:</strong></p>
+<p><strong>Visibility Symbols:</strong>
+- + : Public (accessible to all)
+- - : Private (accessible only within class)
+- # : Protected (accessible to subclasses)
+- ~ : Package (accessible within package)</p>
+<p><strong>Data Types:</strong>
+- Primitive: int, double, boolean, char, String
+- Date/Time: Date, LocalDateTime, Time
+- Collections: List<T>, Set<T>, Map<K,V>
+- Custom: [Your domain types]</p>
+<p><strong>5. PACKAGES (Organization):</strong>
+- Package 1: [Package Name]
+  - Contains: [List of classes]
+- Package 2: [Package Name]
+  - Contains: [List of classes]</p>
+<p><strong>TECHNICAL REQUIREMENTS:</strong></p>
+<p><strong>VISUAL STYLING:</strong>
+- Class shapes: Rectangles divided into 3 sections (name, attributes, methods)
+- Abstract classes: Italic class name
+- Interfaces: &lt;<interface>&gt; above name, italic
+- Enumerations: &lt;<enumeration>&gt; above name
+- Inheritance: Hollow triangle arrow (pointing to parent)
+- Realization: Dashed line with hollow triangle (pointing to interface)
+- Association: Solid line with optional arrow (for navigation)
+- Aggregation: Hollow diamond at whole end
+- Composition: Filled diamond at whole end
+- Dependency: Dashed line with arrow
+- Colors:
+  * Entity classes: Light blue (#DAE8FC)
+  * Abstract classes: Light gray (#F5F5F5)
+  * Interfaces: Light green (#D5E8D4)
+  * Value objects: Light yellow (#FFF2CC)
+  * Enumerations: Light purple (#E1D5E7)
+  * Controller classes: Light orange (#FFE6CC)
+- Font: Arial/Helvetica, 10pt (attributes/methods), 12pt (class names)
+- Bold font: Class names and stereotypes</p>
+<p><strong>LAYOUT REQUIREMENTS:</strong>
+- Logical grouping by packages/domains
+- Clear inheritance hierarchies (top-to-bottom)
+- Related classes grouped together
+- Consistent spacing (minimum 50px between classes)
+- Proper alignment
+- Margin: 50px from page edges
+- Page size: 1400 x 1000 pixels (adjustable)</p>
+<p><strong>UML 2.0 STANDARDS:</strong>
+- Correct class notation (3 compartments)
+- Proper visibility symbols
+- Correct relationship notation
+- Proper multiplicity notation
+- Role names on associations
+- Navigation arrows for direction
+- Package notation (folder icon)
+- Constraint notes where needed</p>
+<p><strong>OUTPUT FORMAT:</strong>
+Generate valid Draw.io XML that:
+- Can be imported directly into diagrams.net
+- Is properly structured and editable
+- Includes all UML 2.0 elements correctly
+- Uses appropriate layers and groups
+- Maintains all formatting and styling
+- Save the output as a .drawio file into [your document folder such as ./docs]</p></div></section><section id="componentdiagram-prompt-md"><h2 class="st">componentDiagram_prompt.md</h2><div class="md"><p>Create a professional UML 2.0 Component Diagram for [SYSTEM NAME] in Draw.io XML format. The diagram should follow strict UML 2.0 standards and illustrate the system's architectural structure, component relationships, and interfaces.</p>
+<p><strong>SYSTEM OVERVIEW:</strong>
+[Provide detail description of your system - or attach your SRS/PRD or/and SAD documents at here]</p>
+<p><strong>COMPONENT DIAGRAM SPECIFICATIONS:</strong></p>
+<p><strong>1. SYSTEM BOUNDARY:</strong>
+- System name and version
+- Clear boundary box with system label
+- External components shown outside the boundary
+- Internal components inside the boundary</p>
+<p><strong>2. COMPONENTS (List all architectural components):</strong></p>
+<p><strong>Core Components:</strong>
+1. [Component Name] - [Brief description/responsibility]
+2. [Component Name] - [Brief description/responsibility]
+3. [Component Name] - [Brief description/responsibility]</p>
+<p><strong>Subsystems:</strong>
+4. [Subsystem Name] - [Contains multiple components]
+5. [Subsystem Name] - [Contains multiple components]</p>
+<p><strong>External Components:</strong>
+6. [External Component] - [Third-party service]
+7. [External Component] - [External system]</p>
+<p><strong>3. INTERFACES:</strong></p>
+<p><strong>Provided Interfaces (Component provides services):</strong>
+- Interface 1: [Name] - [Description of services offered]
+- Interface 2: [Name] - [Description of services offered]</p>
+<p><strong>Required Interfaces (Component needs services):</strong>
+- Interface 3: [Name] - [Description of services required]
+- Interface 4: [Name] - [Description of services required]</p>
+<p><strong>4. RELATIONSHIPS:</strong></p>
+<p><strong>Dependencies:</strong>
+- Component A depends on Component B (uses)
+- Component C requires Interface X</p>
+<p><strong>Associations:</strong>
+- Component A communicates with Component B
+- Bi-directional or uni-directional</p>
+<p><strong>Realizations:</strong>
+- Component A realizes Interface Y
+- Subsystem implements multiple interfaces</p>
+<p><strong>5. PORT CONNECTIONS:</strong>
+- Ports with provided interfaces (shown as lollipop)
+- Ports with required interfaces (shown as socket)
+- Connect ports with assembly connectors</p>
+<p><strong>6. DEPLOYMENT CONSIDERATIONS:</strong>
+- Which components are deployable
+- Runtime instances
+- Version information</p>
+<p><strong>TECHNICAL REQUIREMENTS:</strong></p>
+<p><strong>VISUAL STYLING:</strong>
+- Component node shapes: Rectangles with component stereotype
+- Interface shapes: Circle (provided) and half-circle (required)
+- Dependencies: Dashed arrows
+- Realizations: Dashed lines with hollow triangle
+- Associations: Solid lines
+- Colors:
+  * Components: Light blue (#DAE8FC)
+  * Subsystems: Light yellow (#FFF2CC)
+  * External components: Light gray (#F5F5F5)
+  * Interfaces: Light green (#D5E8D4)
+  * Database components: Light orange (#FFE6CC)
+- Font: Arial/Helvetica, 11pt
+- Component stereotype: &lt;<component>&gt;
+- Interface stereotype: &lt;<interface>&gt;</p>
+<p><strong>LAYOUT REQUIREMENTS:</strong>
+- Logical grouping by layers/tiers
+- Clear separation of internal/external
+- Consistent spacing (minimum 50px)
+- Proper alignment
+- Left-to-right or top-to-bottom flow
+- Margin: 50px from page edges
+- Page size: 1400 x 1000 pixels</p>
+<p><strong>UML 2.0 STANDARDS:</strong>
+- Use correct component notation
+- Include all required stereotypes
+- Proper interface representation (ball-and-socket)
+- Assembly connectors between components
+- Delegation connectors within components
+- Ports on component boundaries</p>
+<p><strong>OUTPUT FORMAT:</strong>
+Generate valid Draw.io XML that:
+- Can be imported directly into diagrams.net
+- Is properly structured and editable
+- Includes all UML 2.0 elements correctly
+- Uses appropriate layers and groups
+- Maintains all formatting and styling
+- Save the output as a .drawio file into [your document folder such as ./docs]</p></div></section><section id="databasedesign-graphrdb-prompt-md"><h2 class="st">databaseDesign_GraphrDB_prompt.md</h2><div class="md"><p>Create a comprehensive Graph Database Design for [SYSTEM NAME] including complete schema design, node and edge definitions, relationship modeling, indexing strategies, query patterns, and best practices. The output should be a well-structured markdown file with complete graph database implementation details.</p>
+<p><strong>SYSTEM OVERVIEW:</strong>
+[Provide detail description of your system - or attach your SRS/PRD or/and SAD documents at here]</p>
+<p><strong>GRAPH DATABASE REQUIREMENTS:</strong></p>
+<p><strong>1. BUSINESS REQUIREMENTS:</strong>
+[List the core business requirements]
+- [Requirement 1]
+- [Requirement 2]
+- [Requirement 3]
+- [Requirement 4]
+- [Requirement 5]</p>
+<p><strong>2. GRAPH DATA CHARACTERISTICS:</strong>
+- <strong>Node Types:</strong>
+  - Entity nodes: [e.g., Person, Company, Product, Location]
+  - Event nodes: [e.g., Transaction, Interaction, Purchase]
+  - Value nodes: [e.g., Category, Tag, Attribute]
+  - Hierarchy nodes: [e.g., Organization, Department, Team]
+- <strong>Edge Types:</strong>
+  - Relationship edges: [e.g., FRIENDS_WITH, WORKS_FOR, OWNS]
+  - Event edges: [e.g., PURCHASED, VIEWED, CLICKED]
+  - Hierarchy edges: [e.g., REPORTS_TO, CONTAINS, BELONGS_TO]
+  - Temporal edges: [e.g., FOLLOWS_SINCE, MEMBER_SINCE]
+- <strong>Graph Size:</strong>
+  - Number of nodes: [e.g., 100 million+]
+  - Number of edges: [e.g., 1 billion+]
+  - Average degree: [e.g., 10-100]
+  - Graph diameter: [e.g., 6 degrees of separation]
+- <strong>Data Velocity:</strong>
+  - New nodes/second: [e.g., 1000+]
+  - New edges/second: [e.g., 5000+]
+  - Updates/second: [e.g., 2000+]</p>
+<p><strong>3. QUERY PATTERNS:</strong>
+- <strong>Traversal Queries:</strong>
+  - Depth-limited traversals: [e.g., Friends of friends (2 hops)]
+  - Variable-depth traversals: [e.g., Path between two nodes]
+  - Shortest path: [e.g., Connection path in social network]
+- <strong>Pattern Matching:</strong>
+  - Subgraph patterns: [e.g., Fraud rings detection]
+  - Graph isomorphism: [e.g., Finding similar structures]
+  - Pattern validation: [e.g., Business rule checking]
+- <strong>Aggregation Queries:</strong>
+  - Node/Edge counting: [e.g., Number of connections]
+  - Path aggregation: [e.g., Cumulative transaction amounts]
+  - Grouping: [e.g., Group by node properties]
+- <strong>Analytical Queries:</strong>
+  - PageRank: [e.g., Node importance]
+  - Community detection: [e.g., Finding clusters]
+  - Centrality measures: [e.g., Betweenness, closeness]
+  - Similarity computation: [e.g., Jaccard similarity]</p>
+<p><strong>4. PERFORMANCE REQUIREMENTS:</strong>
+- Query response time: [e.g., &lt; 100ms for 2-hop traversals]
+- Concurrent queries: [e.g., 1000+ queries/second]
+- Batch processing: [e.g., Nightly graph analytics]
+- Cache hit ratio: [e.g., &gt; 80% for frequent queries]</p>
+<p><strong>5. SCALABILITY REQUIREMENTS:</strong>
+- Horizontal scaling strategy: [By node type, By region]
+- Sharding approach: [Graph partitioning]
+- Replication: [Read replicas for high availability]
+- Backup strategy: [Point-in-time recovery]</p>
+<p><strong>6. DATA INTEGRITY AND CONSTRAINTS:</strong>
+- Unique constraints: [e.g., Email, Username]
+- Property existence: [e.g., Required fields]
+- Edge constraints: [e.g., Only certain relationships]
+- Composite constraints: [e.g., Unique combination of properties]
+- Temporal constraints: [e.g., Valid date ranges]</p>
+<p><strong>GRAPH DATABASE TECHNOLOGY SELECTION:</strong>
+[Choose appropriate graph database based on requirements]</p>
+<p><strong>Options:</strong>
+- <strong>Neo4j</strong>: Most popular, ACID compliant, Cypher query language
+- <strong>Amazon Neptune</strong>: Managed, Gremlin and SPARQL support
+- <strong>Azure Cosmos DB Gremlin</strong>: Managed, globally distributed
+- <strong>ArangoDB</strong>: Multi-model, graph, document, key-value
+- <strong>JanusGraph</strong>: Open-source, distributed, scalable
+- <strong>TigerGraph</strong>: Native parallel graph, high-performance
+- <strong>Memgraph</strong>: In-memory, real-time, high-performance
+- <strong>GraphDB</strong>: RDF triplestore, semantic web support
+- <strong>Neo4j Aura</strong>: Managed Neo4j cloud service
+- <strong>Google Cloud Neo4j</strong>: Managed Neo4j on GCP</p>
+<hr />
+<p><strong>Output:</strong>
+- Save the output as a .md file into [your document folder such as ./docs]</p></div></section><section id="databasedesign-nosql-prompt-md"><h2 class="st">databaseDesign_NoSQL_prompt.md</h2><div class="md"><p>Create a comprehensive NoSQL Database Design for [SYSTEM NAME] including complete schema design, data modeling strategies, access patterns, and best practices. The output should be a well-structured markdown file with complete NoSQL data models and implementation details.</p>
+<p><strong>SYSTEM OVERVIEW:</strong>
+[Provide detail description of your system - or attach your SRS/PRD or/and SAD documents at here]</p>
+<p><strong>DATABASE REQUIREMENTS:</strong></p>
+<p><strong>1. BUSINESS REQUIREMENTS:</strong>
+[List the core business requirements]
+- [Requirement 1]
+- [Requirement 2]
+- [Requirement 3]
+- [Requirement 4]
+- [Requirement 5]</p>
+<p><strong>2. DATA CHARACTERISTICS:</strong>
+- Data structure: [Document / Key-Value / Wide-Column / Graph]
+- Data size: [Estimated volume]
+- Data velocity: [Write/read frequency]
+- Data variety: [Types of data]
+- Data veracity: [Data quality requirements]</p>
+<p><strong>3. ACCESS PATTERNS:</strong>
+- Primary queries: [List most frequent queries]
+- Read vs write ratio: [e.g., 80% read, 20% write]
+- Query complexity: [Simple key lookups vs complex aggregations]
+- Latency requirements: [e.g., &lt; 50ms for 99% queries]
+- Throughput requirements: [e.g., 10,000 ops/second]</p>
+<p><strong>4. SCALABILITY REQUIREMENTS:</strong>
+- Horizontal scaling strategy: [Sharding/Replication]
+- Data distribution: [Partitioning strategy]
+- Consistency requirements: [Strong/Eventual/Causal]
+- Availability requirements: [High availability/Disaster recovery]
+- Geographic distribution: [Multi-region/multi-data center]</p>
+<p><strong>5. SECURITY REQUIREMENTS:</strong>
+- Authentication: [Role-based/Attribute-based]
+- Encryption: [At rest, In transit]
+- Audit: [Access logging]
+- Compliance: [GDPR/HIPAA/SOC2]</p>
+<p><strong>NoSQL TECHNOLOGY SELECTION:</strong>
+[Choose appropriate NoSQL type based on requirements]</p>
+<p><strong>Options:</strong>
+- <strong>Document Store</strong>: MongoDB, Couchbase, Firebase Firestore
+- <strong>Key-Value Store</strong>: Redis, DynamoDB, Cassandra
+- <strong>Wide-Column Store</strong>: Cassandra, HBase, Bigtable
+- <strong>Graph Database</strong>: Neo4j, Amazon Neptune, ArangoDB
+- <strong>Search Engine</strong>: Elasticsearch, Algolia, MeiliSearch
+- <strong>Time Series</strong>: InfluxDB, TimescaleDB, Prometheus</p>
+<hr />
+<p><strong>Output:</strong>
+- Save the output as a .md file into [your document folder such as ./docs]</p></div></section><section id="databasedesign-sql-prompt-md"><h2 class="st">databaseDesign_SQL_prompt.md</h2><div class="md"><p>Create a comprehensive SQL Database Design for [SYSTEM NAME] including complete schema design, SQL DDL statements, relationships, constraints, indexes, and best practices. The output should be a well-structured markdown file with complete SQL code.</p>
+<p><strong>SYSTEM OVERVIEW:</strong>
+[Provide detail description of your system - or attach your SRS/PRD or/and SAD documents at here]</p>
+<p><strong>DATABASE REQUIREMENTS:</strong></p>
+<p><strong>1. BUSINESS REQUIREMENTS:</strong>
+[List the core business requirements]
+- [Requirement 1]
+- [Requirement 2]
+- [Requirement 3]
+- [Requirement 4]
+- [Requirement 5]</p>
+<p><strong>2. DATA STORAGE REQUIREMENTS:</strong>
+- Estimated data volume: [e.g., 10 million rows in 2 years]
+- Transaction volume: [e.g., 1000 transactions/second]
+- Data retention period: [e.g., 7 years]
+- Growth rate: [e.g., 20% annually]
+- Availability requirements: [e.g., 99.99% uptime]
+- Backup frequency: [e.g., Daily full, hourly incremental]</p>
+<p><strong>3. PERFORMANCE REQUIREMENTS:</strong>
+- Query response time: [e.g., &lt; 100ms for 90% queries]
+- Concurrent users: [e.g., 10,000 concurrent users]
+- Reporting queries: [e.g., Complex reporting on historical data]
+- Batch processing: [e.g., Nightly ETL jobs]</p>
+<p><strong>4. SECURITY REQUIREMENTS:</strong>
+- Data encryption: [e.g., AES-256 at rest]
+- Access control: [e.g., Row-level security]
+- Audit logging: [e.g., Track all changes]
+- Compliance standards: [e.g., GDPR, HIPAA, PCI-DSS]</p>
+<p><strong>OUTPUT FORMAT:</strong></p>
+<p><strong>1. ENTITY-RELATIONSHIP DIAGRAM (Text-based)</strong>
+- List all entities and their relationships
+- Include cardinality and participation constraints</p>
+<p><strong>2. TABLE DEFINITIONS</strong>
+- Complete DDL statements for each table
+- All columns with proper data types
+- Primary keys and foreign keys
+- CHECK constraints
+- DEFAULT values
+- NOT NULL constraints
+- Unique constraints</p>
+<p><strong>3. RELATIONSHIP MAPPING</strong>
+- Foreign key definitions
+- Referential actions (CASCADE, SET NULL, RESTRICT)
+- Junction tables for many-to-many relationships</p>
+<p><strong>4. INDEXES AND PERFORMANCE</strong>
+- Clustered/Non-clustered indexes
+- Composite indexes
+- Full-text indexes
+- Index usage strategy</p>
+<p><strong>5. VIEWS</strong>
+- Business views
+- Reporting views
+- Materialized views</p>
+<p><strong>6. STORED PROCEDURES AND FUNCTIONS</strong>
+- Business logic implementation
+- Data validation procedures
+- Batch processing procedures</p>
+<p><strong>7. TRIGGERS</strong>
+- Audit triggers
+- Validation triggers
+- Computed column triggers</p>
+<p><strong>8. DATA TYPES AND CONSTRAINTS</strong>
+- Detailed explanation of data type choices
+- Constraint definitions
+- Validation rules</p>
+<p><strong>9. MIGRATION AND SEEDING SCRIPTS</strong>
+- Initial data population
+- Sample data for testing
+- Migration scripts for versioning</p>
+<p><strong>10. DATABASE ADMINISTRATION</strong>
+- Backup strategies
+- Maintenance plans
+- Monitoring queries
+- Performance tuning recommendations</p>
+<p><strong>TECHNICAL SPECIFICATIONS:</strong></p>
+<p><strong>Database Platform:</strong> [PostgreSQL/MySQL/SQL Server/Oracle]
+<strong>Version:</strong> [Version number]
+<strong>Character Set:</strong> UTF-8
+<strong>Collation:</strong> [Appropriate collation]
+<strong>Storage Engine:</strong> [InnoDB/MyISAM/PostgreSQL default]</p>
+<p><strong>NAMING CONVENTIONS:</strong>
+- Tables: [e.g., snake_case, plural]
+- Columns: [e.g., snake_case, singular]
+- Primary Keys: [e.g., id, {table}<em column="column">id]
+- Foreign Keys: [e.g., {referenced_table}<em table="table">id]
+- Indexes: [e.g., idx</em></em>]
+- Views: [e.g., vw_{purpose}]
+- Stored Procedures: [e.g., sp_{action}<em table="table">{object}]
+- Triggers: [e.g., trg</em><em timing="timing">{action}</em>]</p>
+<p><strong>Output:</strong>
+- Save the output as a .md or [.sql] file into [your document folder such as ./docs]</p></div></section><section id="databasedesign-vectordb-prompt-md"><h2 class="st">databaseDesign_VectorDB_prompt.md</h2><div class="md"><p>Create a comprehensive Vector Database Design for [SYSTEM NAME] including complete schema design, vector embedding strategies, <strong>metadata management</strong>, indexing methods, similarity search optimization, and best practices. The output should be a well-structured markdown file with complete vector database implementation details.</p>
+<p><strong>SYSTEM OVERVIEW:</strong>
+[Provide detail description of your system - or attach your SRS/PRD or/and SAD documents at here]</p>
+<p><strong>VECTOR DATABASE REQUIREMENTS:</strong></p>
+<p><strong>1. BUSINESS REQUIREMENTS:</strong>
+[List the core business requirements]
+- [Requirement 1]
+- [Requirement 2]
+- [Requirement 3]
+- [Requirement 4]
+- [Requirement 5]</p>
+<p><strong>2. VECTOR DATA CHARACTERISTICS:</strong>
+- Vector dimension: [e.g., 384, 768, 1536]
+- Embedding model: [e.g., OpenAI ada-002, BERT, Sentence-BERT]
+- Number of vectors: [e.g., 100 million+]
+- Vector data types: [float32, float16, int8]
+- Update frequency: [Real-time, Batch, Periodic]</p>
+<p><strong>3. METADATA CHARACTERISTICS:</strong>
+- <strong>Metadata Types:</strong>
+  - Structured metadata: [e.g., IDs, categories, dates, numeric values]
+  - Semi-structured metadata: [e.g., JSON objects, arrays, nested fields]
+  - Unstructured metadata: [e.g., text descriptions, tags, comments]
+- <strong>Metadata Volume:</strong> [e.g., 10GB per 1 million vectors]
+- <strong>Metadata Access Patterns:</strong>
+  - Filtering fields: [Fields used for filtering in searches]
+  - Sorting fields: [Fields used for sorting results]
+  - Grouping fields: [Fields used for aggregation]
+- <strong>Metadata Update Frequency:</strong>
+  - Static metadata: [e.g., vector_id, creation_date - rarely changed]
+  - Dynamic metadata: [e.g., popularity_score, view_count - frequently updated]
+- <strong>Metadata Storage Requirements:</strong>
+  - Storage per vector: [e.g., 1KB - 10KB of metadata]
+  - Total metadata storage: [e.g., 500GB - 1TB]
+  - Indexed metadata fields: [List fields requiring indexing]
+  - Non-indexed metadata fields: [List fields for storage only]
+- <strong>Metadata Query Patterns:</strong>
+  - Equality filters: [e.g., category = "tech", status = "active"]
+  - Range filters: [e.g., created_date &gt; 2024-01-01, price &lt; 100]
+  - Array/Set operations: [e.g., tags contains "AI", authors in list]
+  - Full-text search: [e.g., search within metadata text fields]
+  - Geo-spatial queries: [e.g., location near coordinates]
+  - Boolean combinations: [e.g., (category = "tech" AND status = "active") OR promoted = true]</p>
+<p><strong>4. METADATA OPTIMIZATION REQUIREMENTS:</strong>
+- <strong>Indexing Strategy for Metadata:</strong>
+  - Inverted indexes: [For equality and range filters]
+  - Bitmap indexes: [For low-cardinality fields]
+  - JSON indexing: [For nested fields]
+  - Full-text indexes: [For text search in metadata]
+  - Geo-spatial indexes: [For location-based filtering]
+- <strong>Performance Requirements:</strong>
+  - Filtering overhead: [e.g., &lt; 10ms additional latency]
+  - Metadata query throughput: [e.g., 10,000 queries/second]
+  - Metadata update throughput: [e.g., 1,000 updates/second]
+- <strong>Storage Optimization:</strong>
+  - Compression strategy: [e.g., LZ4, ZSTD for metadata]
+  - Data encoding: [e.g., Delta encoding for timestamps]
+  - Sharding strategy: [e.g., Shard by metadata field]</p>
+<p><strong>5. SEARCH REQUIREMENTS:</strong>
+- Search latency: [e.g., &lt; 50ms for 99% queries]
+- Search types: [ANN, k-NN, Hybrid search]
+- Filter support: [Metadata filtering, Geo-spatial, Time-based]
+- Search accuracy: [Recall rate, Precision]
+- Multi-modal search: [Text, Image, Audio, Video]</p>
+<p><strong>6. SCALABILITY REQUIREMENTS:</strong>
+- Indexing strategy: [HNSW, IVF, PQ, LSH]
+- Sharding approach: [By vector ID, By metadata, By time]
+- Replication: [Replica sets, Multi-region]
+- Memory vs Disk: [Memory-optimized, Disk-optimized]
+- Batch ingestion rate: [Vectors/second]</p>
+<p><strong>7. INTEGRATION REQUIREMENTS:</strong>
+- Embedding generation: [Local models, API-based, In-house models]
+- Data sources: [Databases, Data lakes, Real-time streams]
+- Query interfaces: [REST API, gRPC, SDKs]
+- Observability: [Monitoring, Logging, Metrics]</p>
+<p><strong>VECTOR DATABASE TECHNOLOGY SELECTION:</strong>
+[Choose appropriate vector database based on requirements]</p>
+<p><strong>Options:</strong>
+- <strong>Pinecone</strong>: Managed, high-scale, production-ready, rich metadata support
+- <strong>Milvus</strong>: Open-source, feature-rich, GPU accelerated, advanced filtering
+- <strong>Weaviate</strong>: Open-source, integrated with GraphQL, hybrid search, metadata-first
+- <strong>Qdrant</strong>: Open-source, high-performance, Rust-based, rich filtering
+- <strong>Pgvector</strong>: PostgreSQL extension, ACID compliance, SQL metadata queries
+- <strong>Elasticsearch</strong>: Full-text + vector search, rich metadata indexing
+- <strong>Redis Stack</strong>: In-memory, ultra-fast, vector search with metadata
+- <strong>Chroma</strong>: Lightweight, easy-to-use, Python-first, simple metadata
+- <strong>Vertex AI Matching Engine</strong>: Google Cloud managed, integrated with GCP
+- <strong>Azure Cognitive Search</strong>: Microsoft managed, AI enrichment, rich metadata</p>
+<p><strong>Output:</strong>
+- Save the output as a .md file into [your document folder such as ./docs]</p></div></section><section id="deploymentdiagram-prompt-md"><h2 class="st">deploymentDiagram_prompt.md</h2><div class="md"><p>Create a professional UML 2.0 Deployment Diagram for [SYSTEM NAME] in Draw.io XML format. The diagram should follow strict UML 2.0 standards and illustrate the physical deployment of software components on hardware infrastructure.</p>
+<p><strong>SYSTEM OVERVIEW:</strong>
+[Provide detail description of your system - or attach your SRS/PRD or/and SAD documents at here]</p>
+<p><strong>DEPLOYMENT DIAGRAM SPECIFICATIONS:</strong></p>
+<p><strong>1. NODES (Hardware/Execution Environments):</strong></p>
+<p><strong>Physical Nodes (Hardware):</strong>
+1. <strong>[Node Name]</strong> - [Description]
+   - Type: [Application Server / Database Server / Web Server / etc.]
+   - OS: [Operating System]
+   - Hardware Specifications: [CPU, RAM, Storage]
+   - IP Address: [Network details]
+   - Location: [Data center / Cloud region]
+   - Color: #COLOR</p>
+<p><strong>Virtual Nodes (Cloud/Containers):</strong>
+2. <strong>[Node Name]</strong> - [Description]
+   - Type: [Virtual Machine / Container / Pod / etc.]
+   - Platform: [Kubernetes / Docker / VMware / etc.]
+   - Resources: [Allocated resources]
+   - Color: #COLOR</p>
+<p><strong>Device Nodes:</strong>
+3. <strong>[Node Name]</strong> - [Description]
+   - Type: [Mobile Device / Desktop / IoT Device / etc.]
+   - OS: [Operating System]
+   - Connectivity: [Network connectivity]
+   - Color: #COLOR</p>
+<p><strong>External Systems:</strong>
+4. <strong>[Node Name]</strong> - [Description]
+   - Type: [Third-party service / External system]
+   - Protocol: [Communication protocol]
+   - Color: #COLOR</p>
+<p><strong>2. ARTIFACTS (Software Components Deployed):</strong></p>
+<p><strong>Executable Artifacts:</strong>
+1. <strong>[Artifact Name]</strong> - [Description]
+   - Type: [JAR / WAR / EXE / Docker Image / etc.]
+   - Version: [Version number]
+   - Dependencies: [Required libraries]
+   - Deployment Path: [File system location]</p>
+<p><strong>Configuration Artifacts:</strong>
+2. <strong>[Artifact Name]</strong> - [Description]
+   - Type: [Properties file / YAML / XML / etc.]
+   - Purpose: [Configuration purpose]</p>
+<p><strong>Data Artifacts:</strong>
+3. <strong>[Artifact Name]</strong> - [Description]
+   - Type: [Database schema / Data file / etc.]
+   - Storage Type: [RDBMS / NoSQL / File system]</p>
+<p><strong>3. CONNECTIONS AND COMMUNICATION:</strong></p>
+<p><strong>Network Connections:</strong>
+1. [Node A] → [Node B] : [Protocol/Port]
+   - Description: [Communication purpose]
+   - Protocol: [HTTP / HTTPS / TCP / UDP / etc.]
+   - Port: [Port number]
+   - Security: [SSL/TLS / VPN / etc.]
+   - Bandwidth: [Network requirements]</p>
+<p><strong>Physical Connections:</strong>
+2. [Node A] ↔ [Node B] : [Connection type]
+   - Description: [Physical connection details]
+   - Cable Type: [Ethernet / Fiber / etc.]
+   - Speed: [Network speed]</p>
+<p><strong>4. DEPLOYMENT SPECIFICATIONS:</strong></p>
+<p><strong>Deployment Units:</strong>
+- [Component/Artifact] deployed to [Node]
+- Replication: [Number of instances]
+- Scaling: [Horizontal/Vertical]</p>
+<p><strong>Environment Configurations:</strong>
+- Development Environment
+- Staging Environment
+- Production Environment
+- Disaster Recovery Environment</p>
+<p><strong>TECHNICAL REQUIREMENTS:</strong></p>
+<p><strong>VISUAL STYLING:</strong>
+- Node shapes:
+  * Physical Nodes: 3D cube/rectangle with shadow
+  * Virtual Nodes: Rectangle with &lt;<virtual>&gt; stereotype
+  * Device Nodes: Mobile/device icon shape
+  * Database Nodes: Cylinder shape
+  * Cloud Nodes: Cloud shape
+- Artifact shapes: Rectangle with &lt;<artifact>&gt; stereotype
+- Communication paths: Solid lines with protocol labels
+- Dependencies: Dashed lines
+- Colors:
+  * Application Servers: #DAE8FC (Light Blue)
+  * Database Servers: #FFE6CC (Light Orange)
+  * Web Servers: #D5E8D4 (Light Green)
+  * Load Balancers: #FFF2CC (Light Yellow)
+  * External Systems: #F5F5F5 (Light Gray)
+  * Cloud/Virtual: #E1D5E7 (Light Purple)
+  * Artifacts: #FFF2CC (Light Yellow)
+  * Security/Firewall: #F4CCCC (Light Red)
+- Font: Arial/Helvetica, 10pt
+- Bold font: Node names and stereotypes</p>
+<p><strong>LAYOUT REQUIREMENTS:</strong>
+- Logical grouping by environments (Development/Staging/Production)
+- Clear separation of internal/external systems
+- Consistent spacing (minimum 50px between nodes)
+- Proper alignment of nodes and artifacts
+- Top-to-bottom or left-to-right flow
+- Margin: 50px from page edges
+- Page size: 1400 x 1000 pixels (adjustable)</p>
+<p><strong>UML 2.0 STANDARDS:</strong>
+- Correct node notation with stereotypes
+- Proper artifact notation
+- Correct communication path notation
+- Proper deployment specifications
+- Nested nodes for complex deployments
+- Environment grouping (with boundaries)
+- Connection labels with protocols and ports</p>
+<p><strong>OUTPUT FORMAT:</strong>
+Generate valid Draw.io XML that:
+- Can be imported directly into diagrams.net
+- Is properly structured and editable
+- Includes all UML 2.0 elements correctly
+- Uses appropriate layers and groups
+- Maintains all formatting and styling
+- Save the output as a .drawio file into [your document folder such as ./docs]</p></div></section><section id="sad-prompt-md"><h2 class="st">SAD_prompt.md</h2><div class="md"><h1>IEEE 1016-2009 Software Architecture Description (SAD) Generator</h1>
+<h2>Comprehensive Software Architecture Documentation</h2>
+<blockquote>
+<p><strong>Version:</strong> 1.0<br />
+<strong>Standard:</strong> IEEE 1016-2009 (IEEE Standard for Information Technology—Systems Design—Software Design Descriptions)<br />
+<strong>Inputs:</strong> PRD (IEEE 29148-2018), Business Vision, Stakeholder Interviews, Technical Constraints, Existing Systems<br />
+<strong>Purpose:</strong> Generate a complete, standards-compliant Software Architecture Description with full traceability from stakeholder concerns to architectural decisions, covering all design views and rationale.</p>
+</blockquote>
+<hr />
+<h2>1. Role &amp; Objective</h2>
+<p>You are a <strong>Senior Software Architect</strong> and <strong>Design Documentation Expert</strong> with deep expertise in IEEE 1016-2009 standards and comprehensive software architecture methodologies.</p>
+<h3>Your Primary Responsibilities:</h3>
+<ol>
+<li><strong>Analyze</strong> all provided input documents (PRD, Business Vision, Stakeholder Interviews, Technical Constraints, Existing Systems)</li>
+<li><strong>Extract</strong> all architectural drivers: stakeholder concerns, quality attributes, functional requirements, and constraints</li>
+<li><strong>Design</strong> a comprehensive software architecture using IEEE 1016-2009 design views</li>
+<li><strong>Document</strong> all architectural decisions with rationale and alternatives considered</li>
+<li><strong>Ensure</strong> traceability from stakeholder concerns to architectural elements</li>
+<li><strong>Validate</strong> architectural quality attributes (modularity, maintainability, scalability, performance, security)</li>
+</ol>
+<h3>Key Principles:</h3>
+<ul>
+<li><strong>Concern-Driven Design:</strong> Every architectural element addresses specific stakeholder concerns</li>
+<li><strong>View-Based:</strong> Architecture is documented through multiple complementary views</li>
+<li><strong>Traceability:</strong> Bi-directional traceability from concerns to elements to rationale</li>
+<li><strong>Quality-Focused:</strong> Quality attributes drive architectural decisions</li>
+<li><strong>Rationale-Rich:</strong> Every decision captures why, alternatives considered, and trade-offs</li>
+</ul>
+<hr />
+<h2>2. Input Documents Analysis</h2>
+<h3>2.1 Input Document Inventory</h3>
+<table>
+<thead>
+<tr>
+<th>Document Type</th>
+<th>Document Name</th>
+<th>Version</th>
+<th>Source</th>
+<th>Key Information</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PRD (IEEE 29148-2018)</strong></td>
+<td>[INSERT PRD NAME]</td>
+<td>[v1.0]</td>
+<td>[Product Team]</td>
+<td>[Functional requirements, non-functional requirements, interface requirements, constraints]</td>
+</tr>
+<tr>
+<td><strong>Business Vision</strong></td>
+<td>[INSERT VISION NAME]</td>
+<td>[v1.0]</td>
+<td>[Product/Executive Team]</td>
+<td>[Business goals, target market, value proposition]</td>
+</tr>
+<tr>
+<td><strong>Stakeholder Interviews</strong></td>
+<td>[INSERT INTERVIEW SUMMARY]</td>
+<td>[v1.0]</td>
+<td>[Product Team]</td>
+<td>[Stakeholder needs, pain points, expectations]</td>
+</tr>
+<tr>
+<td><strong>Technical Constraints</strong></td>
+<td>[INSERT CONSTRAINT DOC]</td>
+<td>[v1.0]</td>
+<td>[Engineering/DevOps Team]</td>
+<td>[Technology stack, infrastructure, compliance, budget]</td>
+</tr>
+<tr>
+<td><strong>Existing Systems</strong></td>
+<td>[INSERT LEGACY DOCS]</td>
+<td>[v1.0]</td>
+<td>[Engineering Team]</td>
+<td>[Legacy systems, integration points, data migration]</td>
+</tr>
+<tr>
+<td><strong>Regulatory Requirements</strong></td>
+<td>[INSERT REGULATORY DOCS]</td>
+<td>[v1.0]</td>
+<td>[Compliance/Legal Team]</td>
+<td>[Industry standards, legal requirements, security/compliance]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2 Extract Stakeholder Concerns (from PRD Section 2.5)</h3>
+<table>
+<thead>
+<tr>
+<th>Concern ID</th>
+<th>Stakeholder</th>
+<th>Concern Description</th>
+<th>Priority</th>
+<th>Related Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[C-001]</td>
+<td>[End-User]</td>
+<td>[System must be responsive and performant]</td>
+<td>[High]</td>
+<td>[REQ-010, REQ-011]</td>
+</tr>
+<tr>
+<td>[C-002]</td>
+<td>[End-User]</td>
+<td>[System must be easy to use with intuitive UI]</td>
+<td>[High]</td>
+<td>[REQ-010, REQ-011]</td>
+</tr>
+<tr>
+<td>[C-003]</td>
+<td>[System Admin]</td>
+<td>[System must be deployable and monitorable]</td>
+<td>[High]</td>
+<td>[REQ-025, REQ-026]</td>
+</tr>
+<tr>
+<td>[C-004]</td>
+<td>[Developer]</td>
+<td>[System must be maintainable and testable]</td>
+<td>[Medium]</td>
+<td>[REQ-020, REQ-021]</td>
+</tr>
+<tr>
+<td>[C-005]</td>
+<td>[Security Officer]</td>
+<td>[System must be secure and compliant]</td>
+<td>[High]</td>
+<td>[REQ-027, REQ-028]</td>
+</tr>
+<tr>
+<td>[C-006]</td>
+<td>[Business Owner]</td>
+<td>[System must be scalable to support growth]</td>
+<td>[High]</td>
+<td>[REQ-029, REQ-030]</td>
+</tr>
+<tr>
+<td>[C-007]</td>
+<td>[Product Owner]</td>
+<td>[System must be extensible for new features]</td>
+<td>[Medium]</td>
+<td>[REQ-031, REQ-032]</td>
+</tr>
+<tr>
+<td>[C-008]</td>
+<td>[DevOps Team]</td>
+<td>[System must be reliable with high availability]</td>
+<td>[High]</td>
+<td>[REQ-033, REQ-034]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.3 Extract Quality Attributes (from PRD Section 7.0)</h3>
+<table>
+<thead>
+<tr>
+<th>Quality Attribute</th>
+<th>Target</th>
+<th>Current State</th>
+<th>Gap</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Performance</strong></td>
+<td>[API P95 &lt;200ms]</td>
+<td>[API P95 &gt;500ms]</td>
+<td>[300ms gap]</td>
+<td>[High]</td>
+</tr>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>[10k concurrent users]</td>
+<td>[1k concurrent users]</td>
+<td>[9k gap]</td>
+<td>[High]</td>
+</tr>
+<tr>
+<td><strong>Availability</strong></td>
+<td>[99.99% uptime]</td>
+<td>[99.9% uptime]</td>
+<td>[0.09% gap]</td>
+<td>[High]</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>[GDPR, SOC2 compliant]</td>
+<td>[Partial compliance]</td>
+<td>[Gap]</td>
+<td>[High]</td>
+</tr>
+<tr>
+<td><strong>Maintainability</strong></td>
+<td>[80% test coverage]</td>
+<td>[40% test coverage]</td>
+<td>[40% gap]</td>
+<td>[Medium]</td>
+</tr>
+<tr>
+<td><strong>Deployability</strong></td>
+<td>[1-click deployment]</td>
+<td>[Manual deployment]</td>
+<td>[Gap]</td>
+<td>[High]</td>
+</tr>
+<tr>
+<td><strong>Usability</strong></td>
+<td>[Task completion &lt;3 clicks]</td>
+<td>[Task completion &gt;5 clicks]</td>
+<td>[2 clicks gap]</td>
+<td>[High]</td>
+</tr>
+<tr>
+<td><strong>Extensibility</strong></td>
+<td>[Plug-in architecture]</td>
+<td>[Monolithic]</td>
+<td>[Gap]</td>
+<td>[Medium]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.4 Extract Functional Requirements (from PRD Section 5.1)</h3>
+<table>
+<thead>
+<tr>
+<th>Requirement ID</th>
+<th>Requirement Description</th>
+<th>Priority</th>
+<th>Dependency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[REQ-001]</td>
+<td>[User registration with email and password]</td>
+<td>[MO]</td>
+<td>[REQ-002]</td>
+</tr>
+<tr>
+<td>[REQ-002]</td>
+<td>[Email verification after registration]</td>
+<td>[MO]</td>
+<td>[REQ-001]</td>
+</tr>
+<tr>
+<td>[REQ-003]</td>
+<td>[User login with email and password]</td>
+<td>[MO]</td>
+<td>[REQ-001]</td>
+</tr>
+<tr>
+<td>[REQ-004]</td>
+<td>[Multi-Factor Authentication (MFA)]</td>
+<td>[SH]</td>
+<td>[REQ-003]</td>
+</tr>
+<tr>
+<td>[REQ-005]</td>
+<td>[JWT token generation and validation]</td>
+<td>[MO]</td>
+<td>[REQ-003]</td>
+</tr>
+<tr>
+<td>[REQ-006]</td>
+<td>[Role-Based Access Control (RBAC)]</td>
+<td>[SH]</td>
+<td>[REQ-005]</td>
+</tr>
+<tr>
+<td>[REQ-010]</td>
+<td>[Dashboard with key metrics]</td>
+<td>[MO]</td>
+<td>[REQ-003]</td>
+</tr>
+<tr>
+<td>[REQ-015]</td>
+<td>[Payment processing]</td>
+<td>[MO]</td>
+<td>[REQ-003]</td>
+</tr>
+<tr>
+<td>[REQ-018]</td>
+<td>[Report generation]</td>
+<td>[SH]</td>
+<td>[REQ-010]</td>
+</tr>
+<tr>
+<td>[REQ-020]</td>
+<td>[RESTful API with OpenAPI documentation]</td>
+<td>[SH]</td>
+<td>[REQ-003]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.5 Extract External Interfaces (from PRD Section 6.0)</h3>
+<table>
+<thead>
+<tr>
+<th>Interface ID</th>
+<th>External System</th>
+<th>Interface Type</th>
+<th>Protocol</th>
+<th>Data Format</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[I-001]</td>
+<td>[Banking API]</td>
+<td>[REST API]</td>
+<td>[HTTPS]</td>
+<td>[JSON]</td>
+<td>[Per transaction]</td>
+</tr>
+<tr>
+<td>[I-002]</td>
+<td>[Notification Service]</td>
+<td>[Event Bus]</td>
+<td>[Kafka]</td>
+<td>[Avro/JSON]</td>
+<td>[Asynchronous]</td>
+</tr>
+<tr>
+<td>[I-003]</td>
+<td>[Analytics Platform]</td>
+<td>[Event Publisher]</td>
+<td>[HTTP]</td>
+<td>[JSON]</td>
+<td>[Per user action]</td>
+</tr>
+<tr>
+<td>[I-004]</td>
+<td>[Security Service]</td>
+<td>[OAuth2]</td>
+<td>[HTTPS]</td>
+<td>[JWT]</td>
+<td>[Per authentication]</td>
+</tr>
+<tr>
+<td>[I-005]</td>
+<td>[Email Service]</td>
+<td>[SMTP API]</td>
+<td>[SMTP]</td>
+<td>[MIME]</td>
+<td>[Per email]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.6 Extract Design Constraints (from PRD Section 8.0)</h3>
+<table>
+<thead>
+<tr>
+<th>Constraint ID</th>
+<th>Constraint Description</th>
+<th>Source</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[DC-001]</td>
+<td>[Must use PostgreSQL for primary data storage]</td>
+<td>[Technical Constraint]</td>
+<td>[Database choice fixed]</td>
+</tr>
+<tr>
+<td>[DC-002]</td>
+<td>[Must use React for frontend]</td>
+<td>[Technical Constraint]</td>
+<td>[Frontend technology fixed]</td>
+</tr>
+<tr>
+<td>[DC-003]</td>
+<td>[Must use Java/Spring Boot for backend]</td>
+<td>[Technical Constraint]</td>
+<td>[Backend technology fixed]</td>
+</tr>
+<tr>
+<td>[DC-004]</td>
+<td>[Must be deployable on AWS]</td>
+<td>[Infrastructure Constraint]</td>
+<td>[Cloud platform fixed]</td>
+</tr>
+<tr>
+<td>[DC-005]</td>
+<td>[Must support 10k concurrent users]</td>
+<td>[Scalability Requirement]</td>
+<td>[Architecture must scale]</td>
+</tr>
+<tr>
+<td>[DC-006]</td>
+<td>[Must be GDPR compliant]</td>
+<td>[Regulatory Constraint]</td>
+<td>[Data handling restrictions]</td>
+</tr>
+<tr>
+<td>[DC-007]</td>
+<td>[Must use OAuth2 for authentication]</td>
+<td>[Security Requirement]</td>
+<td>[Auth mechanism fixed]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. IEEE 1016-2009 SAD Structure</h2>
+<h3>3.1 SAD Document Overview</h3>
+<p><strong>Document Name:</strong> [System Name] Software Architecture Description (SAD)</p>
+<p><strong>IEEE 1016-2009 Compliance:</strong> Full compliance with IEEE 1016-2009 Standard for Information Technology—Systems Design—Software Design Descriptions</p>
+<p><strong>Document Sections:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>IEEE 1016-2009 Clause</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>Clause 5.1</td>
+<td>Introduction/Purpose</td>
+</tr>
+<tr>
+<td>2.0</td>
+<td>Clause 5.2</td>
+<td>Design Overview</td>
+</tr>
+<tr>
+<td>3.0</td>
+<td>Clause 5.3</td>
+<td>Design Views</td>
+</tr>
+<tr>
+<td>4.0</td>
+<td>Clause 5.4</td>
+<td>Design Rationale</td>
+</tr>
+<tr>
+<td>5.0</td>
+<td>Clause 5.5</td>
+<td>Design Elements &amp; Resources</td>
+</tr>
+<tr>
+<td>6.0</td>
+<td>Clause 5.6</td>
+<td>Design Traceability</td>
+</tr>
+<tr>
+<td>7.0</td>
+<td>Clause 5.7</td>
+<td>Design Evolution</td>
+</tr>
+<tr>
+<td>8.0</td>
+<td>Annex A</td>
+<td>Design Quality Checklist</td>
+</tr>
+</tbody>
+</table>
+<h3>3.2 Design View Taxonomy (IEEE 1016-2009)</h3>
+<p>Per IEEE 1016-2009, the SAD must include at least:</p>
+<table>
+<thead>
+<tr>
+<th>View Type</th>
+<th>Description</th>
+<th>IEEE 1016-2009 Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Module View</strong></td>
+<td>[Structural decomposition into modules, subsystems, layers]</td>
+<td>[Clause 5.3.1]</td>
+</tr>
+<tr>
+<td><strong>Component-and-Connector View</strong></td>
+<td>[Runtime components, interfaces, communication]</td>
+<td>[Clause 5.3.2]</td>
+</tr>
+<tr>
+<td><strong>Allocation View</strong></td>
+<td>[Mapping of software elements to hardware/resources]</td>
+<td>[Clause 5.3.3]</td>
+</tr>
+<tr>
+<td><strong>Deployment View</strong></td>
+<td>[Deployment topology and environment]</td>
+<td>[Clause 5.3.4]</td>
+</tr>
+<tr>
+<td><strong>Information View</strong></td>
+<td>[Data structures, persistence, data flow]</td>
+<td>[Clause 5.3.5]</td>
+</tr>
+<tr>
+<td><strong>Interaction View</strong></td>
+<td>[Interactions among components, sequences]</td>
+<td>[Clause 5.3.6]</td>
+</tr>
+</tbody>
+</table>
+<h3>3.3 Architectural Quality Attributes (from IEEE 1016-2009)</h3>
+<p>Each architectural element must address the following quality attributes:</p>
+<table>
+<thead>
+<tr>
+<th>Quality Attribute</th>
+<th>Definition</th>
+<th>Evaluation Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Modularity</strong></td>
+<td>[Degree to which system is composed of independent modules]</td>
+<td>[Coupling/cohesion metrics]</td>
+</tr>
+<tr>
+<td><strong>Maintainability</strong></td>
+<td>[Ease of change and extension]</td>
+<td>[Change impact analysis]</td>
+</tr>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>[Ability to handle increased load]</td>
+<td>[Performance modeling]</td>
+</tr>
+<tr>
+<td><strong>Reliability</strong></td>
+<td>[Ability to operate without failure]</td>
+<td>[MTBF, MTTR analysis]</td>
+</tr>
+<tr>
+<td><strong>Performance</strong></td>
+<td>[Response time, throughput]</td>
+<td>[Performance modeling]</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>[Protection against threats]</td>
+<td>[Threat modeling]</td>
+</tr>
+<tr>
+<td><strong>Testability</strong></td>
+<td>[Ease of testing]</td>
+<td>[Test coverage analysis]</td>
+</tr>
+<tr>
+<td><strong>Deployability</strong></td>
+<td>[Ease of deployment]</td>
+<td>[Deployment analysis]</td>
+</tr>
+<tr>
+<td><strong>Extensibility</strong></td>
+<td>[Ease of adding new features]</td>
+<td>[Extension point analysis]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. SAD Content</h2>
+<h3>4.1 Section 1.0: Introduction</h3>
+<h4>1.1 Purpose</h4>
+<p>The purpose of this Software Architecture Description (SAD) is to:</p>
+<ul>
+<li><strong>Define</strong> the software architecture for the [System Name]</li>
+<li><strong>Establish</strong> a shared understanding of the architecture among all stakeholders</li>
+<li><strong>Provide</strong> the design basis for implementation, testing, and deployment</li>
+<li><strong>Enable</strong> traceability from stakeholder concerns to architectural elements</li>
+<li><strong>Document</strong> architectural decisions, alternatives, and trade-offs</li>
+</ul>
+<h4>1.2 Document Scope</h4>
+<p>This document covers:
+- [Architectural design views (Module, Component-and-Connector, Allocation, Deployment, Information, Interaction)]
+- [Architectural elements and their relationships]
+- [Design rationale for all significant decisions]
+- [Architectural constraints and trade-offs]
+- [Resource allocation and deployment considerations]
+- [Traceability to requirements and concerns]</p>
+<p><strong>Out of Scope:</strong>
+- [Detailed implementation (handled in detailed design)]
+- [UI/UX design (handled in UI/UX Design Document)]
+- [Test plans (handled in Test Plan)]</p>
+<h4>1.3 Intended Audience</h4>
+<table>
+<thead>
+<tr>
+<th>Audience</th>
+<th>Use</th>
+<th>Section Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Product Owners</strong></td>
+<td>[Understand architecture impact on features]</td>
+<td>[All sections]</td>
+</tr>
+<tr>
+<td><strong>Stakeholders</strong></td>
+<td>[Validate architecture addresses concerns]</td>
+<td>[Sections 3, 4, 6]</td>
+</tr>
+<tr>
+<td><strong>Development Team</strong></td>
+<td>[Guide implementation]</td>
+<td>[Sections 3, 5]</td>
+</tr>
+<tr>
+<td><strong>QA Team</strong></td>
+<td>[Support test planning]</td>
+<td>[Sections 3, 5]</td>
+</tr>
+<tr>
+<td><strong>DevOps Team</strong></td>
+<td>[Support deployment planning]</td>
+<td>[Sections 3, 5]</td>
+</tr>
+<tr>
+<td><strong>Security Team</strong></td>
+<td>[Ensure security compliance]</td>
+<td>[Sections 3, 4]</td>
+</tr>
+<tr>
+<td><strong>Future Maintainers</strong></td>
+<td>[Understand architecture rationale]</td>
+<td>[Sections 4, 7]</td>
+</tr>
+</tbody>
+</table>
+<h4>1.4 Definitions and Acronyms</h4>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition/Acronym</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>API</strong></td>
+<td>[Application Programming Interface]</td>
+<td>[IEEE 1016]</td>
+</tr>
+<tr>
+<td><strong>CQRS</strong></td>
+<td>[Command Query Responsibility Segregation]</td>
+<td>[Design pattern]</td>
+</tr>
+<tr>
+<td><strong>DDD</strong></td>
+<td>[Domain-Driven Design]</td>
+<td>[Design approach]</td>
+</tr>
+<tr>
+<td><strong>HA</strong></td>
+<td>[High Availability]</td>
+<td>[Quality attribute]</td>
+</tr>
+<tr>
+<td><strong>JWT</strong></td>
+<td>[JSON Web Token]</td>
+<td>[Authentication]</td>
+</tr>
+<tr>
+<td><strong>K8s</strong></td>
+<td>[Kubernetes]</td>
+<td>[Orchestration]</td>
+</tr>
+<tr>
+<td><strong>MFA</strong></td>
+<td>[Multi-Factor Authentication]</td>
+<td>[Security]</td>
+</tr>
+<tr>
+<td><strong>NFR</strong></td>
+<td>[Non-Functional Requirement]</td>
+<td>[Quality attribute]</td>
+</tr>
+<tr>
+<td><strong>RBAC</strong></td>
+<td>[Role-Based Access Control]</td>
+<td>[Security]</td>
+</tr>
+<tr>
+<td><strong>SAD</strong></td>
+<td>[Software Architecture Description]</td>
+<td>[IEEE 1016]</td>
+</tr>
+<tr>
+<td><strong>SLA</strong></td>
+<td>[Service Level Agreement]</td>
+<td>[Operations]</td>
+</tr>
+<tr>
+<td><strong>SOA</strong></td>
+<td>[Service-Oriented Architecture]</td>
+<td>[Architectural style]</td>
+</tr>
+<tr>
+<td><strong>TLS</strong></td>
+<td>[Transport Layer Security]</td>
+<td>[Security]</td>
+</tr>
+</tbody>
+</table>
+<h4>1.5 References</h4>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Reference</th>
+<th>Version</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[System Name] PRD</td>
+<td>[PRD-001]</td>
+<td>[v1.0]</td>
+<td>[Product Team]</td>
+</tr>
+<tr>
+<td>[Business Vision]</td>
+<td>[VISION-001]</td>
+<td>[v1.0]</td>
+<td>[Executive Team]</td>
+</tr>
+<tr>
+<td>[Stakeholder Interviews]</td>
+<td>[INTERVIEWS-001]</td>
+<td>[v1.0]</td>
+<td>[Product Team]</td>
+</tr>
+<tr>
+<td>[Technical Constraints]</td>
+<td>[CONSTRAINTS-001]</td>
+<td>[v1.0]</td>
+<td>[Engineering Team]</td>
+</tr>
+<tr>
+<td>[IEEE 1016-2009]</td>
+<td>[IEEE 1016]</td>
+<td>[2009]</td>
+<td>[IEEE]</td>
+</tr>
+<tr>
+<td>[IEEE 29148-2018]</td>
+<td>[IEEE 29148]</td>
+<td>[2018]</td>
+<td>[IEEE]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>4.2 Section 2.0: Design Overview</h3>
+<h4>2.1 Architectural Vision</h4>
+<p><strong>Architectural Style:</strong> [e.g., Microservices with Event-Driven Architecture]</p>
+<p><strong>Design Approach:</strong> [e.g., Domain-Driven Design with Hexagonal Architecture]</p>
+<p><strong>System Context:</strong></p>
+<p>```mermaid
+C4Context
+    title System Context Diagram - [System Name]</p>
+<pre><code>Person(user, "End-User", "Uses the system to make payments, manage orders, and view reports")
+Person(admin, "Administrator", "Manages system configuration, users, and audits")
+
+System(system, "[System Name]", "Payment processing, order management, reporting, admin")
+
+System_Ext(bank, "Banking API", "Processes actual payments and authorizations")
+System_Ext(notification, "Notification Service", "Sends email/SMS notifications")
+System_Ext(analytics, "Analytics Platform", "Provides user behavior analytics")
+System_Ext(security, "Security Service", "Provides OAuth2 authentication and RBAC")
+
+Rel(user, system, "Uses", "HTTPS/REST")
+Rel(admin, system, "Uses", "HTTPS/REST")
+
+Rel(system, bank, "Calls", "REST/Webhook")
+Rel(system, notification, "Publishes", "Kafka")
+Rel(system, analytics, "Sends events", "HTTP")
+Rel(system, security, "Authenticates", "OAuth2")
+</code></pre></div></section><section id="sad-prompt-ieee-standard-md"><h2 class="st">SAD_Prompt_IEEE_standard.md</h2><div class="md"><p>You are a Principal Software Architect and Systems Engineer. Your task is to author a comprehensive, production-grade Software Architecture Design Document (SADD) for a new system.</p>
+<p>I will provide the high-level system requirements and tech stack preferences below. Use them to design a robust, scalable, and maintainable system architecture that follow the  IEEE 1016-2009 standard.</p>
+<h3>SYSTEM FOUNDATION</h3>
+<ul>
+<li><strong>System Name:</strong> [Insert System Name]</li>
+<li><strong>Core Business Function:</strong> [Briefly describe what the system does]</li>
+<li><strong>Target Scale / Load:</strong> [e.g., 10k concurrent users, 500 requests/sec, 1TB data growth/month]</li>
+<li><strong>Preferred Tech Stack / Ecosystem:</strong> [e.g., AWS, Kubernetes, Node.js microservices, PostgreSQL, Redis]</li>
+<li><strong>Critical Constraints:</strong> [e.g., Strict data residency in EU, must run on low-power edge gateways, zero-downtime deployment required]</li>
+</ul>
+<hr />
+<h3>INSTRUCTIONS FOR GENERATION</h3>
+<p>Please generate the Architecture Design Document using the following structured layout. Be highly specific regarding patterns, data flows, and protocols. Avoid hand-waving or vague assertions like "use a modern database"—specify the type, indexing strategy, or replication mechanism where appropriate.</p>
+<h4>1. Architectural Goals &amp; Design Principles</h4>
+<ul>
+<li><strong>1.1 Key Drivers:</strong> Identify the top 3 architectural drivers (e.g., Maintainability, Fault Tolerance, Low Latency) and how the design prioritizes them.</li>
+<li><strong>1.2 Architectural Patterns:</strong> Define the macro-pattern chosen (e.g., Event-Driven Architecture, Microservices, Clean Architecture Monolith) and justify the choice.</li>
+</ul>
+<h4>2. System Component Decomposition</h4>
+<p>Break down the system into its logical layers or services using a structured approach:
+* <strong>2.1 Frontend / Client Layer:</strong> State management, delivery mechanics (CDN, SSR, SPA), and communication protocols (REST, GraphQL, gRPC).
+* <strong>2.2 Application / Business Logic Layer:</strong> Service boundaries, processing modules, and asynchronous task workers.
+* <strong>2.3 Data Infrastructure Layer:</strong> Primary databases, caching tiers, message brokers/queues, and data retention policies.
+* <strong>2.4 Backend / API layers:</strong> REST, Query and service boundaries, procressing modules, input/output declaration. </p>
+<h4>3. Data Architecture &amp; Integration Flows</h4>
+<ul>
+<li><strong>3.1 Core Data Model Strategy:</strong> Describe how data is structured, synchronized, or isolated across components (e.g., Database-per-service vs. shared schema, relational vs. NoSQL strategy).</li>
+<li><strong>3.2 Sequence/Data Flow Narrative:</strong> Step-by-step description of a critical system flow (e.g., "End-to-End Order Processing Flow") explaining how components interact over the network.</li>
+</ul>
+<h4>4. Cross-Cutting Concerns &amp; Infrastructure</h4>
+<ul>
+<li><strong>4.1 Security &amp; Compliance:</strong> Authentication/Authorization patterns (e.g., OAuth2/OIDC, JWT validation at API Gateway), data encryption (At-Rest &amp; In-Transit), and secret management.</li>
+<li><strong>4.2 Reliability &amp; Fault Tolerance:</strong> Strategies for high availability (e.g., multi-region deployment, circuit breakers, retry-with-exponential-backoff, rate-limiting).</li>
+<li><strong>4.3 Observability:</strong> Metrics, logging aggregation, and distributed tracing strategies to monitor system health.</li>
+</ul>
+<p>Begin your response by summarizing the technical constraints, then output the formal Architecture Design Document.</p>
+<p>@[Add your_SRS_and_PRD_document at here for AI reference]</p></div></section><section id="sad-prompt-with-template-md"><h2 class="st">SAD_Prompt_with_template_.md</h2><div class="md"><p>You are a Principal Software Architect and Systems Engineer. Your task is to author a comprehensive, production-grade Software Architecture Design Document (SADD) for a new system.</p>
+<p>I will provide the high-level system requirements and tech stack preferences below. 
+@[Add your_SRS_and_PRD_document at here for AI reference]</p>
+<p>Use them to design a robust, scalable, and maintainable system architecture that follow the template below.
+@[Add your_SADD_template at here for AI reference]</p>
+<p>Begin your response by summarizing the technical constraints, then output the formal Architecture Design Document.</p></div></section><section id="sequencediagram-prompt-md"><h2 class="st">sequenceDiagram_prompt.md</h2><div class="md"><p>Create a professional UML 2.0 Sequence Diagram for [SYSTEM/PROCESS NAME] in Draw.io XML format. The diagram should follow strict UML 2.0 standards and illustrate the interaction flow between objects over time.</p>
+<p><strong>SYSTEM OVERVIEW:</strong>
+[Provide detail description of your system - or attach your SRS/PRD or/and SAD documents at here]</p>
+<p><strong>SEQUENCE DIAGRAM SPECIFICATIONS:</strong></p>
+<p><strong>1. LIFELINES (Participants):</strong>
+[List all participants in the interaction]</p>
+<p><strong>Actors/External Entities:</strong>
+1. [Actor Name] - [Role description] - [Color: #COLOR]</p>
+<p><strong>Internal Components:</strong>
+2. [Component/Class Name] - [Responsibility] - [Color: #COLOR]
+3. [Component/Class Name] - [Responsibility] - [Color: #COLOR]
+4. [Component/Class Name] - [Responsibility] - [Color: #COLOR]
+5. [Component/Class Name] - [Responsibility] - [Color: #COLOR]</p>
+<p><strong>Databases/External Systems:</strong>
+6. [Database/External System] - [Purpose] - [Color: #COLOR]</p>
+<p><strong>2. MESSAGES (In chronological order):</strong></p>
+<p><strong>Synchronous Messages (→ Solid arrow with filled head):</strong>
+1. [Sender] → [Receiver] : <a href="parameters">Message Name</a>
+   - Description: [What this message does]
+   - Return: [Return value if any]</p>
+<ol start="2">
+<li>[Sender] → [Receiver] : <a href="parameters">Message Name</a>
+   - Description: [What this message does]
+   - Return: [Return value if any]</li>
+</ol>
+<p><strong>Asynchronous Messages (→ Solid arrow with open head):</strong>
+3. [Sender] → [Receiver] : <a href="parameters">Message Name</a>
+   - Description: [What this message does]
+   - No return expected</p>
+<p><strong>Return Messages (→ Dashed arrow):</strong>
+4. [Receiver] → [Sender] : [Return Value]
+   - Description: [What is returned]</p>
+<p><strong>Self-Messages (Self-loop):</strong>
+5. [Participant] → [Self] : <a href="parameters">Message Name</a>
+   - Description: [Internal processing]</p>
+<p><strong>3. INTERACTION FRAMES (UML 2.0):</strong></p>
+<p><strong>alt (Alternative):</strong>
+- Condition 1: [Condition description]
+  * Messages: [List messages in this branch]
+- Condition 2: [Condition description]
+  * Messages: [List messages in this branch]
+- Else: [Default branch]
+  * Messages: [List messages]</p>
+<p><strong>opt (Optional):</strong>
+- Condition: [Condition description]
+  * Messages: [List messages executed only if condition is met]</p>
+<p><strong>loop (Iteration):</strong>
+- Condition: [Loop condition]
+  * Messages: [List messages that repeat]</p>
+<p><strong>par (Parallel):</strong>
+- Parallel Block 1: [Description]
+  * Messages: [List messages executed in parallel]
+- Parallel Block 2: [Description]
+  * Messages: [List messages executed in parallel]</p>
+<p><strong>break (Exception):</strong>
+- Exception Condition: [Condition]
+  * Messages: [List exception handling messages]</p>
+<p><strong>ref (Reference):</strong>
+- Reference to: [Other interaction diagram name]
+  * Purpose: [Why this interaction is referenced]</p>
+<p><strong>4. CREATION AND DESTRUCTION:</strong>
+- Object Creation: [Message] creates [Object]
+- Object Destruction: [Message] destroys [Object]
+- Deletion marker: [X] at end of lifeline</p>
+<p><strong>5. GATES (Interaction Points):</strong>
+- Input Gate: [Where interaction enters]
+- Output Gate: [Where interaction exits]</p>
+<p><strong>6. STATE INVARIANTS:</strong>
+- Condition at specific time: {condition description}
+- Shown as: [Condition] at specific point on lifeline</p>
+<p><strong>TECHNICAL REQUIREMENTS:</strong></p>
+<p><strong>VISUAL STYLING:</strong>
+- Lifeline shapes: Rectangles with underlined names
+- Lifeline style: "ClassName" (objectName: ClassName)
+- Activation bars: Thin vertical rectangles
+- Message arrows:
+  * Synchronous: Solid line, filled arrowhead
+  * Asynchronous: Solid line, open arrowhead
+  * Return: Dashed line, open arrowhead
+  * Self-message: Solid line, filled arrowhead (loop back to self)
+- Colors:
+  * Actor lifelines: Light blue (#DAE8FC)
+  * Component lifelines: Light green (#D5E8D4)
+  * Database lifelines: Light yellow (#FFF2CC)
+  * Activation bars: Same color as lifeline (darker shade)
+  * Alt/opt/loop frames: Light gray (#F5F5F5)
+- Font: Arial/Helvetica, 10pt
+- Message labels: Italic for parameter names</p>
+<p><strong>LAYOUT REQUIREMENTS:</strong>
+- Left-to-right flow (time top-to-bottom)
+- Top-to-bottom ordering of messages
+- Consistent spacing (minimum 40px between lifelines)
+- Proper alignment of activation bars
+- Margin: 50px from page edges
+- Page size: 1200 x 800 pixels (adjustable)
+- Frames: Clearly bordered with labels</p>
+<p><strong>UML 2.0 STANDARDS:</strong>
+- Correct lifeline notation: :ClassName or object:ClassName
+- Proper message arrow notation
+- Activation bars shown correctly
+- Interaction frames with proper operators
+- Correct nesting of frames
+- Proper gate notation
+- Clear, readable labels</p>
+<p><strong>OUTPUT FORMAT:</strong>
+Generate valid Draw.io XML that:
+- Can be imported directly into diagrams.net
+- Is properly structured and editable
+- Includes all UML 2.0 elements correctly
+- Uses appropriate layers and groups
+- Maintains all formatting and styling
+- Save the output as a .drawio file into [your document folder such as ./docs]</p></div></section><section id="ui-ux-design-prompt-md"><h2 class="st">UI-UX-Design_prompt.md</h2><div class="md"><h2>From IEEE 1016-2009 Blueprint to Figma Frames &amp; HTML Pages</h2>
+<blockquote>
+<p><strong>Version:</strong> 1.0<br />
+<strong>Input:</strong> IEEE 1016-2009 Software Design Description (Blueprint)<br />
+<strong>Output:</strong> Figma Frames (design.figma.com) and/or HTML Pages [save into ./docs/04-design/UI_UX_design folder]<br />
+<strong>Purpose:</strong> Transform architectural blueprints into comprehensive, user-centered UI/UX designs with full traceability to stakeholder concerns, user personas, and interaction requirements.</p>
+</blockquote>
+<hr />
+<h2>1. Role &amp; Objective</h2>
+<p>You are a <strong>Senior UX/UI Designer</strong> and <strong>Design Systems Architect</strong> with deep expertise in translating software architecture blueprints (IEEE 1016-2009 compliant) into production-ready user interfaces.</p>
+<h3>Your Primary Responsibilities:</h3>
+<ol>
+<li><strong>Analyze</strong> the provided IEEE 1016-2009 Software Design Description</li>
+<li><strong>Extract</strong> all UI/UX requirements, user personas, stakeholder concerns, and interaction patterns</li>
+<li><strong>Design</strong> a comprehensive, accessible, and consistent user interface</li>
+<li><strong>Deliver</strong> complete Figma frames (via design.figma.com) and HTML pages (UI_UX_design folder)</li>
+<li><strong>Ensure</strong> every design decision traces back to specific blueprint elements</li>
+</ol>
+<h3>Key Principles:</h3>
+<ul>
+<li><strong>User-Centered Design:</strong> Every screen serves user goals identified in the blueprint</li>
+<li><strong>Design System Adherence:</strong> Consistent components, spacing, typography, and colors</li>
+<li><strong>Accessibility First:</strong> WCAG 2.1 AA compliance throughout</li>
+<li><strong>Traceability:</strong> Every design element maps to a blueprint concern</li>
+<li><strong>Developer Ready:</strong> Designs translate directly to code</li>
+</ul>
+<hr />
+<h2>2. Input: IEEE 1016-2009 Blueprint Analysis</h2>
+<h3>2.1 Blueprint Document Reference</h3>
+<p><strong>Input Document:</strong> [attach your <strong>BLUEPRINT design</strong> at here]</p>
+<p><strong>Blueprint Sections to Extract:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Key Information to Extract</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Context &amp; Subject</strong></td>
+<td>System purpose, external boundaries, user touchpoints, device support, browser support</td>
+</tr>
+<tr>
+<td><strong>2. Stakeholders &amp; Concerns</strong></td>
+<td>User personas, stakeholder concerns, UX/UI quality attributes, UX/UI constraints matrix</td>
+</tr>
+<tr>
+<td><strong>3. Design Views</strong></td>
+<td>Composition (UI layer), Logical (UX entities), Interaction (user flows), Information (UI state models, form schemas), Interface (component APIs), State Dynamics (UI state machines)</td>
+</tr>
+<tr>
+<td><strong>4. Design Elements &amp; Resources</strong></td>
+<td>Component responsibilities, resource allocation (CPU/GPU/memory for frontend)</td>
+</tr>
+<tr>
+<td><strong>5. Design Rationale</strong></td>
+<td>UI/UX decisions, alternatives considered, trade-offs</td>
+</tr>
+<tr>
+<td><strong>6. Traceability</strong></td>
+<td>Requirements to design mapping</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2 Extract User Personas from Blueprint</h3>
+<p>From the blueprint's <strong>Section 2.1 (User Personas)</strong>, extract:</p>
+<table>
+<thead>
+<tr>
+<th>Persona Name</th>
+<th>Role</th>
+<th>Goals</th>
+<th>Pain Points</th>
+<th>Tech Proficiency</th>
+<th>Usage Frequency</th>
+<th>Key Tasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[From Blueprint]</td>
+<td>[Role]</td>
+<td>[Goals]</td>
+<td>[Pain Points]</td>
+<td>[Level]</td>
+<td>[Frequency]</td>
+<td>[Primary tasks]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.3 Extract UX/UI Requirements from Blueprint</h3>
+<p>From the blueprint's <strong>Section 2.4 (UX/UI Quality Attribute Scenarios)</strong> and <strong>Section 2.5 (UX/UI Constraints Matrix)</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Requirement Category</th>
+<th>Specific Requirement</th>
+<th>Acceptance Criteria</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Usability</strong></td>
+<td>[e.g., Task completion]</td>
+<td>[e.g., &lt;3 clicks]</td>
+<td>[High/Med/Low]</td>
+</tr>
+<tr>
+<td><strong>Accessibility</strong></td>
+<td>[e.g., WCAG compliance]</td>
+<td>[e.g., WCAG 2.1 AA]</td>
+<td>[High]</td>
+</tr>
+<tr>
+<td><strong>Performance</strong></td>
+<td>[e.g., Page load]</td>
+<td>[e.g., LCP &lt;2.5s]</td>
+<td>[High]</td>
+</tr>
+<tr>
+<td><strong>Responsiveness</strong></td>
+<td>[e.g., Device support]</td>
+<td>[e.g., 320px-2560px]</td>
+<td>[High]</td>
+</tr>
+<tr>
+<td><strong>Visual Consistency</strong></td>
+<td>[e.g., Design system]</td>
+<td>[e.g., 100% adherence]</td>
+<td>[High]</td>
+</tr>
+<tr>
+<td><strong>Error Recovery</strong></td>
+<td>[e.g., Form validation]</td>
+<td>[e.g., Inline, clear]</td>
+<td>[High]</td>
+</tr>
+<tr>
+<td><strong>Feedback</strong></td>
+<td>[e.g., Loading states]</td>
+<td>[e.g., Within 300ms]</td>
+<td>[High]</td>
+</tr>
+<tr>
+<td><strong>Information Architecture</strong></td>
+<td>[e.g., Find functionality]</td>
+<td>[e.g., Within 2 clicks]</td>
+<td>[High]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.4 Extract UI State Models from Blueprint</h3>
+<p>From the blueprint's <strong>Section 3.5 (Information View - UI State Model)</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>UI State Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Persistence</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[From Blueprint]</td>
+<td>[Global/Page/Component]</td>
+<td>[Description]</td>
+<td>[Storage method]</td>
+<td>[App/Route/Component]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.5 Extract Interaction Flows from Blueprint</h3>
+<p>From the blueprint's <strong>Section 3.4 (Interaction View - User Interaction Flows)</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Flow Name</th>
+<th>User Journey Steps</th>
+<th>Decision Points</th>
+<th>Error Paths</th>
+<th>Success Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[Flow 1]</td>
+<td>[Step 1 → Step 2 → ...]</td>
+<td>[Decision points]</td>
+<td>[Failure paths]</td>
+<td>[Success metric]</td>
+</tr>
+<tr>
+<td>[Flow 2]</td>
+<td>[Step 1 → Step 2 → ...]</td>
+<td>[Decision points]</td>
+<td>[Failure paths]</td>
+<td>[Success metric]</td>
+</tr>
+<tr>
+<td>[Flow 3]</td>
+<td>[Step 1 → Step 2 → ...]</td>
+<td>[Decision points]</td>
+<td>[Failure paths]</td>
+<td>[Success metric]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.6 Extract UI Component Requirements from Blueprint</h3>
+<p>From the blueprint's <strong>Section 3.6 (Interface View - UI Component Interface Definition)</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Component Name</th>
+<th>Purpose</th>
+<th>Props/Inputs</th>
+<th>Events</th>
+<th>States</th>
+<th>Used In Pages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[From Blueprint]</td>
+<td>[Purpose]</td>
+<td>[Props]</td>
+<td>[Events]</td>
+<td>[States]</td>
+<td>[Pages]</td>
+</tr>
+</tbody>
+</table>
+<h3>2.7 Extract Design System Tokens from Blueprint</h3>
+<p>From the blueprint's <strong>Section 3.6 (Design System Token Interface)</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Token Category</th>
+<th>Token Name</th>
+<th>Value</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Color</strong></td>
+<td>[Name]</td>
+<td>[Hex/RGB]</td>
+<td>[Where used]</td>
+</tr>
+<tr>
+<td><strong>Typography</strong></td>
+<td>[Name]</td>
+<td>[Font/Size]</td>
+<td>[Where used]</td>
+</tr>
+<tr>
+<td><strong>Spacing</strong></td>
+<td>[Name]</td>
+<td>[Value]</td>
+<td>[Where used]</td>
+</tr>
+<tr>
+<td><strong>Border Radius</strong></td>
+<td>[Name]</td>
+<td>[Value]</td>
+<td>[Where used]</td>
+</tr>
+<tr>
+<td><strong>Shadow</strong></td>
+<td>[Name]</td>
+<td>[Value]</td>
+<td>[Where used]</td>
+</tr>
+<tr>
+<td><strong>Animation</strong></td>
+<td>[Name]</td>
+<td>[Duration]</td>
+<td>[Where used]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. Output: Figma Frames (design.figma.com)</h2>
+<h3>3.1 Figma File Structure</h3>
+<p>You will generate designs for the following Figma file: [Add your figma file ID]
+<strong>Note</strong>: remember to check the Figma MCP setting before proceeding.</p></div></section><section id="usecase-prompt-md"><h2 class="st">useCase_prompt.md</h2><div class="md"><p>Create a comprehensive use case diagram for a [SYSTEM NAME] using Draw.io XML format that can be imported directly into Draw.io or diagrams.net. The diagram should follow UML 2.0 standards and include the following requirements:</p>
+<p><strong>SYSTEM OVERVIEW:</strong>
+[Provide detail description of your system - or attach your SRS/PRD or/and SAD documents at here]</p>
+<p><strong>ACTORS (External Entities):</strong>
+Primary Actors:
+1. [Actor 1] - [Role description]
+2. [Actor 2] - [Role description]
+3. [Actor 3] - [Role description]</p>
+<p>Secondary Actors:
+4. [Actor 4] - [Role description]
+5. [Actor 5] - [Role description]</p>
+<p><strong>USE CASES (Functional Requirements):</strong>
+Functional Areas:
+- [Module 1]: [List use cases]
+- [Module 2]: [List use cases]
+- [Module 3]: [List use cases]</p>
+<p><strong>RELATIONSHIPS:</strong>
+- Include relationships (required functionality)
+- Extend relationships (optional functionality)
+- Generalization relationships (inheritance)</p>
+<p><strong>SPECIFICATIONS:</strong>
+- Use correct UML notation
+- Include system boundary box
+- Proper actor stick figures
+- Clear use case oval shapes
+- Include all &lt;<include>&gt; and &lt;<extend>&gt; stereotypes where applicable</p>
+<p><strong>TECHNICAL FORMAT:</strong>
+Generate the output as a .drawio file and save it into [your document folder such as ./docs]</p></div></section><section id="activity-diagram-uml2-0-checklist-xlsx"><h2 class="st">Activity_Diagram_UML2.0_Checklist.xlsx</h2><h3>Sheet: UML 2.0 Activity Diagram</h3><div class="tw"><table><tr><th>Category</th><th>Checklist Item</th><th>Description / Question</th><th>Status</th><th>Notes / Action Items</th></tr><tr><td>1. Activity Definition &amp; Scope</td><td>Activity Name</td><td>Is the diagram clearly labeled as an activity, typically with a rounded rectangle encompassing the whole diagram and a pentagon label in the top-left corner?</td><td>Pending</td><td></td></tr><tr><td></td><td>Activity Parameters</td><td>If the activity takes inputs or produces outputs, are Activity Parameter Nodes placed on the boundary of the main activity frame?</td><td>Pending</td><td></td></tr><tr><td></td><td>Pre/Post-conditions</td><td>Are the states required before execution and the states guaranteed after execution documented?</td><td>Pending</td><td></td></tr><tr><td>2. Actions &amp; Control Flows</td><td>Action Nodes</td><td>Are actions represented by rounded rectangles with text describing the behavior?</td><td>Pending</td><td></td></tr><tr><td></td><td>Action Naming</td><td>Does every action use a clear, active verb phrase (e.g., &#x27;Calculate Total&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Control Flows</td><td>Are solid arrows with open arrowheads used to show the sequence of execution between actions?</td><td>Pending</td><td></td></tr><tr><td>3. Object Nodes &amp; Data Flow</td><td>Pins</td><td>Are small squares (Input and Output Pins) attached to the edges of Action nodes to explicitly show data required or produced?</td><td>Pending</td><td></td></tr><tr><td></td><td>Object Nodes</td><td>Are plain rectangles used to represent data/objects passing between actions?</td><td>Pending</td><td></td></tr><tr><td></td><td>Object Flows</td><td>Are the flows connecting object nodes/pins correctly modeled to represent the passing of data tokens?</td><td>Pending</td><td></td></tr><tr><td></td><td>Data Stores (&lt;&lt;datastore&gt;&gt;)</td><td>Are persistent storage states represented by an object node with the &lt;&lt;datastore&gt;&gt; keyword?</td><td>Pending</td><td></td></tr><tr><td></td><td>Central Buffers</td><td>Are temporary queues or holding areas for object tokens correctly labeled with the &lt;&lt;centralBuffer&gt;&gt; keyword?</td><td>Pending</td><td></td></tr><tr><td>4. Control Logic (Branching &amp; Merging)</td><td>Decision Nodes</td><td>Are diamonds used for branching logic, with one incoming flow and two or more outgoing flows?</td><td>Pending</td><td></td></tr><tr><td></td><td>Guard Conditions</td><td>Does every outgoing flow from a decision node have a mutually exclusive and exhaustive boolean condition in square brackets?</td><td>Pending</td><td></td></tr><tr><td></td><td>Merge Nodes</td><td>Are diamonds used to bring alternate flows back together (multiple incoming, one outgoing) without synchronizing them?</td><td>Pending</td><td></td></tr><tr><td>5. Concurrency &amp; Synchronization</td><td>Fork Nodes</td><td>Is a heavy solid bar used to split a single incoming flow into multiple concurrent execution paths?</td><td>Pending</td><td></td></tr><tr><td></td><td>Join Nodes</td><td>Is a heavy solid bar used to synchronize concurrent paths, ensuring all incoming flows have arrived before proceeding?</td><td>Pending</td><td></td></tr><tr><td>6. Advanced Event &amp; Control Handling</td><td>Send Signal Actions</td><td>Is a convex polygon used when the system sends an asynchronous message or signal to an outside entity?</td><td>Pending</td><td></td></tr><tr><td></td><td>Accept Event Actions</td><td>Is a concave polygon used when the flow pauses to wait for an external asynchronous trigger?</td><td>Pending</td><td></td></tr><tr><td></td><td>Time Events</td><td>Is an hourglass symbol used to denote an Accept Event that waits for a specific duration or deadline?</td><td>Pending</td><td></td></tr><tr><td></td><td>Expansion Regions</td><td>If an action must execute multiple times for a collection of items, is it enclosed in a dashed rounded box with segmented input/output collection boxes?</td><td>Pending</td><td></td></tr><tr><td></td><td>Interruptible Activity Regions</td><td>Is a dashed box with rounded corners used to group actions that can be canceled mid-execution?</td><td>Pending</td><td></td></tr><tr><td></td><td>Interrupting Edges</td><td>Does a flow leaving an interruptible region use a lightning-bolt arrow to show it cancels the remaining activities?</td><td>Pending</td><td></td></tr><tr><td></td><td>Exception Handlers</td><td>Are zig-zag lines used to connect an Action directly to an Exception Handler node in the event of an error?</td><td>Pending</td><td></td></tr><tr><td>7. Partitions (Swimlanes)</td><td>Activity Partitions</td><td>Are swimlanes (vertical or horizontal) used to group actions by responsibility (e.g., a specific class, component, or human actor)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Multidimensional Partitions</td><td>If necessary, are partitions drawn as a grid to represent multiple criteria (e.g., Department and Location)?</td><td>Pending</td><td></td></tr><tr><td></td><td>External Partitions</td><td>Are partitions representing external systems clearly labeled with the &lt;&lt;external&gt;&gt; keyword?</td><td>Pending</td><td></td></tr><tr><td>8. Final Nodes</td><td>Flow Final Node</td><td>If a specific concurrent path ends but the rest of the activity should continue running, is a circle with an &#x27;X&#x27; inside used?</td><td>Pending</td><td></td></tr><tr><td></td><td>Activity Final Node</td><td>Does the diagram end with a &#x27;bullseye&#x27; indicating the absolute termination of the entire activity?</td><td>Pending</td><td></td></tr></table></div></section><section id="api-design-ieee-1016-2009checklist-xlsx"><h2 class="st">API_Design_IEEE-1016-2009Checklist.xlsx</h2><h3>Sheet: API Design Checklist</h3><div class="tw"><table><tr><th>Category</th><th>Checklist Item</th><th>Description / Question</th><th>Status</th><th>Notes / Action Items</th></tr><tr><td>1. Paradigms &amp; Architecture</td><td>Protocol Selection</td><td>Is the appropriate protocol chosen (e.g., REST for CRUD, gRPC for internal microservices, WebSockets/SSE for real-time agent streams)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Idempotency</td><td>Are safe methods (GET, HEAD) and idempotent methods (PUT, DELETE) guaranteed not to cause unintended side-effects if retried?</td><td>Pending</td><td></td></tr><tr><td></td><td>Statelessness</td><td>Are requests completely stateless, containing all necessary context (like auth tokens) without relying on server-side session state?</td><td>Pending</td><td></td></tr><tr><td>2. Endpoint Design (REST)</td><td>Resource Naming</td><td>Are endpoints modeled around nouns (resources) rather than verbs (e.g., &#x27;/agents&#x27; instead of &#x27;/getAgents&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Pluralization &amp; Case</td><td>Are collection names pluralized consistently (e.g., &#x27;/users&#x27;, &#x27;/tasks&#x27;) and formatted uniformly (e.g., kebab-case)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Nesting Depth</td><td>Are nested resources limited to 1-2 levels deep to prevent overly complex URLs (e.g., &#x27;/users/{id}/tasks&#x27;)?</td><td>Pending</td><td></td></tr><tr><td>3. Payloads &amp; Data</td><td>JSON Standards</td><td>Are JSON payloads formatted uniformly (e.g., camelCase or snake_case) across all endpoints?</td><td>Pending</td><td></td></tr><tr><td></td><td>Pagination</td><td>Are list endpoints paginated using standard techniques (Offset/Limit or Cursor-based) to handle large datasets safely?</td><td>Pending</td><td></td></tr><tr><td></td><td>Filtering &amp; Sorting</td><td>Are filtering (e.g., &#x27;?status=active&#x27;) and sorting (e.g., &#x27;?sort=-created_at&#x27;) capabilities implemented and documented?</td><td>Pending</td><td></td></tr><tr><td></td><td>Partial Updates</td><td>Are PATCH requests supported for partial modifications, updating only the provided fields?</td><td>Pending</td><td></td></tr><tr><td>4. Error Handling</td><td>HTTP Status Codes</td><td>Are standard HTTP status codes used correctly (200 OK, 201 Created, 400 Bad Request, 401, 403, 404, 429, 500)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Standard Error Envelope</td><td>Do all errors return a consistent JSON structure (e.g., { &#x27;error&#x27;: { &#x27;code&#x27;: X, &#x27;message&#x27;: &#x27;...&#x27;, &#x27;details&#x27;: [...] } })?</td><td>Pending</td><td></td></tr><tr><td></td><td>Correlation IDs</td><td>Are correlation/request IDs returned in error responses to facilitate distributed tracing in system logs?</td><td>Pending</td><td></td></tr><tr><td>5. Versioning &amp; Evolution</td><td>API Versioning</td><td>Is versioning implemented (via URI like &#x27;/v1/&#x27; or via Accept headers) to ensure backward compatibility?</td><td>Pending</td><td></td></tr><tr><td></td><td>Deprecation Strategy</td><td>Is there a documented process for deprecating old fields/endpoints (e.g., using &#x27;Sunset&#x27; or &#x27;Deprecation&#x27; headers)?</td><td>Pending</td><td></td></tr><tr><td>6. Security</td><td>Authentication</td><td>Are standard auth mechanisms (e.g., JWT, OAuth 2.0, API Keys) properly validated on every protected request?</td><td>Pending</td><td></td></tr><tr><td></td><td>Authorization (RBAC/ABAC)</td><td>Is access control checked at the resource level to ensure the authenticated user actually owns or has rights to the specific data?</td><td>Pending</td><td></td></tr><tr><td></td><td>Rate Limiting</td><td>Is rate limiting (throttling) enforced to protect against DDoS attacks or runaway automated systems?</td><td>Pending</td><td></td></tr><tr><td></td><td>Input Validation</td><td>Are all incoming request bodies and query parameters strictly validated, typed, and sanitized before processing?</td><td>Pending</td><td></td></tr><tr><td>7. Developer Experience (DX)</td><td>Documentation</td><td>Is the API documented using standard machine-readable formats (e.g., OpenAPI/Swagger for REST, Protobuf for gRPC)?</td><td>Pending</td><td></td></tr><tr><td></td><td>HATEOAS (Optional)</td><td>Are hypermedia links included in the responses to guide the client to related actions or state transitions?</td><td>Pending</td><td></td></tr></table></div></section><section id="blueprint-design-ieee-1016-2009-checklist-xlsx"><h2 class="st">BluePrint_Design_IEEE_1016_2009_Checklist.xlsx</h2><h3>Sheet: IEEE 1016-2009 SDD Checklist</h3><div class="tw"><table><tr><th>Category</th><th>Checklist Item</th><th>Description / Question</th><th>Status</th><th>Notes / Action Items</th></tr><tr><td>1. Context &amp; Subject</td><td>Design Subject Scope</td><td>Does the document clearly define the software design subject, its system boundary, and overarching goals?</td><td>Pending</td><td></td></tr><tr><td></td><td>Context View</td><td>Is there a view showing the system&#x27;s relationship with its external environment, external services, and actors?</td><td>Pending</td><td></td></tr><tr><td>2. Stakeholders &amp; Concerns</td><td>Stakeholder Identification</td><td>Are all key stakeholders (users, developers, maintainers, operators) explicitly identified?</td><td>Pending</td><td></td></tr><tr><td></td><td>Design Concerns</td><td>Are structural and non-functional concerns (e.g., security, scalability of multi-agent networks, latency) mapped to the design?</td><td>Pending</td><td></td></tr><tr><td>3. Design Views</td><td>Composition View</td><td>Is the system logically decomposed into major subsystems, modules, or microservices?</td><td>Pending</td><td></td></tr><tr><td></td><td>Logical View</td><td>Are the static structures (classes, interfaces, data types) clearly documented?</td><td>Pending</td><td></td></tr><tr><td></td><td>Dependency View</td><td>Are the dependencies, coupling, and import relationships between components explicitly mapped?</td><td>Pending</td><td></td></tr><tr><td></td><td>Interaction View</td><td>Are the dynamic interactions and message passing (e.g., orchestrator dispatching tasks to agents) modeled?</td><td>Pending</td><td></td></tr><tr><td></td><td>Information View</td><td>Are persistent data structures, formats, and databases (e.g., SQL, Vector storage, Document models) defined?</td><td>Pending</td><td></td></tr><tr><td></td><td>Interface View</td><td>Are all internal and external component interfaces (APIs, schemas, gRPC contracts) specified in detail?</td><td>Pending</td><td></td></tr><tr><td></td><td>State Dynamics View</td><td>If applicable, are the discrete states and transitions of reactive components (e.g., hardware controllers) modeled?</td><td>Pending</td><td></td></tr><tr><td></td><td>Algorithm View</td><td>Are complex core algorithms or business logic flows thoroughly described?</td><td>Pending</td><td></td></tr><tr><td>4. Design Elements</td><td>Element Attributes</td><td>Does each identified design element have a clear name, purpose, and functional description?</td><td>Pending</td><td></td></tr><tr><td></td><td>Resource Allocation</td><td>Are system resources (CPU, GPU VRAM for models, network bandwidth) allocated and assigned to specific design elements?</td><td>Pending</td><td></td></tr><tr><td>5. Design Rationale</td><td>Decision Documentation</td><td>Are the reasons for key architectural choices (e.g., choosing a specific embedding model or messaging queue) fully documented?</td><td>Pending</td><td></td></tr><tr><td></td><td>Alternatives Considered</td><td>Are rejected architectural alternatives and the technical reasons for their rejection included?</td><td>Pending</td><td></td></tr><tr><td></td><td>Assumptions &amp; Constraints</td><td>Are all technical assumptions, external constraints, and hardware limitations documented?</td><td>Pending</td><td></td></tr><tr><td>6. Traceability &amp; QA</td><td>Requirements Traceability</td><td>Can every design element and view be traced directly back to a specific system requirement or use case?</td><td>Pending</td><td></td></tr><tr><td></td><td>Completeness Check</td><td>Does the SDD cover all functional and non-functional requirements without ambiguity?</td><td>Pending</td><td></td></tr></table></div></section><section id="checklist-database-design-review-xlsx"><h2 class="st">Checklist_Database Design Review.xlsx</h2><h3>Sheet: Cover</h3><div class="tw"><table><tr><th></th><th>CHECKLIST</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr><tr><td></td><td>Database Design Review</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td>Code</td><td></td><td></td><td>06e-CL/PM/HDCV/PTS</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td>Version</td><td></td><td></td><td>1.0</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td>Effective Date</td><td></td><td></td><td>20/06/2019</td></tr></table></div><h3>Sheet: Checklist</h3><div class="tw"><table><tr><th></th><th>Database Design Review Checklist</th><th></th><th></th><th></th><th></th><th></th></tr><tr><td></td><td>Project Code:</td><td></td><td>Number of &quot;YES&quot; items:</td><td>0</td><td></td><td></td></tr><tr><td></td><td>Reviewer(s):</td><td></td><td>Number of &quot;NO&quot; items:</td><td>0</td><td></td><td></td></tr><tr><td></td><td>Version of the work product:</td><td></td><td>Number of &quot;N/A&quot;  items:</td><td>0</td><td></td><td></td></tr><tr><td></td><td>Review date:</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td>Work product&#x27; size:</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td>Effort spent on audit (person-hour):</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>19</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>No</td><td>Checked Items</td><td></td><td>Assessment</td><td>Notes</td><td>Priority</td><td>Severity</td></tr><tr><td>Logical Design</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>1</td><td>Is the database adequately normalized?</td><td></td><td></td><td></td><td>Mandatory</td><td>2</td></tr><tr><td>2</td><td>Are all the attributes in the design required?</td><td></td><td></td><td></td><td>Mandatory</td><td>2</td></tr><tr><td>3</td><td>Is the primary key of each entity correct?</td><td></td><td></td><td></td><td>Mandatory</td><td>3</td></tr><tr><td>4</td><td>Are entities normalized based on their primary key?</td><td></td><td></td><td></td><td>Mandatory</td><td>2</td></tr><tr><td>5</td><td>Are relationships between entities correct?</td><td></td><td></td><td></td><td>Mandatory</td><td>3</td></tr><tr><td>6</td><td>Check for circular relations</td><td></td><td></td><td></td><td>Mandatory</td><td>1</td></tr><tr><td>6</td><td>&lt;Add more questions above this row if any&gt;</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Physical Design</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>1</td><td>Are the necessary constraints, keys specified for the tables?</td><td></td><td></td><td></td><td></td><td>2</td></tr><tr><td>2</td><td>Does the physical design correspond to the logical design?</td><td></td><td></td><td></td><td>Mandatory</td><td>3</td></tr><tr><td>3</td><td>Are the size and type of fields correctly specified?</td><td></td><td></td><td></td><td>Mandatory</td><td>1</td></tr><tr><td>4</td><td>Are the necessary indexes created for the tables?</td><td></td><td></td><td></td><td>Mandatory</td><td>1</td></tr><tr><td>5</td><td>Has a check been made of the effect of the DBMS product on the design?</td><td></td><td></td><td></td><td>Mandatory</td><td>2</td></tr><tr><td>6</td><td>Can the DBMS product handle the required volume?</td><td></td><td></td><td></td><td></td><td>2</td></tr><tr><td>7</td><td>Has the impact of performance been checked due to alternate indexes?</td><td></td><td></td><td></td><td></td><td>2</td></tr><tr><td>8</td><td>Has controlled de-normalization been done in the context of the selected DBMS product?</td><td></td><td></td><td></td><td></td><td>1</td></tr><tr><td>9</td><td>Is the database design flexible enough to allow addition of fields in future?</td><td></td><td></td><td></td><td>Mandatory</td><td>2</td></tr><tr><td>10</td><td>Check if tables for codes/defaults are generic enough?</td><td></td><td></td><td></td><td>Mandatory</td><td>1</td></tr><tr><td>11</td><td>Does it define the owner of database objects?</td><td></td><td></td><td></td><td></td><td>2</td></tr><tr><td>12</td><td>How is back up/restore handled, if that is DB object specific or application specific?</td><td></td><td></td><td></td><td></td><td>1</td></tr><tr><td>13</td><td>Check for database coding standards</td><td></td><td></td><td></td><td>Mandatory</td><td>2</td></tr><tr><td>13</td><td>&lt;Add more questions above this row if any&gt;</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>* Comments</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>* Suggestion</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>[       ]</td><td> - Pass</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>[       ]</td><td> - Review again</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>[       ]</td><td> - Other</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Note:</td><td>The Assessment can be customized according to unit&#x27;s defined rating scheme</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td>* Both of Comment and Suggestion sections are required for Review checklist only</td><td></td><td></td><td></td><td></td><td></td></tr></table></div></section><section id="class-diagram-uml2-0-checklist-xlsx"><h2 class="st">Class_Diagram_UML2.0_Checklist.xlsx</h2><h3>Sheet: UML 2 Class Diagram</h3><div class="tw"><table><tr><th>Category</th><th>Checklist Item</th><th>Description / Question</th><th>Status</th><th>Notes / Action Items</th></tr><tr><td>1. Diagram Metadata &amp; Scope</td><td>Diagram Name</td><td>Is the diagram labeled clearly with the specific subsystem or domain it models (e.g., &#x27;Agent Orchestration System&#x27;, &#x27;ROS2 Node Structure&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Abstraction Level</td><td>Is it clear whether this is a conceptual (business domain), logical (software design), or physical (implementation specific) class diagram?</td><td>Pending</td><td></td></tr><tr><td>2. Classes</td><td>Class Notation</td><td>Are classes represented as a standard three-compartment rectangle (Name, Attributes, Operations)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Naming Conventions</td><td>Are class names in PascalCase (e.g., &#x27;MultiAgentOrchestrator&#x27;, &#x27;VectorDatabase&#x27;, &#x27;STM32Controller&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Abstract Classes</td><td>Are the names of abstract classes italicized (or stereotyped with &lt;&lt;abstract&gt;&gt;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Interfaces</td><td>Are interfaces stereotyped with &lt;&lt;interface&gt;&gt; and/or represented using the lollipop notation where appropriate?</td><td>Pending</td><td></td></tr><tr><td>3. Attributes (Properties)</td><td>Visibility</td><td>Do all attributes indicate visibility (+ public, - private, # protected, ~ package)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Typing &amp; Format</td><td>Are attributes formatted correctly: &#x27;visibility name: type&#x27; (e.g., &#x27;- embeddingVector: Float[]&#x27;, &#x27;# agentId: UUID&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Multiplicity (Optional)</td><td>If applicable, is the multiplicity of the attribute specified (e.g., &#x27;[1..*]&#x27; for an array/list)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Static Attributes</td><td>Are static (class-level) attributes underlined?</td><td>Pending</td><td></td></tr><tr><td>4. Operations (Methods)</td><td>Visibility</td><td>Do all operations indicate visibility (+ public, - private, # protected)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Signatures</td><td>Are operations formatted correctly: &#x27;visibility name(parameters): returnType&#x27; (e.g., &#x27;+ queryQdrant(prompt: String): JSON&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Abstract Operations</td><td>Are abstract methods (methods without implementation) italicized?</td><td>Pending</td><td></td></tr><tr><td></td><td>Static Operations</td><td>Are static methods underlined?</td><td>Pending</td><td></td></tr><tr><td>5. Relationships: Associations</td><td>Association Lines</td><td>Are standard associations drawn as solid lines between classes?</td><td>Pending</td><td></td></tr><tr><td></td><td>Navigability</td><td>Do associations use an open arrowhead to indicate unidirectional navigation (if applicable)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Multiplicity</td><td>Is multiplicity marked at both ends of the association (&#x27;1&#x27;, &#x27;0..1&#x27;, &#x27;*&#x27;, &#x27;1..*&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Roles</td><td>Are role names added at the ends of associations to clarify the relationship (e.g., &#x27;supervisor&#x27;, &#x27;worker&#x27;)?</td><td>Pending</td><td></td></tr><tr><td>6. Relationships: Aggregation &amp; Composition</td><td>Aggregation (Shared)</td><td>Is a hollow diamond used to represent a weak &#x27;has-a&#x27; relationship (e.g., a &#x27;Lab&#x27; aggregating &#x27;Researchers&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Composition (Strong)</td><td>Is a filled diamond used to represent a strong &#x27;owns-a&#x27; lifecycle relationship (e.g., a &#x27;Robot&#x27; composed of &#x27;Sensors&#x27;—destroying the robot destroys the sensors)?</td><td>Pending</td><td></td></tr><tr><td>7. Relationships: Inheritance &amp; Dependency</td><td>Generalization (Inheritance)</td><td>Is a solid line with a hollow triangle pointing to the parent class used to show inheritance (e.g., &#x27;LLMNode&#x27; inherits from &#x27;BaseNode&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Realization (Implementation)</td><td>Is a dashed line with a hollow triangle used to show a class implementing an interface?</td><td>Pending</td><td></td></tr><tr><td></td><td>Dependency</td><td>Is a dashed line with an open arrowhead used to show a weak &#x27;uses&#x27; relationship (e.g., a &#x27;Pipeline&#x27; depending on a &#x27;Logger&#x27;)?</td><td>Pending</td><td></td></tr><tr><td>8. Final Quality Check</td><td>Cohesion &amp; Coupling</td><td>Does the diagram reflect high cohesion (classes have single responsibilities) and low coupling?</td><td>Pending</td><td></td></tr><tr><td></td><td>Overcrowding</td><td>Is the diagram easy to read, or should it be broken down into smaller diagrams (e.g., by namespace or module)?</td><td>Pending</td><td></td></tr></table></div></section><section id="component-diagram-uml2-0-checklist-xlsx"><h2 class="st">Component_Diagram_UML2.0_Checklist.xlsx</h2><h3>Sheet: UML 2 Component Diagram</h3><div class="tw"><table><tr><th>Category</th><th>Checklist Item</th><th>Description / Question</th><th>Status</th><th>Notes / Action Items</th></tr><tr><td>1. Diagram Metadata &amp; Scope</td><td>Diagram Name</td><td>Is the diagram clearly labeled with the system, subsystem, or application tier it represents?</td><td>Pending</td><td></td></tr><tr><td></td><td>Abstraction Level</td><td>Does the diagram maintain a consistent level of abstraction (e.g., avoiding mixing high-level architectural services with low-level utility classes)?</td><td>Pending</td><td></td></tr><tr><td>2. Components (&lt;&lt;component&gt;&gt;)</td><td>Component Nodes</td><td>Are components represented by rectangles containing the &lt;&lt;component&gt;&gt; keyword or the component icon in the top right?</td><td>Pending</td><td></td></tr><tr><td></td><td>Naming Conventions</td><td>Are components named clearly as cohesive modules, microservices, or executables (e.g., &#x27;LLM_Gateway&#x27;, &#x27;VectorDatabase&#x27;, &#x27;SensorNode&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Internal Structure (Optional)</td><td>If showing internal workings, are the sub-components or classes nested correctly within the boundary of the parent component?</td><td>Pending</td><td></td></tr><tr><td>3. Interfaces</td><td>Provided Interfaces (Lollipop)</td><td>Are the services the component offers to others represented using the &#x27;lollipop&#x27; (ball/circle) notation?</td><td>Pending</td><td></td></tr><tr><td></td><td>Required Interfaces (Socket)</td><td>Are dependencies on external services represented using the &#x27;socket&#x27; (half-circle/cup) notation?</td><td>Pending</td><td></td></tr><tr><td></td><td>Interface Naming</td><td>Are interfaces explicitly named to reflect their contract or protocol (e.g., &#x27;IQueryProcessor&#x27;, &#x27;IMessageBroker&#x27;)?</td><td>Pending</td><td></td></tr><tr><td>4. Ports</td><td>Port Encapsulation</td><td>Are small squares (Ports) placed exactly on the component boundary to represent distinct interaction points or network interfaces?</td><td>Pending</td><td></td></tr><tr><td></td><td>Delegation Connectors</td><td>If a component has internal structure, are solid arrows used to delegate external port requests to internal sub-components?</td><td>Pending</td><td></td></tr><tr><td>5. Dependencies &amp; Relationships</td><td>Usage Dependencies</td><td>Are dashed arrows with open arrowheads used to show when a component directly requires another component or artifact to function?</td><td>Pending</td><td></td></tr><tr><td></td><td>Assembly Connectors</td><td>Are the ball-and-socket notations physically connected (or wired) to clearly illustrate how components assemble together to form the system?</td><td>Pending</td><td></td></tr><tr><td></td><td>Realization</td><td>Are dashed lines with a hollow triangle used if a component realizes (implements) an interface drawn as a separate rectangle?</td><td>Pending</td><td></td></tr><tr><td>6. Subsystems &amp; Advanced Elements</td><td>Subsystems (&lt;&lt;subsystem&gt;&gt;)</td><td>Are larger, legacy, or highly complex groupings of components stereotyped with &lt;&lt;subsystem&gt;&gt;?</td><td>Pending</td><td></td></tr><tr><td></td><td>Artifacts (&lt;&lt;artifact&gt;&gt;)</td><td>If the diagram includes physical files, databases, or binaries (like a compiled Go binary or Rust library), are they stereotyped as &lt;&lt;artifact&gt;&gt;?</td><td>Pending</td><td></td></tr><tr><td>7. Final Quality Check</td><td>Loose Coupling</td><td>Does the diagram visually reflect a loosely coupled architecture, favoring communication through well-defined interfaces rather than hard dependencies?</td><td>Pending</td><td></td></tr><tr><td></td><td>Readability</td><td>Are the interfaces and assembly connectors arranged to minimize crossed lines and visual clutter?</td><td>Pending</td><td></td></tr><tr><td></td><td>Orphaned Components</td><td>Does every component have at least one relationship (provided interface, required interface, or dependency) linking it to the rest of the architecture?</td><td>Pending</td><td></td></tr></table></div></section><section id="database-design-checklist-xlsx"><h2 class="st">Database_Design_Checklist.xlsx</h2><h3>Sheet: Database Design Checklist</h3><div class="tw"><table><tr><th>Category</th><th>Checklist Item</th><th>Description / Question</th><th>Status</th><th>Notes / Action Items</th></tr><tr><td>1. Requirements &amp; Workload Profiling</td><td>Workload Classification</td><td>Is the primary workload OLTP (high-concurrency), OLAP (heavy aggregations), HTAP, or similarity/semantic search?</td><td>Pending</td><td></td></tr><tr><td></td><td>Data Volume &amp; Growth</td><td>What is the initial data size, and what is the projected growth rate per month/year?</td><td>Pending</td><td></td></tr><tr><td></td><td>Read/Write Ratio</td><td>Is the system read-heavy, write-heavy, or balanced?</td><td>Pending</td><td></td></tr><tr><td></td><td>Consistency Requirements</td><td>Does the system require strict ACID compliance, or is eventual consistency acceptable?</td><td>Pending</td><td></td></tr><tr><td></td><td>Latency SLAs</td><td>What are the acceptable read and write response times?</td><td>Pending</td><td></td></tr><tr><td>2. Conceptual &amp; Logical Design</td><td>ER Modeling</td><td>Are all core entities, attributes, and relationships (1:1, 1:N, M:N) clearly defined and documented?</td><td>Pending</td><td></td></tr><tr><td></td><td>Normalization</td><td>Is the relational schema normalized to at least 3rd Normal Form (3NF)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Denormalization Strategy</td><td>Are intentional denormalization points (like materialized views) documented with update strategies?</td><td>Pending</td><td></td></tr><tr><td></td><td>Primary &amp; Surrogate Keys</td><td>Does every table have a clear, immutable Primary Key (e.g., UUIDs, Snowflakes, auto-increment)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Foreign Keys &amp; Constraints</td><td>Are relational boundaries enforced using Foreign Keys, CHECK, UNIQUE, and NOT NULL constraints?</td><td>Pending</td><td></td></tr><tr><td>3. Physical Design &amp; Data Types</td><td>Optimal Data Types</td><td>Are the most restrictive and space-efficient data types used?</td><td>Pending</td><td></td></tr><tr><td></td><td>Semi-Structured Data</td><td>Are JSON/JSONB columns used appropriately without overusing them to replace proper relational tables?</td><td>Pending</td><td></td></tr><tr><td></td><td>High-Dimensional Data</td><td>Are vector sizes and distance metrics (Cosine, Dot Product, Euclidean) properly defined for vector storage?</td><td>Pending</td><td></td></tr><tr><td></td><td>Time-Series Data</td><td>Are timestamp columns accurately defined for efficient time-bucketed queries in columnar/append-only tables?</td><td>Pending</td><td></td></tr><tr><td>4. Indexing &amp; Query Optimization</td><td>Primary/Unique Indexes</td><td>Are these automatically created by the primary/unique constraints?</td><td>Pending</td><td></td></tr><tr><td></td><td>Foreign Key Indexing</td><td>Are all Foreign Keys indexed to prevent full-table scans during JOIN or DELETE operations?</td><td>Pending</td><td></td></tr><tr><td></td><td>Specialized Indexes</td><td>Are appropriate index types applied based on query patterns (e.g., B-Tree, Hash, BRIN, HNSW)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Covering Indexes</td><td>Are composite indexes designed to fully satisfy high-frequency read queries?</td><td>Pending</td><td></td></tr><tr><td>5. Scaling &amp; Partitioning</td><td>Partitioning Strategy</td><td>Are massive tables partitioned logically (e.g., by range/date or list) for lifecycle management?</td><td>Pending</td><td></td></tr><tr><td></td><td>Sharding (Horizontal Scaling)</td><td>Is the sharding key selected to ensure even data distribution and prevent hot spots?</td><td>Pending</td><td></td></tr><tr><td></td><td>Replication</td><td>Is the replication topology defined (e.g., synchronous, asynchronous read-replicas)?</td><td>Pending</td><td></td></tr><tr><td>6. Security, Compliance &amp; Ops</td><td>Role-Based Access (RBAC)</td><td>Are least-privilege roles defined for applications, migration scripts, and administrators?</td><td>Pending</td><td></td></tr><tr><td></td><td>Encryption</td><td>Is data encrypted at rest (TDE) and in transit (TLS)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Disaster Recovery (DR)</td><td>Are automated backup schedules configured, and is the DR restore process tested?</td><td>Pending</td><td></td></tr><tr><td></td><td>Audit Logging</td><td>Is tracking enabled for schema changes (DDL) and critical data modifications (DML)?</td><td>Pending</td><td></td></tr></table></div></section><section id="deployment-diagram-uml2-0-checklist-xlsx"><h2 class="st">Deployment_Diagram_UML2.0_Checklist.xlsx</h2><h3>Sheet: UML 2 Deployment Diagram</h3><div class="tw"><table><tr><th>Category</th><th>Checklist Item</th><th>Description / Question</th><th>Status</th><th>Notes / Action Items</th></tr><tr><td>1. Diagram Metadata &amp; Scope</td><td>Diagram Name</td><td>Is the diagram labeled clearly with the deployment scenario (e.g., &#x27;Transformer Station Monitoring Deployment&#x27;, &#x27;Multi-Agent AI Hybrid Setup&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Scope &amp; Topology</td><td>Does it clearly indicate whether this is an on-premises, cloud, or edge deployment topology?</td><td>Pending</td><td></td></tr><tr><td>2. Nodes (Hardware &amp; Environments)</td><td>Device Nodes (&lt;&lt;device&gt;&gt;)</td><td>Are physical computational resources represented as 3D boxes stereotyped with &lt;&lt;device&gt;&gt; (e.g., &#x27;Edge ESP32&#x27;, &#x27;Nvidia GPU Server&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Execution Environments (&lt;&lt;executionEnvironment&gt;&gt;)</td><td>Are software containers or OS platforms modeled inside or alongside devices (e.g., &#x27;ROS-2 Runtime&#x27;, &#x27;Docker Engine&#x27;, &#x27;Local Linux Environment&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Node Specifications</td><td>Do nodes include relevant hardware or OS specifications (e.g., RAM, CPU, OS version) as text or tagged values?</td><td>Pending</td><td></td></tr><tr><td>3. Artifacts &amp; Deployment</td><td>Artifacts (&lt;&lt;artifact&gt;&gt;)</td><td>Are the actual deployed software files represented as rectangles with a document icon or &lt;&lt;artifact&gt;&gt; (e.g., compiled Go binaries, &#x27;llm-model.gguf&#x27;, or Python scripts)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Deployment Relationships</td><td>Are dashed lines with open arrowheads and the &lt;&lt;deploy&gt;&gt; stereotype used to show which artifacts reside on which nodes?</td><td>Pending</td><td></td></tr><tr><td></td><td>Manifestations</td><td>If connecting to component diagrams, are &lt;&lt;manifest&gt;&gt; relationships used to show which artifacts implement which components?</td><td>Pending</td><td></td></tr><tr><td></td><td>Nesting (Alternative)</td><td>If not using dashed arrows, are artifacts visually nested directly inside the Node&#x27;s 3D box to indicate deployment?</td><td>Pending</td><td></td></tr><tr><td>4. Communication Paths</td><td>Node Connections</td><td>Are solid lines used to connect nodes that physically or logically communicate with each other?</td><td>Pending</td><td></td></tr><tr><td></td><td>Protocols &amp; Networks</td><td>Are communication paths stereotyped with specific network protocols (e.g., &lt;&lt;HTTPS&gt;&gt;, &lt;&lt;gRPC&gt;&gt;, &lt;&lt;DDS&gt;&gt; for robotics, or &lt;&lt;MQTT&gt;&gt;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Multiplicity</td><td>Is multiplicity shown on communication paths to indicate clusters or pools (e.g., &#x27;1..*&#x27; for database replicas like TiDB or ClickHouse)?</td><td>Pending</td><td></td></tr><tr><td>5. Advanced Architecture</td><td>Disaster Recovery (DR)</td><td>Are redundant nodes, load balancers, or failover Disaster Recovery (DR) server setups explicitly modeled and labeled?</td><td>Pending</td><td></td></tr><tr><td></td><td>Databases &amp; Storage</td><td>Are persistent storage nodes or vector databases (like Qdrant) clearly separated from application execution nodes?</td><td>Pending</td><td></td></tr><tr><td>6. Final Quality Check</td><td>Scalability &amp; Constraints</td><td>Does the diagram reflect actual physical distribution constraints and scalability bottlenecks?</td><td>Pending</td><td></td></tr><tr><td></td><td>Clarity</td><td>Are intersecting communication paths minimized to keep the physical topology readable?</td><td>Pending</td><td></td></tr></table></div></section><section id="polyglot-db-design-checklist-xlsx"><h2 class="st">Polyglot_DB_Design_Checklist.xlsx</h2><h3>Sheet: Polyglot DB Checklist</h3><div class="tw"><table><tr><th>Category</th><th>Checklist Item</th><th>Description / Question</th><th>Status</th><th>Notes / Action Items</th></tr><tr><td>1. Universal Architecture &amp; Ops</td><td>Workload Profiling</td><td>Is the specific workload clearly identified for this service (e.g., OLTP, OLAP, Semantic Search, or Graph Traversal)?</td><td>Pending</td><td></td></tr><tr><td>1. Universal Architecture &amp; Ops</td><td>Security &amp; Compliance</td><td>Are RBAC, data-at-rest encryption (TDE), and in-transit encryption (TLS) defined across all DB paradigms?</td><td>Pending</td><td></td></tr><tr><td>1. Universal Architecture &amp; Ops</td><td>Disaster Recovery (DR)</td><td>Are backup schedules, snapshot strategies, and failover topologies configured appropriately for the system?</td><td>Pending</td><td></td></tr><tr><td>2. SQL (Relational &amp; Distributed)</td><td>Normalization (3NF)</td><td>Is the schema normalized to at least 3NF to eliminate anomalies in strictly structured, relational data?</td><td>Pending</td><td></td></tr><tr><td>2. SQL (Relational &amp; Distributed)</td><td>Integrity Constraints</td><td>Are primary keys, foreign keys, UNIQUE, and CHECK constraints strictly enforced?</td><td>Pending</td><td></td></tr><tr><td>2. SQL (Relational &amp; Distributed)</td><td>Distributed Sharding</td><td>For distributed SQL (like TiDB or PostgreSQL clusters), is the sharding key chosen to prevent write hot-spots?</td><td>Pending</td><td></td></tr><tr><td>2. SQL (Relational &amp; Distributed)</td><td>Relational Indexing</td><td>Are B-Tree and covering indexes applied to optimize frequent JOINs and exact-match queries?</td><td>Pending</td><td></td></tr><tr><td>3. NoSQL (Document, Columnar, KV)</td><td>Denormalization Strategy</td><td>Are data models intentionally denormalized (e.g., nested documents) to optimize for read-heavy operations?</td><td>Pending</td><td></td></tr><tr><td>3. NoSQL (Document, Columnar, KV)</td><td>Partition &amp; Sort Keys</td><td>Are partition keys selected to distribute data evenly, and sort keys chosen to optimize range queries?</td><td>Pending</td><td></td></tr><tr><td>3. NoSQL (Document, Columnar, KV)</td><td>Columnar Optimization</td><td>For analytical data (like ClickHouse), are columnar compression techniques and append-only schemas utilized?</td><td>Pending</td><td></td></tr><tr><td>3. NoSQL (Document, Columnar, KV)</td><td>Schema Validation</td><td>Even in schema-less stores, is application-level or DB-level JSON validation enforced to prevent bad data?</td><td>Pending</td><td></td></tr><tr><td>4. Vector DB (AI &amp; Search)</td><td>Vector Properties</td><td>Are the embedding dimensions (e.g., 768, 1536) and distance metrics (Cosine, Euclidean, Dot Product) strictly defined?</td><td>Pending</td><td></td></tr><tr><td>4. Vector DB (AI &amp; Search)</td><td>Vector Indexing</td><td>Is the appropriate index algorithm configured (e.g., HNSW parameters like &#x27;m&#x27; and &#x27;ef_construct&#x27;) for fast approximate nearest neighbor (ANN) search?</td><td>Pending</td><td></td></tr><tr><td>4. Vector DB (AI &amp; Search)</td><td>Hybrid Search / Payloads</td><td>Are metadata payload fields defined and indexed to allow for hybrid search (combining semantic vector search with keyword/attribute filtering)?</td><td>Pending</td><td></td></tr><tr><td>4. Vector DB (AI &amp; Search)</td><td>Data Lifecycle</td><td>Since embeddings can become outdated as models evolve, is there a strategy for re-indexing or archiving old vectors (e.g., in systems like Qdrant)?</td><td>Pending</td><td></td></tr><tr><td>5. Graph DB (Relationships)</td><td>Entity-Edge Mapping</td><td>Are complex many-to-many relationships modeled explicitly as Nodes and Edges rather than expensive SQL JOINs?</td><td>Pending</td><td></td></tr><tr><td>5. Graph DB (Relationships)</td><td>Traversal Constraints</td><td>Are maximum traversal depths defined in queries to prevent unbounded pathfinding from consuming all resources?</td><td>Pending</td><td></td></tr><tr><td>5. Graph DB (Relationships)</td><td>Property Indexing</td><td>Are indexes applied to specific Node Labels and Edge Properties to speed up the starting points of graph traversals?</td><td>Pending</td><td></td></tr><tr><td>5. Graph DB (Relationships)</td><td>Graph Algorithms</td><td>If required, are necessary graph algorithms (e.g., PageRank, Shortest Path) supported and optimized by the physical design?</td><td>Pending</td><td></td></tr></table></div></section><section id="sad-ieee-1016-checklist-xlsx"><h2 class="st">SAD_IEEE_1016_Checklist.xlsx</h2><h3>Sheet: IEEE 1016 SAD Checklist</h3><div class="tw"><table><tr><th>Category</th><th>Checklist Item</th><th>Description / Question</th><th>Status</th><th>Notes / Action Items</th></tr><tr><td>1. Architecture Context</td><td>Scope &amp; Boundary</td><td>Is the boundary of the architecture clearly defined, separating the system from external entities?</td><td>Pending</td><td></td></tr><tr><td></td><td>Context View</td><td>Does the view describe the services provided by the system and the services required from its environment?</td><td>Pending</td><td></td></tr><tr><td>2. Stakeholders &amp; Concerns</td><td>Architectural Drivers</td><td>Are the key non-functional requirements (e.g., scalability, security, high availability) driving the architecture documented?</td><td>Pending</td><td></td></tr><tr><td></td><td>System Constraints</td><td>Are technology mandates, enterprise standards, and regulatory compliance requirements clearly stated?</td><td>Pending</td><td></td></tr><tr><td>3. Structural Viewpoints</td><td>Composition View</td><td>Is the system logically decomposed into principal subsystems, components, or microservices?</td><td>Pending</td><td></td></tr><tr><td></td><td>Logical View</td><td>Are the core conceptual entities, domain models, and their static relationships defined?</td><td>Pending</td><td></td></tr><tr><td>4. Behavioral Viewpoints</td><td>Dependency View</td><td>Are the dependencies among architectural elements (e.g., libraries, services) explicitly mapped out?</td><td>Pending</td><td></td></tr><tr><td></td><td>Interaction View</td><td>Are the high-level communications, message passing, and sequences between major subsystems modeled?</td><td>Pending</td><td></td></tr><tr><td></td><td>State Dynamics View</td><td>If the system is state-heavy, are the global states and transitions of the overall architecture documented?</td><td>Pending</td><td></td></tr><tr><td>5. Data &amp; Interface Viewpoints</td><td>Information View</td><td>Are the overarching data architectures, storage paradigms, and major data flow pipelines defined?</td><td>Pending</td><td></td></tr><tr><td></td><td>Interface View</td><td>Are the external system APIs, provider/requester contracts, and communication protocols strictly defined?</td><td>Pending</td><td></td></tr><tr><td>6. Deployment &amp; Resources</td><td>Resource View</td><td>Are system resources (e.g., compute, memory, network bandwidth) allocated across the architectural components?</td><td>Pending</td><td></td></tr><tr><td></td><td>Physical/Execution Mapping</td><td>Is there a mapping of software components to physical deployment nodes, execution environments, or cloud infrastructure?</td><td>Pending</td><td></td></tr><tr><td>7. Design Rationale (ADR)</td><td>Architectural Decisions</td><td>Are the justifications for major technology choices and structural patterns fully documented (e.g., using Architecture Decision Records)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Rejected Alternatives</td><td>Are the alternatives that were considered and rejected documented with technical reasons?</td><td>Pending</td><td></td></tr><tr><td></td><td>Traceability</td><td>Can the major architectural decisions be traced back to the specific business requirements or architectural drivers?</td><td>Pending</td><td></td></tr></table></div></section><section id="sequence-diagram-uml2-0-checklist-xlsx"><h2 class="st">Sequence_Diagram_UML2.0_Checklist.xlsx</h2><h3>Sheet: UML 2 Sequence Diagram</h3><div class="tw"><table><tr><th>Category</th><th>Checklist Item</th><th>Description / Question</th><th>Status</th><th>Notes / Action Items</th></tr><tr><td>1. Diagram Metadata &amp; Scope</td><td>Diagram Name</td><td>Is the diagram clearly labeled with the specific scenario or use case flow it represents?</td><td>Pending</td><td></td></tr><tr><td></td><td>Time Axis</td><td>Does the diagram logically flow chronologically from top to bottom?</td><td>Pending</td><td></td></tr><tr><td>2. Participants (Lifelines)</td><td>Lifeline Notation</td><td>Are participants represented by a rectangle (head) with a dashed vertical line extending downwards?</td><td>Pending</td><td></td></tr><tr><td></td><td>Naming Convention</td><td>Are lifelines named in the &#x27;objectName : ClassName&#x27; format (e.g., &#x27;orchestrator : MultiAgentOrchestrator&#x27; or &#x27;llm : LlamaService&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Actor vs. System</td><td>Are human or external actors clearly distinguished from internal system objects (e.g., using stick figures for actors)?</td><td>Pending</td><td></td></tr><tr><td>3. Messages (Communication)</td><td>Synchronous Messages</td><td>Are synchronous calls (sender waits for response) drawn with a solid line and a filled, solid arrowhead?</td><td>Pending</td><td></td></tr><tr><td></td><td>Asynchronous Messages</td><td>Are asynchronous calls (fire-and-forget, like publishing a ROS-2 topic) drawn with a solid line and an open arrowhead?</td><td>Pending</td><td></td></tr><tr><td></td><td>Return/Reply Messages</td><td>Are return messages drawn with a dashed line and an open arrowhead, showing control returning to the sender?</td><td>Pending</td><td></td></tr><tr><td></td><td>Self Messages</td><td>If an object calls a method on itself, is it drawn as a U-shaped arrow looping back to its own lifeline?</td><td>Pending</td><td></td></tr><tr><td></td><td>Creation &amp; Destruction</td><td>Are object creation messages labeled with &lt;&lt;create&gt;&gt; pointing to the lifeline head, and destruction labeled with &lt;&lt;destroy&gt;&gt; (ending in an &#x27;X&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Message Signatures</td><td>Do message labels include the method name and key arguments (e.g., &#x27;queryVectorDB(embedding)&#x27;, &#x27;dispatchTask(agent_id)&#x27;)?</td><td>Pending</td><td></td></tr><tr><td>4. Execution Specification</td><td>Activation Boxes</td><td>Are thin vertical rectangles (Focus of Control) placed on lifelines to indicate exactly when an object is actively executing a process?</td><td>Pending</td><td></td></tr><tr><td></td><td>Overlapping Activations</td><td>If an object makes a self-call or handles concurrent requests, are activation boxes stacked or overlapped correctly?</td><td>Pending</td><td></td></tr><tr><td>5. Combined Fragments</td><td>Frame Notation</td><td>Are complex control flows enclosed in a frame with the operator type in a pentagon in the top-left corner?</td><td>Pending</td><td></td></tr><tr><td></td><td>Alternative (alt)</td><td>Is the &#x27;alt&#x27; fragment used for mutual exclusion (if/else logic), with a dashed line separating the operands and explicit guard conditions (e.g., [cache hit] vs [cache miss])?</td><td>Pending</td><td></td></tr><tr><td></td><td>Optional (opt)</td><td>Is the &#x27;opt&#x27; fragment used for logic that only executes if a specific guard condition is true (if without else)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Loop (loop)</td><td>Is the &#x27;loop&#x27; fragment used for iterations (e.g., polling sensor data), with an optional guard indicating the loop boundaries?</td><td>Pending</td><td></td></tr><tr><td></td><td>Parallel (par)</td><td>Is the &#x27;par&#x27; fragment used to show operations executing concurrently (e.g., orchestrating multiple agents simultaneously)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Reference (ref)</td><td>Is the &#x27;ref&#x27; fragment used to encapsulate and reference a separate, reusable sequence diagram?</td><td>Pending</td><td></td></tr><tr><td>6. Final Quality Check</td><td>No Dangling Messages</td><td>Does every message (except explicit signals to external systems) connect a valid sender and receiver?</td><td>Pending</td><td></td></tr><tr><td></td><td>Readability &amp; Spacing</td><td>Is there sufficient vertical spacing between messages to clearly represent the chronological order without crowding?</td><td>Pending</td><td></td></tr><tr><td></td><td>State Invariants</td><td>If critical, are state invariants (conditions that must be true at a certain point) placed on the lifeline using the pill-shaped notation?</td><td>Pending</td><td></td></tr></table></div></section><section id="ui-ux-design-ieee-1016-2009-checklist-xlsx"><h2 class="st">UI_UX_Design_IEEE-1016-2009_Checklist.xlsx</h2><h3>Sheet: UI UX Design Checklist</h3><div class="tw"><table><tr><th>Category</th><th>Checklist Item</th><th>Description / Question</th><th>Status</th><th>Notes / Action Items</th></tr><tr><td>1. Research &amp; Architecture</td><td>User Personas &amp; Scenarios</td><td>Are the primary users and their specific goals (e.g., monitoring agent telemetry, controlling hardware) clearly defined?</td><td>Pending</td><td></td></tr><tr><td></td><td>Information Architecture (IA)</td><td>Is the navigation logically structured, allowing users to find critical features within 3 clicks?</td><td>Pending</td><td></td></tr><tr><td></td><td>Task Flows</td><td>Are the step-by-step paths for key actions (e.g., configuring a deployment, viewing logs) mapped out and optimized?</td><td>Pending</td><td></td></tr><tr><td>2. Layout &amp; Responsiveness</td><td>Grid System</td><td>Is a consistent baseline grid (e.g., 8pt or 4pt grid) used for spacing, margins, and padding?</td><td>Pending</td><td></td></tr><tr><td></td><td>Breakpoints</td><td>Are designs provided for all necessary screen sizes (Mobile, Tablet, Desktop/Dashboard)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Visual Hierarchy</td><td>Does the layout naturally guide the user&#x27;s eye to the most important information and primary calls-to-action (CTAs)?</td><td>Pending</td><td></td></tr><tr><td>3. Visual Design (UI) &amp; System</td><td>Design System / Components</td><td>Are UI elements (buttons, inputs, cards) reusable and maintained as a centralized component library or design system?</td><td>Pending</td><td></td></tr><tr><td></td><td>Color Palette</td><td>Are primary, secondary, semantic (success, warning, error), and neutral colors defined and used consistently?</td><td>Pending</td><td></td></tr><tr><td></td><td>Typography</td><td>Is the type scale limited to a cohesive set of sizes and weights that maintain readability across devices?</td><td>Pending</td><td></td></tr><tr><td></td><td>Iconography</td><td>Are icons consistent in style (stroke weight, corner radius) and accompanied by text labels where ambiguous?</td><td>Pending</td><td></td></tr><tr><td>4. Usability &amp; Accessibility</td><td>Contrast Ratios</td><td>Do text and essential UI elements meet WCAG AA standards (4.5:1 for normal text) for color contrast?</td><td>Pending</td><td></td></tr><tr><td></td><td>Touch Targets</td><td>For mobile or touch interfaces (like tablet controllers), are interactive elements at least 44x44pt?</td><td>Pending</td><td></td></tr><tr><td></td><td>Keyboard Navigation</td><td>Can users navigate through forms, menus, and actionable items using only the keyboard (Tab/Enter)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Error Prevention &amp; Recovery</td><td>Are destructive actions (e.g., deleting a database, stopping a robotic routine) guarded by confirmation prompts?</td><td>Pending</td><td></td></tr><tr><td>5. Interaction &amp; Feedback</td><td>System Status Visibility</td><td>Are loading states (skeletons, spinners) and progress bars provided for operations that take longer than 1 second (e.g., model inference)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Empty States</td><td>Are empty states designed to instruct the user on what to do next rather than just showing a blank screen?</td><td>Pending</td><td></td></tr><tr><td></td><td>Micro-interactions</td><td>Do buttons and interactive elements provide immediate visual feedback (hover, active, disabled states)?</td><td>Pending</td><td></td></tr><tr><td>6. Data Visualization (Dashboards)</td><td>Chart Clarity</td><td>Are graphs and telemetry data simplified to avoid cognitive overload, using tooltips for deeper data exploration?</td><td>Pending</td><td></td></tr><tr><td></td><td>Data Density</td><td>Is there an appropriate balance of whitespace, or user-toggled display density options, for viewing complex logs/metrics?</td><td>Pending</td><td></td></tr><tr><td>7. Developer Handoff</td><td>Asset Export</td><td>Are all required graphical assets exportable in SVG, PNG, or WebP formats?</td><td>Pending</td><td></td></tr><tr><td></td><td>Redlining &amp; Specs</td><td>Are measurements, CSS variables, and spacing specs clearly communicated (e.g., via Figma Dev Mode)?</td><td>Pending</td><td></td></tr><tr><td></td><td>State Documentation</td><td>Are all variations of a component (default, hover, error, disabled) documented for engineering?</td><td>Pending</td><td></td></tr></table></div></section><section id="usecase-document-uml2-0-checklist-xlsx"><h2 class="st">UseCase_Document_UML2.0_Checklist.xlsx</h2><h3>Sheet: Use Case Checklist v2</h3><div class="tw"><table><tr><th>Category</th><th>Checklist Item</th><th>Description / Question</th><th>Status</th><th>Notes / Action Items</th></tr><tr><td>1. Document Metadata &amp; Overview</td><td>Use Case ID</td><td>Does it have a unique identifier (e.g., UC-001)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Use Case Name</td><td>Is the title an active verb phrase (e.g., &#x27;Process Monthly Payment&#x27;)?</td><td>Pending</td><td></td></tr><tr><td></td><td>Description</td><td>Is there a 1-2 sentence summary of the use case&#x27;s purpose?</td><td>Pending</td><td></td></tr><tr><td></td><td>Version &amp; Date</td><td>Are the current version number and last updated date listed?</td><td>Pending</td><td></td></tr><tr><td></td><td>Author &amp; Stakeholders</td><td>Who wrote it, and who needs to approve it?</td><td>Pending</td><td></td></tr><tr><td></td><td>Status</td><td>Is it clearly marked as Draft, Under Review, or Approved?</td><td>Pending</td><td></td></tr><tr><td>2. Actors &amp; Scope</td><td>Primary Actor</td><td>Who initiates the use case? (e.g., &#x27;Registered User&#x27;).</td><td>Pending</td><td></td></tr><tr><td></td><td>Secondary Actors</td><td>Are there external systems or secondary users involved? (e.g., &#x27;Payment Gateway&#x27;).</td><td>Pending</td><td></td></tr><tr><td></td><td>System Boundary</td><td>Is it clear what parts of the system are responsible for this use case?</td><td>Pending</td><td></td></tr><tr><td>3. Conditions &amp; Triggers</td><td>Trigger</td><td>What specific action or event kicks off this use case? (e.g., &#x27;User clicks Checkout&#x27;).</td><td>Pending</td><td></td></tr><tr><td></td><td>Pre-conditions</td><td>What must absolutely be true before this use case can start?</td><td>Pending</td><td></td></tr><tr><td></td><td>Post-conditions (Success)</td><td>What is the state of the system if the use case succeeds?</td><td>Pending</td><td></td></tr><tr><td></td><td>Post-conditions (Failure)</td><td>What is the state of the system if the use case fails?</td><td>Pending</td><td></td></tr><tr><td>4. Flows &amp; Scenarios</td><td>Main Success Scenario</td><td>Are the steps numbered sequentially from trigger to successful completion?</td><td>Pending</td><td></td></tr><tr><td></td><td>Action/Response Format</td><td>Does each step clearly state who does what? (e.g., &#x27;1. User enters email. 2. System validates email format.&#x27;)</td><td>Pending</td><td></td></tr><tr><td></td><td>Alternate Flows</td><td>Are valid but alternative paths documented? (e.g., &#x27;User chooses to pay with points.&#x27;)</td><td>Pending</td><td></td></tr><tr><td></td><td>Exception Flows</td><td>Are error states and failure paths documented? (e.g., &#x27;Credit card is declined.&#x27;)</td><td>Pending</td><td></td></tr><tr><td></td><td>Flow References</td><td>Do alternate and exception flows clearly reference the step number they branch off from?</td><td>Pending</td><td></td></tr><tr><td>5. Standard Relationships</td><td>Association</td><td>A solid line connecting an actor to a use case, indicating that they communicate or interact with each other.</td><td>Pending</td><td></td></tr><tr><td></td><td>Include (&lt;&lt;include&gt;&gt;)</td><td>A dashed arrow pointing from a base use case to an included use case. This denotes that the base use case always requires the functionality of the included one (e.g., Checkout always includes Process Payment).</td><td>Pending</td><td></td></tr><tr><td></td><td>Extend (&lt;&lt;extend&gt;&gt;)</td><td>A dashed arrow pointing from an extension use case to the base use case. This indicates that the extending functionality is optional and only runs under specific conditions (e.g., Place Order extends to Apply Discount Code).</td><td>Pending</td><td></td></tr><tr><td></td><td>Generalization</td><td>A solid line with a hollow triangle pointing from a specialized actor/use case to a general one, representing inheritance (e.g., Guest User and Registered User generalizing to User).</td><td>Pending</td><td></td></tr><tr><td>6. Rules &amp; Requirements</td><td>Business Rules</td><td>Are there specific logic constraints? (e.g., &#x27;Passwords must be 12 characters&#x27;).</td><td>Pending</td><td></td></tr><tr><td></td><td>Non-Functional Requirements</td><td>Are there specific performance, security, or compliance constraints tied to this use case?</td><td>Pending</td><td></td></tr><tr><td></td><td>Data Requirements</td><td>Does it specify exactly what data fields are required during the flow?</td><td>Pending</td><td></td></tr><tr><td>7. Final Quality Check</td><td>No UI specifics</td><td>Does it describe what happens rather than how the UI looks?</td><td>Pending</td><td></td></tr><tr><td></td><td>No Technical Jargon</td><td>Is it readable by a non-technical business stakeholder?</td><td>Pending</td><td></td></tr><tr><td></td><td>Assumptions Listed</td><td>Are any unverified assumptions documented clearly so they can be addressed?</td><td>Pending</td><td></td></tr><tr><td></td><td>Open Issues</td><td>Is there a parking lot for questions that still need to be answered by stakeholders?</td><td>Pending</td><td></td></tr></table></div></section></main></body></html>

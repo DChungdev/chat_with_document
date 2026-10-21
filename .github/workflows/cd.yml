@@ -1,0 +1,111 @@
+name: CD
+
+# staging: tự động mỗi lần merge vào main. production: chạy tay, cần người duyệt (environment protection).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Môi trường đích"
+        type: choice
+        options: [staging, production]
+        default: staging
+      tag:
+        description: "Tag ảnh cần triển khai (mặc định: commit hiện tại). Dùng tag cũ để rollback."
+        required: false
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_PREFIX: ghcr.io/${{ github.repository_owner }}/docchat
+
+jobs:
+  build:
+    name: Build & push ${{ matrix.image }}
+    runs-on: ubuntu-latest
+    # Bỏ qua build khi chỉ deploy lại một tag có sẵn
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.tag != '') }}
+    strategy:
+      matrix:
+        include:
+          - { image: api, file: deploy/docker/python.Dockerfile, target: api }
+          - { image: worker, file: deploy/docker/python.Dockerfile, target: worker }
+          - { image: migrate, file: deploy/docker/python.Dockerfile, target: migrate }
+          - { image: web, file: deploy/docker/web.Dockerfile, target: prod }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ${{ matrix.file }}
+          target: ${{ matrix.target }}
+          push: true
+          tags: ${{ env.IMAGE_PREFIX }}/${{ matrix.image }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    name: Deploy → ${{ inputs.environment || 'staging' }}
+    needs: [build]
+    # chạy cả khi build bị bỏ qua (deploy lại tag có sẵn), nhưng không chạy nếu build lỗi
+    if: ${{ always() && (needs.build.result == 'success' || needs.build.result == 'skipped') }}
+    runs-on: ubuntu-latest
+    # `production` phải cấu hình "Required reviewers" trong GitHub Environments
+    environment: ${{ inputs.environment || 'staging' }}
+    concurrency:
+      group: deploy-${{ inputs.environment || 'staging' }}
+      cancel-in-progress: false
+    env:
+      TARGET_ENV: ${{ inputs.environment || 'staging' }}
+      TAG: ${{ inputs.tag || github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/setup-kubectl@v4
+      - name: Cấu hình kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBE_CONFIG_B64 }}" | base64 -d > ~/.kube/config
+          chmod 600 ~/.kube/config
+      - name: Đặt tag ảnh vào kustomize
+        run: |
+          set -euo pipefail
+          echo "NS=docchat-${TARGET_ENV}" >> "$GITHUB_ENV"
+          (cd "deploy/k8s/overlays/${TARGET_ENV}" && kustomize edit set image             "docchat-api=${IMAGE_PREFIX}/api:${TAG}"             "docchat-worker=${IMAGE_PREFIX}/worker:${TAG}"             "docchat-web=${IMAGE_PREFIX}/web:${TAG}")
+          (cd deploy/k8s/migrate && kustomize edit set image "docchat-migrate=${IMAGE_PREFIX}/migrate:${TAG}")
+      - name: Áp namespace và ConfigMap trước (job migration cần ConfigMap)
+        run: |
+          set -euo pipefail
+          kubectl apply -f "deploy/k8s/overlays/${TARGET_ENV}/namespace.yaml"
+          kustomize build "deploy/k8s/overlays/${TARGET_ENV}" | yq 'select(.kind == "ConfigMap")' | kubectl apply -f -
+      - name: Chạy migration (lỗi thì dừng, không deploy)
+        run: |
+          set -euo pipefail
+          kubectl -n "$NS" delete job docchat-migrate --ignore-not-found
+          kubectl -n "$NS" apply -k deploy/k8s/migrate
+          if ! kubectl -n "$NS" wait --for=condition=complete job/docchat-migrate --timeout=300s; then
+            kubectl -n "$NS" logs job/docchat-migrate --tail=100 || true
+            exit 1
+          fi
+      - name: Triển khai
+        run: |
+          set -euo pipefail
+          kubectl apply -k "deploy/k8s/overlays/${TARGET_ENV}"
+          for d in api worker web; do
+            kubectl -n "$NS" rollout status "deployment/$d" --timeout=300s
+          done
+      - name: Hoàn tác nếu rollout lỗi
+        if: failure()
+        run: |
+          for d in api worker web; do
+            kubectl -n "$NS" rollout undo "deployment/$d" || true
+          done
