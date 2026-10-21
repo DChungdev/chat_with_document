@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thiết kế UI/UX — Chat với tài liệu</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="page">
+  <header class="page-header">
+    <div>
+      <h1>Thiết kế UI/UX — Chat với tài liệu</h1>
+      <p>Bản HTML dựng từ <a href="../../design/UIUX_Blueprint_SDD.md">UIUX_Blueprint_SDD.md</a> (IEEE 1016-2009, v0.1). Nội dung gắn <span class="tbd">TBD</span> kế thừa câu hỏi mở của PRD/BRD, chưa phải quyết định.</p>
+    </div>
+    <div class="row">
+      <a class="btn btn-primary" href="app.html">Mở prototype tương tác</a>
+      <a class="btn" href="design-system.html">Design system</a>
+    </div>
+  </header>
+
+  <section class="section" style="margin-top:0">
+    <h2>Kiểm kê màn hình (§3.5.1)</h2>
+    <div class="grid grid-3">
+      <a class="card scr-card" href="app.html#SCR-01"><span class="scr-id">SCR-01</span><strong>Màn chào + Thông báo dữ liệu</strong><span class="muted">Bắt buộc xác nhận trước khi tải. US-401</span></a>
+      <a class="card scr-card" href="app.html#SCR-02"><span class="scr-id">SCR-02</span><strong>Màn chính — trạng thái rỗng</strong><span class="muted">Ô chat tắt kèm lý do. US-201</span></a>
+      <a class="card scr-card" href="app.html#SCR-03"><span class="scr-id">SCR-03</span><strong>Màn chính — đang xử lý</strong><span class="muted">Tiến trình từng tệp. US-102</span></a>
+      <a class="card scr-card" href="app.html#SCR-04"><span class="scr-id">SCR-04</span><strong>Màn chính — hỏi đáp</strong><span class="muted">Streaming + chip trích dẫn. US-201…203, 301</span></a>
+      <a class="card scr-card" href="app.html#SCR-05"><span class="scr-id">SCR-05</span><strong>Panel nguồn dẫn</strong><span class="muted">Đoạn gốc + tên tệp + trang. US-302</span></a>
+      <a class="card scr-card" href="app.html#SCR-06"><span class="scr-id">SCR-06</span><strong>Xác nhận xóa tài liệu</strong><span class="muted">US-103</span></a>
+      <a class="card scr-card" href="app.html#SCR-07"><span class="scr-id">SCR-07</span><strong>Hết phiên / đăng nhập lại</strong><span class="muted">Giữ bản nháp. US-402</span></a>
+      <a class="card scr-card" href="app.html#SCR-08"><span class="scr-id">SCR-08</span><strong>Banner lỗi / Kill switch</strong><span class="muted">PRD 5.1</span></a>
+      <a class="card scr-card" href="report.html"><span class="scr-id">SCR-09</span><strong>Báo cáo đánh giá MVP</strong><span class="muted">Dành cho Minh. US-501</span></a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Truy vết: mối quan tâm → phần tử thiết kế</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Mối quan tâm</th><th>Phần tử trong prototype</th><th>Cách thử</th></tr></thead>
+      <tbody>
+        <tr><td>CN-01 Tải PDF, thấy trạng thái</td><td>DocumentList, DocumentItem (5 trạng thái)</td><td>Tải một PDF thật; đặt tên có “loi” để thấy trạng thái lỗi</td></tr>
+        <tr><td>CN-02 Phản hồi nhanh, thấy tiến độ</td><td>Composer, skeleton → streaming</td><td>Gửi câu hỏi mẫu</td></tr>
+        <tr><td>CN-03 Kiểm chứng bằng nguồn</td><td>CitationChip, SourcePanel (không rời trang)</td><td>Bấm chip; <kbd>Esc</kbd> đóng, focus quay lại chip</td></tr>
+        <tr><td>CN-04 Không tin nhầm AI</td><td>Nhãn AI cố định, câu trả lời “không tìm thấy”</td><td>Hỏi “Thời tiết hôm nay?”</td></tr>
+        <tr><td>CN-05 Phục hồi lỗi</td><td>Interrupted / Failed / Stopped + Tạo lại, Thử lại</td><td>Chọn “Lần hỏi tiếp theo” ở thanh demo</td></tr>
+        <tr><td>CN-06 Thông báo dữ liệu, xóa dễ</td><td>DataNoticeGate, SCR-06</td><td>SCR-01, SCR-06</td></tr>
+        <tr><td>CN-07 Cô lập dữ liệu, hết phiên</td><td>AuthGate (SCR-07)</td><td>SCR-07</td></tr>
+        <tr><td>CN-08 Telemetry đúng, không lộ nội dung</td><td>TelemetryClient + allowlist</td><td>Nút “Telemetry” ở thanh demo</td></tr>
+        <tr><td>CN-09 Tiếp cận WCAG 2.1 AA</td><td>Focus ring, <code>aria-live</code>, nhãn icon, <code>prefers-reduced-motion</code></td><td>Điều hướng bằng bàn phím</td></tr>
+        <tr><td>CN-11/12 Chọn tài liệu, Dừng</td><td>Checkbox, nút Gửi ⇄ Dừng</td><td>Bỏ chọn hết tệp; bấm Dừng khi đang stream</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="section">
+    <h2>Quyết định thiết kế đã áp dụng (§4)</h2>
+    <div class="grid grid-2">
+      <div class="card"><strong>DD-01</strong> Một trang, ba vùng; SourcePanel đóng mặc định.</div>
+      <div class="card"><strong>DD-03</strong> Nhãn AI cố định trên mọi câu trả lời, không thể đóng.</div>
+      <div class="card"><strong>DD-04</strong> Hỏi được trên tệp đã sẵn sàng khi tệp khác còn đang xử lý.</div>
+      <div class="card"><strong>DD-06</strong> Cổng thông báo dữ liệu chặn tải lên đến khi xác nhận.</div>
+      <div class="card"><strong>DD-07</strong> Trạng thái luôn kèm biểu tượng + chữ, không chỉ màu.</div>
+      <div class="card"><strong>DD-10</strong> Desktop-first; &lt; 1024px dùng drawer / bottom sheet.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Việc còn mở</h2>
+    <div class="alert alert-warning">Giới hạn PDF/OCR (OQ-008), thời hạn lưu/xóa (OQ-012/013), đăng nhập (OQ-014), vị trí đo <code>task_marked_done</code> (OQ-005) và brand (OQ-002) chưa chốt. Prototype dùng giá trị giả định, đánh dấu TBD trên giao diện.</div>
+  </section>
+</main>
+</body>
+</html>
