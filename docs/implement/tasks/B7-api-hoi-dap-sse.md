@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE |
 | Story liên quan | US-201, US-202, US-203 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành phần điều phối (kiểm tra, lưu câu hỏi trước, SSE, ping, interrupted, replay theo clientMessageId). Truy xuất + LLM là workstream D: hiện nối `UnavailablePipeline` nên hỏi đáp thật trả lỗi LLM_UNAVAILABLE cho tới khi D xong |
 
 ## Mô tả
 

@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE |
 | Story liên quan | US-402 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — JWT HS256 (dev) và RS256/ES256 qua key resolver (OIDC), có unit test; chưa thử với IdP thật (OQ-014) |
 
 ## Mô tả
 

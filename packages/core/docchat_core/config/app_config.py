@@ -26,6 +26,7 @@ DEFAULTS: dict[str, Any] = {
     "retrieval_top_k": 8,
     "retrieval_min_score": 0.30,  # hiệu chỉnh bằng bộ câu hỏi chuẩn [TBD: OQ-009]
     "retention_days": None,  # [TBD: OQ-012]
+    "citation_snippet_max_chars": 600,
 }
 
 

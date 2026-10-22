@@ -98,6 +98,7 @@ Cập nhật secret trong secret manager → `kubectl -n <ns> rollout restart de
 | Job migrate lỗi | `kubectl -n <ns> logs job/docchat-migrate`; deploy đã bị chặn, hệ thống vẫn chạy bản cũ |
 
 ## 5. Việc còn mở cho A7
+- Staging/production sẽ **không khởi động** cho tới khi có: `AUTH_PROVIDER=oidc` kèm `OIDC_JWKS_URL/OIDC_ISSUER/OIDC_AUDIENCE` (OQ-014) và `STORAGE_BACKEND=s3` (task C1) — API cố ý từ chối cấu hình `dev`/`memory` ở hai môi trường này.
 - Chọn nền tảng/vùng và dịch vụ managed `[TBD: OQ-012]`; điền host, CIDR egress.
 - Dựng staging thật, diễn tập deploy, rollback ≤ 15 phút, khôi phục DB.
 - Xác nhận chỉ cổng 443 mở ra Internet (kiểm bằng quét cổng từ ngoài).

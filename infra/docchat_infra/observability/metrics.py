@@ -29,3 +29,16 @@ ANSWERS = Counter(
     "Câu trả lời đã hoàn tất, theo cờ grounded",
     ["grounded"],
 )
+
+
+class PrometheusChatMetrics:
+    """Triển khai cổng `ChatMetrics` của lõi bằng metric Prometheus."""
+
+    def first_token(self, seconds: float) -> None:
+        FIRST_TOKEN_SECONDS.observe(seconds)
+
+    def answer_finished(self, grounded: bool) -> None:
+        ANSWERS.labels("true" if grounded else "false").inc()
+
+    def stage_error(self, stage: str) -> None:
+        STAGE_ERRORS.labels(stage).inc()

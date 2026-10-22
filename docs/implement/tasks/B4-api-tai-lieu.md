@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE |
 | Story liên quan | US-101, US-102 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành với lưu tệp trong bộ nhớ — adapter S3 là task C1; staging/prod sẽ fail-fast cho tới khi có C1 |
 
 ## Mô tả
 

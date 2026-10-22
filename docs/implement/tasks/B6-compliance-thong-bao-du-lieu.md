@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE |
 | Story liên quan | US-401 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — có unit test; audit do trigger CSDL ghi (kiểm ở test tích hợp) |
 
 ## Mô tả
 

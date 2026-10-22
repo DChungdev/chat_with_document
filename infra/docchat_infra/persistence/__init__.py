@@ -5,8 +5,11 @@ from docchat_infra.persistence.session import (
     system_transaction,
     user_transaction,
 )
+from docchat_infra.persistence.uow import PgUnitOfWork, PgUnitOfWorkFactory
 
 __all__ = [
+    "PgUnitOfWork",
+    "PgUnitOfWorkFactory",
     "PostgresConfigStore",
     "SearchParams",
     "create_engine",

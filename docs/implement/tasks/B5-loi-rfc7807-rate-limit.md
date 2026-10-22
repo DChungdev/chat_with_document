@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE |
 | Story liên quan | — (nền tảng) |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — RFC 7807 + rate limit trong tiến trình (đếm riêng từng replica) |
 
 ## Mô tả
 

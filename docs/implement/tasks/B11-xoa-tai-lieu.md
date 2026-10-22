@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE |
 | Story liên quan | US-103 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — có unit test; thiếu bảng dọn dẹp nên PDF mồ côi chỉ được ghi log `storage_orphaned` |
 
 ## Mô tả
 

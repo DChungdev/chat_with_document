@@ -8,36 +8,52 @@ from contextlib import asynccontextmanager
 from typing import Any
 
 from fastapi import FastAPI, Request, Response
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
 from sqlalchemy import text
 
-from docchat_core.config import AppConfig, get_settings
+from docchat_api.container import Container, build_container
+from docchat_api.errors import install_error_handlers
+from docchat_api.routers import config_notice, conversations, documents, misc
+from docchat_core.config import get_settings
 from docchat_infra.observability import configure_logging, current_trace_id, setup_tracing
 from docchat_infra.observability.metrics import HTTP_REQUEST_SECONDS
-from docchat_infra.persistence import PostgresConfigStore, create_engine
 
 logger = logging.getLogger("docchat.api")
+
+API_PREFIX = "/api/v1"
 
 # Header do reverse proxy thêm vào: yêu cầu có header này đi từ Internet, không phải mạng nội bộ.
 _PROXY_HEADERS = ("x-forwarded-for", "x-forwarded-host", "forwarded")
 
 
-def create_app() -> FastAPI:
-    settings = get_settings()
+def create_app(container: Container | None = None) -> FastAPI:
+    settings = container.settings if container else get_settings()
     configure_logging(settings.log_level, service="api")
     setup_tracing("docchat-api", settings.otel_exporter_otlp_endpoint)
-    engine = create_engine(settings.database_url.get_secret_value())
-    app_config = AppConfig(PostgresConfigStore(engine), ttl_seconds=settings.app_config_ttl_seconds)
+    container = container or build_container(settings)
+    engine = container.engine
 
     @asynccontextmanager
     async def lifespan(_: FastAPI) -> Any:
         yield
-        await engine.dispose()
+        if engine is not None:
+            await engine.dispose()
 
     app = FastAPI(title="Chat với tài liệu — API", version="0.1.0", lifespan=lifespan)
-    app.state.engine = engine
-    app.state.app_config = app_config
+    app.state.container = container
+    install_error_handlers(app)
+
+    origins = [o.strip() for o in settings.cors_origins.split(",") if o.strip()]
+    if origins:  # chỉ origin của SPA, không bao giờ "*" (API_Design 2.4)
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=origins,
+            allow_methods=["GET", "POST", "PUT", "DELETE"],
+            allow_headers=["Authorization", "Content-Type", "Idempotency-Key", "X-Request-Id"],
+            expose_headers=["Location", "Retry-After", "X-Request-Id"],
+        )
 
     @app.middleware("http")
     async def observe(
@@ -45,6 +61,7 @@ def create_app() -> FastAPI:
     ) -> Response:
         start = time.perf_counter()
         request_id = request.headers.get("x-request-id") or uuid.uuid4().hex
+        request.state.request_id = request_id
         status = 500
         try:
             response = await call_next(request)
@@ -57,27 +74,36 @@ def create_app() -> FastAPI:
             # Dùng mẫu đường dẫn (/documents/{id}) chứ không phải đường dẫn thật.
             route = getattr(route_obj, "path", "unmatched")
             HTTP_REQUEST_SECONDS.labels(request.method, route, str(status)).observe(elapsed)
-            logger.info(
-                "request",
-                extra={
-                    "request_id": request_id,
-                    "trace_id": current_trace_id(),
-                    "method": request.method,
-                    "route": route,
-                    "status": status,
-                    "duration_ms": round(elapsed * 1000, 1),
-                },
-            )
+            extra: dict[str, Any] = {
+                "request_id": request_id,
+                "trace_id": current_trace_id(),
+                "method": request.method,
+                "route": route,
+                "status": status,
+                "duration_ms": round(elapsed * 1000, 1),
+            }
+            if user_hash := getattr(request.state, "user_hash", None):
+                extra["user_hash"] = user_hash
+            logger.info("request", extra=extra)
+
+    app.include_router(config_notice.router, prefix=API_PREFIX)
+    app.include_router(documents.router, prefix=API_PREFIX)
+    app.include_router(conversations.router, prefix=API_PREFIX)
+    app.include_router(misc.router, prefix=API_PREFIX)
 
     @app.get("/health", include_in_schema=False)
+    @app.get(f"{API_PREFIX}/health/live", include_in_schema=False)
     async def health() -> dict[str, str]:
         """Liveness: tiến trình còn sống."""
         return {"status": "ok"}
 
     @app.get("/ready", include_in_schema=False)
+    @app.get(f"{API_PREFIX}/health/ready", include_in_schema=False)
     async def ready() -> JSONResponse:
         """Readiness: kết nối được CSDL."""
         try:
+            if engine is None:
+                raise RuntimeError("no engine")
             async with engine.connect() as conn:
                 await conn.execute(text("SELECT 1"))
         except Exception:

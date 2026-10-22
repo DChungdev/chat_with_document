@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE |
 | Story liên quan | US-501 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — có unit test; trigger allow-list ở CSDL kiểm ở test tích hợp |
 
 ## Mô tả
 

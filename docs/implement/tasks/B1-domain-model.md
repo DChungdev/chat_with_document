@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE |
 | Story liên quan | US-101, US-201, US-301 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — có unit test (bao phủ 100% domain) |
 
 ## Mô tả
 

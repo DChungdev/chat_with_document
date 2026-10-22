@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE |
 | Story liên quan | US-201 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — chặn ở ChatService + `PUT /admin/flags/qa-enabled` (role ops); trạng thái cờ có trong `GET /config` (không có `GET /status` riêng) |
 
 ## Mô tả
 

@@ -15,6 +15,8 @@ dependencies = [
     "sqlalchemy[asyncio]>=2.0.30",
     "psycopg[binary]>=3.2",
     "alembic>=1.13",
+    "pyjwt[crypto]>=2.8",
+    "python-multipart>=0.0.9",
     "prometheus-client>=0.20",
     "opentelemetry-api>=1.25",
     "opentelemetry-sdk>=1.25",
@@ -50,11 +52,15 @@ src = ["packages/core", "infra", "apps/api", "apps/worker"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "S", "ASYNC"]
-ignore = ["S101"]
+ignore = ["S101", "E501"]  # E501: black quyết định xuống dòng; chuỗi tiếng Việt/SQL dài được phép
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.File", "fastapi.Header"]
 
 [tool.ruff.lint.per-file-ignores]
 "**/tests/**" = ["S105", "S106", "S608"]
 "db/migrations/**" = ["S608"]
+"infra/docchat_infra/persistence/repositories.py" = ["S608"]  # SQL tường minh, chỉ nối hằng số; giá trị luôn ràng buộc tham số
 
 [tool.mypy]
 python_version = "3.12"
@@ -66,6 +72,7 @@ namespace_packages = true
 [tool.pytest.ini_options]
 testpaths = ["packages/core/tests", "infra/tests", "apps/api/tests", "apps/worker/tests", "db/tests"]
 addopts = "--import-mode=importlib -m 'not integration'"
+pythonpath = ["apps/api/tests"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 markers = ["integration: cần Docker (Postgres + pgvector); chạy bằng `pytest -m integration`"]

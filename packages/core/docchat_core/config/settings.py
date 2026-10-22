@@ -43,9 +43,18 @@ class Settings(BaseSettings):
     llm_api_key: SecretStr | None = None
     embedding_api_key: SecretStr | None = None
 
-    # Xác thực [TBD: OQ-014]
-    auth_provider: str = "dev"
+    # Xác thực [TBD: OQ-014]: "dev" (HS256, khóa chung) hoặc "oidc" (JWKS của IdP)
+    auth_provider: Literal["dev", "oidc"] = "dev"
     jwt_secret: SecretStr = SecretStr("dev-only-change-me")
+    oidc_jwks_url: str | None = None
+    oidc_issuer: str | None = None
+    oidc_audience: str | None = None
+
+    # Lưu tệp: "s3" cần adapter của task C1; "memory" chỉ để dev/test (mất dữ liệu khi khởi động lại)
+    storage_backend: Literal["memory", "s3"] = "memory"
+
+    # Origin của SPA khi khác origin với API (danh sách phân tách bằng dấu phẩy). Rỗng = không CORS.
+    cors_origins: str = ""
 
     # Quan sát
     otel_exporter_otlp_endpoint: str | None = None

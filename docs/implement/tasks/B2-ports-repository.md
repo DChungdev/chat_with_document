@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE |
 | Story liên quan | US-402 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Đã triển khai — port + repository PostgreSQL + bản trong bộ nhớ. Mọi câu SQL đã qua parser PostgreSQL (pglast); test tích hợp trên Postgres thật đã viết nhưng CHƯA chạy (không có Docker) |
 
 ## Mô tả
 

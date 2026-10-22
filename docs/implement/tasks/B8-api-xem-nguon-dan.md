@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE |
 | Story liên quan | US-302 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — có unit test; JOIN chunks kiểm ở test tích hợp |
 
 ## Mô tả
 
