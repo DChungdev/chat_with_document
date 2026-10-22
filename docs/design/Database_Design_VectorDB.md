@@ -105,9 +105,9 @@ CREATE TABLE chunks (
 | Kích thước chunk | ~800 token | Đủ ngữ cảnh cho điều khoản/đoạn văn; không quá dài làm loãng điểm số |
 | Chồng lấn | 100 token | Tránh cắt đôi câu/điều khoản ở ranh giới |
 | Ranh giới | Ưu tiên theo đoạn/câu; không cắt giữa câu | Chất lượng ngữ nghĩa |
-| Theo trang | Mỗi chunk lưu `page_start`, `page_end`; chunk không vượt quá 2 trang | Nguồn dẫn kiểm chứng được (US-301) |
+| Theo trang | Mỗi chunk lưu `page_start`, `page_end`; chunk không vượt quá 2 trang (cấu hình `chunk_max_page_span`, mặc định **1**: trích dẫn chỉ ghi một số trang nên chunk vắt qua 2 trang sẽ trích sai trang) | Nguồn dẫn kiểm chứng được (US-301) |
 | Làm sạch | Bỏ header/footer lặp lại, chuẩn hóa khoảng trắng, giữ dấu tiếng Việt (NFC) | Giảm nhiễu |
-| Chunk quá ngắn | Bỏ chunk < 20 token (số trang, mục lục) | Tránh khớp rác |
+| Chunk quá ngắn | Bỏ chunk < 5 token (nhãn trang lạc, dòng đơn lẻ). Ngưỡng 20 ban đầu làm mất trang chỉ có một câu ngắn — xem docs/implement/reports/retrieval_tuning.md | Tránh khớp rác nhưng không mất nội dung thật |
 | Bảng/biểu | Trích văn bản thô; chất lượng bảng phức tạp là hạn chế đã biết | `OQ-008` |
 
 ### 4.2 Sinh embedding

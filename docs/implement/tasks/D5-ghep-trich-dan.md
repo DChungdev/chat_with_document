@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | AI/BE |
 | Story liên quan | US-301, US-203 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — bóc nhãn khi stream, trích dẫn sinh từ ID chunk, nhãn bịa bị loại; có unit test và e2e |
 
 ## Mô tả
 

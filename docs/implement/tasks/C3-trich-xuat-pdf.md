@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE/AI |
 | Story liên quan | US-101 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — có test trên PDF tổng hợp (tiếng Việt, quét, mật khẩu, hỏng, quá trang); chưa thử PDF thật nhiều cột/bảng |
 
 ## Mô tả
 

@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE/AI |
 | Story liên quan | US-301 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — có unit test (kích thước, số trang ≤ 2, chồng lấn, tiếng Việt) |
 
 ## Mô tả
 

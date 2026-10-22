@@ -8,6 +8,8 @@ x-python-env: &python-env
   S3_ENDPOINT_URL: http://minio:9000
   S3_BUCKET: docchat-documents
   S3_ACCESS_KEY: minioadmin
+  S3_SSE: ""  # MinIO dev không có KMS
+  STORAGE_BACKEND: s3
   S3_SECRET_KEY: minioadmin
   LLM_PROVIDER: fake
   EMBEDDING_PROVIDER: fake

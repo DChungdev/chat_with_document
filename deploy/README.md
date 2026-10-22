@@ -81,7 +81,17 @@ Tắt (hiệu lực sau ≤ `APP_CONFIG_TTL_SECONDS`, mặc định 30 giây; kh
 ```sql
 UPDATE app_config SET value = 'false' WHERE key = 'qa_enabled';   -- dưới vai trò migrator/DBA
 ```
-Bật lại: `'true'`. API hỏi đáp sẽ trả `503 QA_DISABLED` (task B9); tải/xóa tài liệu vẫn hoạt động. Diễn tập kill switch là một phần của F2.
+Bật lại: `'true'`. API hỏi đáp sẽ trả `503 QA_DISABLED` (task B9); tải/xóa tài liệu vẫn hoạt động. 
+
+**Diễn tập (F2)** — thực hiện trên staging, ghi lại thời điểm và kết quả:
+1. Mở một phiên hỏi đáp, xác nhận trả lời bình thường.
+2. Chạy `UPDATE ... 'false'`. Chờ ≤ `APP_CONFIG_TTL_SECONDS`.
+3. Kỳ vọng: giao diện hiện banner “Hỏi đáp tạm thời không khả dụng”, ô chat khóa; `POST .../messages` trả `503 QA_DISABLED`; tải/xóa tài liệu vẫn chạy.
+4. Chạy `'true'`; kỳ vọng hỏi đáp hoạt động lại trong ≤ TTL, không cần deploy.
+Phần API/giao diện đã được kiểm tự động (`test_compliance_config_api.py`, `test_stop_regenerate.py`, `e2e/app.spec.ts`); bước trên hạ tầng thật **chưa diễn tập**.
+
+### 4.3a Giám sát và cảnh báo (F2)
+`deploy/monitoring/`: `alerts.yml` (Prometheus rules: p95 token đầu > 5s, lỗi giai đoạn retrieve/llm, lỗi nhà cung cấp LLM/embedding, tồn đọng ingest, p95 ingest > 60s, tỷ lệ không có nguồn, 5xx), `grafana-dashboard.json` (import vào Grafana, chọn datasource Prometheus), `alertmanager.example.yml` (kênh email/chat, điền qua secret). Ngưỡng là **đề xuất**, hiệu chỉnh sau khi có dữ liệu staging. Metric không mang nhãn nội dung.
 
 ### 4.4 Sao lưu & khôi phục (RPO ≤ 15 phút)
 Yêu cầu với dịch vụ PostgreSQL (SQL design 12.1): sao lưu đầy đủ hằng ngày + WAL liên tục, PITR 7 ngày, kiểm thử khôi phục hằng tháng trên staging (RTO ≤ 1 giờ `[TBD: OQ-011]`). Khôi phục: tạo instance mới từ PITR → chạy `alembic current` bằng `migrator` để xác nhận phiên bản → trỏ `docchat-secrets` sang instance mới → restart deployment. **Thời hạn giữ bản sao lưu phải khớp chính sách xóa dữ liệu `[TBD: OQ-012]`.**
@@ -98,6 +108,7 @@ Cập nhật secret trong secret manager → `kubectl -n <ns> rollout restart de
 | Job migrate lỗi | `kubectl -n <ns> logs job/docchat-migrate`; deploy đã bị chặn, hệ thống vẫn chạy bản cũ |
 
 ## 5. Việc còn mở cho A7
+- Staging/production cũng từ chối `LLM_PROVIDER=fake` và `EMBEDDING_PROVIDER=fake`: cần `LLM_PROVIDER=anthropic` + `LLM_API_KEY` và `EMBEDDING_PROVIDER=http` + `EMBEDDING_BASE_URL`/`EMBEDDING_MODEL`/`EMBEDDING_API_KEY` — **chỉ bật sau khi pháp chế duyệt nhà cung cấp và vị trí xử lý dữ liệu (OQ-012/013)**, vì nội dung tài liệu và câu hỏi sẽ rời hệ thống.
 - Staging/production sẽ **không khởi động** cho tới khi có: `AUTH_PROVIDER=oidc` kèm `OIDC_JWKS_URL/OIDC_ISSUER/OIDC_AUDIENCE` (OQ-014) và `STORAGE_BACKEND=s3` (task C1) — API cố ý từ chối cấu hình `dev`/`memory` ở hai môi trường này.
 - Chọn nền tảng/vùng và dịch vụ managed `[TBD: OQ-012]`; điền host, CIDR egress.
 - Dựng staging thật, diễn tập deploy, rollback ≤ 15 phút, khôi phục DB.

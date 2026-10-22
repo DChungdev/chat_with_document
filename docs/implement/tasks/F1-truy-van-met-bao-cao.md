@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE/FE |
 | Story liên quan | US-501 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — endpoint, SQL fn_mvp_report (V008) và bản bộ nhớ có test; test trên PostgreSQL thật đã viết nhưng CHƯA chạy (không có Docker). Chưa có số liệu thật; conclusive=false cho tới khi chốt mục tiêu/baseline [TBD: OQ-009] |
 
 ## Mô tả
 

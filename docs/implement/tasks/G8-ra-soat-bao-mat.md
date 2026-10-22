@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | QA/Security |
 | Story liên quan | — (nền tảng) |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành rà soát mã + sửa 4 phát hiện; báo cáo docs/implement/reports/security_review.md. CHƯA red-team prompt injection với Claude thật, CHƯA quét image/pentest |
 
 ## Mô tả
 

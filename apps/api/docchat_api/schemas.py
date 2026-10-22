@@ -110,3 +110,20 @@ class TelemetryOut(Camel):
 
 class FlagIn(Camel):
     enabled: bool
+
+
+class FeedbackIn(Camel):
+    rating: str = Field(max_length=8)
+    reason_code: str | None = Field(default=None, max_length=32)
+
+
+class DevLoginIn(Camel):
+    name: str = Field(min_length=1, max_length=40)
+    roles: list[str] = Field(default_factory=lambda: ["user"], max_length=3)
+
+
+class DevLoginOut(Camel):
+    access_token: str
+    expires_in: int
+    subject: str
+    roles: list[str]

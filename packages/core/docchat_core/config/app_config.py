@@ -27,6 +27,25 @@ DEFAULTS: dict[str, Any] = {
     "retrieval_min_score": 0.30,  # hiệu chỉnh bằng bộ câu hỏi chuẩn [TBD: OQ-009]
     "retention_days": None,  # [TBD: OQ-012]
     "citation_snippet_max_chars": 600,
+    # Ingest (workstream C). Đổi chunking cần ingest lại tài liệu đã có.
+    "max_pdf_pages": 500,  # [TBD: OQ-008]
+    "chunk_tokens": 800,
+    "chunk_overlap_tokens": 100,
+    "chunk_min_tokens": 5,  # xem ChunkingConfig.min_tokens
+    "chunk_max_page_span": 1,  # 1 = chunk không vắt qua trang: trích dẫn đúng trang
+    "embed_batch_size": 64,
+    "ingest_max_attempts": 3,
+    # Retrieval / answering (workstream D). Giá trị chốt cần hiệu chỉnh bằng bộ câu hỏi chuẩn [TBD: OQ-009]
+    "retrieval_per_doc_cap": 3,
+    # Báo cáo đánh giá MVP (US-501). Mục tiêu/baseline chưa được duyệt nên báo cáo ghi "chưa thể kết luận".
+    "metrics_targets_approved": False,  # [TBD: OQ-005]
+    "met001_baseline_ms": None,  # trung vị thời gian tra cứu thủ công [TBD: OQ-005]
+    "met001_target_reduction_pct": 50,
+    "met002_target_pct": 80,
+    "first_token_target_ms": 5000,
+    "citation_target_pct": 90,
+    "context_token_budget": 6000,
+    "llm_max_tokens": 1500,
 }
 
 

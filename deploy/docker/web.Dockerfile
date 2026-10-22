@@ -19,5 +19,6 @@ RUN pnpm build
 # ---------- prod: nginx phục vụ SPA, không root ----------
 FROM nginxinc/nginx-unprivileged:1.27-alpine AS prod
 COPY deploy/docker/web.nginx.conf /etc/nginx/conf.d/default.conf
+COPY deploy/docker/web.security.conf /etc/nginx/web.security.conf
 COPY --from=build /app/apps/web/dist /usr/share/nginx/html
 EXPOSE 8080

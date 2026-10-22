@@ -5,7 +5,7 @@ ifeq ($(OS),Windows_NT)
 PY = .venv/Scripts/python
 endif
 
-.PHONY: help dev down logs test test-integration lint fmt migrate seed reset-db install
+.PHONY: help local e2e perf dev down logs test test-integration lint fmt migrate seed reset-db install
 
 help: ## Liệt kê lệnh
 	@grep -E '^[a-z-]+:.*##' Makefile | sed 's/:.*##/\t/'
@@ -13,6 +13,16 @@ help: ## Liệt kê lệnh
 install: ## Cài môi trường dev cục bộ (python + web)
 	python -m venv .venv && $(PY) -m pip install -e ".[dev]"
 	cd apps/web && pnpm install
+
+local: ## Chạy local KHÔNG Docker: build web + API + worker trong 1 tiến trình (http://127.0.0.1:8000)
+	cd apps/web && pnpm build
+	ENVIRONMENT=dev $(PY) -m docchat_api.devserver
+
+e2e: ## E2E Playwright trên chế độ local (không Docker)
+	cd apps/web && pnpm e2e
+
+perf: ## Đo hiệu năng cục bộ (adapter giả) — xem docs/implement/reports/performance.md
+	$(PY) scripts/perf_local.py --users 20 --questions 5
 
 dev: ## Dựng toàn bộ môi trường dev (web, api, worker, postgres+pgvector, minio)
 	$(COMPOSE) up --build

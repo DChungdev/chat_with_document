@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE/AI |
 | Story liên quan | US-101, US-102 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — logic retry/backoff/requeue có unit test; claim bằng fn_claim_ingest_job (SKIP LOCKED). Test song song trên Postgres thật đã viết nhưng CHƯA chạy (không có Docker) |
 
 ## Mô tả
 

@@ -8,7 +8,7 @@
 | Ưu tiên | P1 |
 | Người thực hiện đề xuất | AI/BE |
 | Story liên quan | US-205 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — dừng/tạo lại có test; dừng chỉ hiệu lực với stream ở cùng bản sao API (xem ghi chú) |
 
 ## Mô tả
 

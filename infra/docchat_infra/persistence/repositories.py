@@ -307,6 +307,9 @@ class PgMessages(_Repo):
         )
         return _msg(r) if r else None
 
+    async def get_documents(self, message_id: UUID) -> list[UUID]:
+        return await _message_documents(self, message_id)
+
     async def set_documents(self, message_id: UUID, document_ids: Sequence[UUID]) -> None:
         if not document_ids:
             return
@@ -317,6 +320,14 @@ class PgMessages(_Repo):
             ),
             [{"m": message_id, "d": d, "u": self.uid} for d in document_ids],
         )
+
+
+async def _message_documents(repo: PgMessages, message_id: UUID) -> list[UUID]:
+    rows = await repo._all(
+        "SELECT document_id FROM message_documents WHERE message_id = :m AND user_id = :u",
+        {"m": message_id, "u": repo.uid},
+    )
+    return [r["document_id"] for r in rows]
 
 
 _CIT_SELECT = (
@@ -429,3 +440,26 @@ class PgTelemetry(_Repo):
                 for e in events
             ],
         )
+
+
+class PgFeedback(_Repo):
+    async def upsert(self, message_id: UUID, rating: str, reason_code: str | None) -> None:
+        await self.conn.execute(
+            text(
+                "INSERT INTO message_feedback (message_id, user_id, rating, reason_code) "
+                "VALUES (:m, :u, CAST(:r AS feedback_rating), :c) "
+                "ON CONFLICT (message_id) DO UPDATE SET rating = EXCLUDED.rating, "
+                "reason_code = EXCLUDED.reason_code, created_at = now()"
+            ),
+            {"m": message_id, "u": self.uid, "r": rating, "c": reason_code},
+        )
+
+
+class PgReports(_Repo):
+    async def aggregates(self, since: datetime | None, until: datetime | None) -> dict[str, Any]:
+        row = await self._one(
+            "SELECT fn_mvp_report(CAST(:s AS timestamptz), CAST(:e AS timestamptz)) AS r",
+            {"s": since, "e": until},
+        )
+        report: dict[str, Any] = row["r"]
+        return report

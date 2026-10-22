@@ -31,11 +31,13 @@ from docchat_core.domain import (
     Conversation,
     DocumentStatus,
     Message,
+    MessageRole,
     MessageStatus,
 )
 from docchat_core.domain.errors import (
     AnswerFailed,
     DocumentNotReady,
+    InvalidTransition,
     NoReadyDocuments,
     NotFound,
     QaDisabled,
@@ -80,7 +82,12 @@ class _End:
     pass
 
 
+class _Stop:
+    pass
+
+
 _END = _End()
+_STOP = _Stop()
 
 
 def citation_payload(c: Citation) -> dict[str, Any]:
@@ -114,6 +121,9 @@ class ChatService:
         self._clock = clock
         self._new_id = id_factory
         self._ping = ping_interval
+        # Dừng sinh chỉ có hiệu lực với stream đang chạy ở CHÍNH tiến trình này. Nhiều bản sao API cần
+        # định tuyến yêu cầu stop về đúng bản sao (sticky) hoặc thêm kênh thông báo giữa các bản sao.
+        self._active: dict[UUID, asyncio.Event] = {}
 
     # ---- hội thoại ----
     async def create_conversation(
@@ -210,17 +220,30 @@ class ChatService:
             return
 
         queue: asyncio.Queue[Token | Completed | BaseException | _End] = asyncio.Queue()
+        stop_event = self._active.setdefault(ai.id, asyncio.Event())
         producer = asyncio.create_task(self._produce(ctx, queue))
         started = time.monotonic()
         first_token = True
         finished = False
         try:
             while True:
-                try:
-                    item = await asyncio.wait_for(queue.get(), self._ping)
-                except TimeoutError:
+                item = await self._next(queue, stop_event)
+                if item is None:
                     yield SseEvent("ping", {})
                     continue
+                if isinstance(item, _Stop):
+                    finished = True
+                    await self._save_stopped(ctx)
+                    yield SseEvent(
+                        "done",
+                        {
+                            "messageId": str(ai.id),
+                            "status": "stopped",
+                            "grounded": False,
+                            "citationCount": 0,
+                        },
+                    )
+                    break
                 if isinstance(item, _End):
                     # Pipeline kết thúc mà không báo Completed: coi là lỗi, không để stream cụt.
                     raise AnswerFailed("LLM_UNAVAILABLE", "generate", True)
@@ -262,9 +285,81 @@ class ChatService:
             yield await self._fail(ctx, "INTERNAL_ERROR", "generate", True)
         finally:
             producer.cancel()
+            self._active.pop(ai.id, None)
             if not finished:
                 # Client đóng kết nối / bị hủy: giữ phần đã nhận, đánh dấu interrupted.
                 await asyncio.shield(self._save_terminal(ctx, interrupted=True))
+
+    async def _next(
+        self, queue: asyncio.Queue[Token | Completed | BaseException | _End], stop: asyncio.Event
+    ) -> Token | Completed | BaseException | _End | _Stop | None:
+        """Chờ sự kiện tiếp theo, tín hiệu dừng, hoặc hết `ping_interval` (trả None để gửi ping)."""
+        getter = asyncio.ensure_future(queue.get())
+        stopper = asyncio.ensure_future(stop.wait())
+        try:
+            done, _ = await asyncio.wait(
+                {getter, stopper}, timeout=self._ping, return_when=asyncio.FIRST_COMPLETED
+            )
+        except BaseException:
+            getter.cancel()
+            stopper.cancel()
+            raise
+        stopper.cancel()
+        if stopper in done:
+            getter.cancel()
+            return _STOP
+        if getter in done:
+            return getter.result()
+        getter.cancel()
+        return None
+
+    # ---- dừng / tạo lại (US-205, P1) ----
+    async def stop(self, user_id: UUID, message_id: UUID) -> None:
+        """Yêu cầu dừng sinh. Idempotent: tin nhắn đã kết thúc thì không làm gì (vẫn 202)."""
+        async with self._uow.for_user(user_id) as uow:
+            msg = await uow.messages.get(message_id)
+        if msg is None or msg.role is not MessageRole.AI:
+            raise NotFound()
+        if msg.status is MessageStatus.STREAMING and (event := self._active.get(message_id)):
+            event.set()
+
+    async def prepare_regenerate(self, user_id: UUID, message_id: UUID) -> AskContext:
+        """Tạo câu trả lời MỚI cho cùng câu hỏi (bản cũ giữ nguyên để kiểm toán — API_Design 3.6)."""
+        if not await self._config.qa_enabled():
+            raise QaDisabled()
+        await self._limiter.hit(user_id, ASK_RATE_BUCKET, ASK_RATE_LIMIT, ASK_RATE_WINDOW)
+        async with self._uow.for_user(user_id) as uow:
+            old = await uow.messages.get(message_id)
+            if old is None or old.role is not MessageRole.AI or old.parent_message_id is None:
+                raise NotFound()
+            if old.status in (MessageStatus.STREAMING, MessageStatus.SENDING):
+                raise InvalidTransition("Câu trả lời đang được tạo.")
+            question = await uow.messages.get(old.parent_message_id)
+            if question is None:
+                raise NotFound()
+            # Tài liệu có thể đã bị xóa/chưa còn sẵn sàng từ lúc hỏi: chỉ dùng phần còn lại.
+            chosen = await uow.messages.get_documents(question.id)
+            docs = await uow.documents.get_many(chosen) if chosen else []
+            scope = tuple(d.id for d in docs if d.status is DocumentStatus.READY)
+            if not scope:
+                raise NoReadyDocuments()
+            ai_msg = Message.new_ai(
+                self._new_id(), old.conversation_id, user_id, question.id, self._clock()
+            )
+            ai_msg.start_streaming()
+            await uow.messages.add(ai_msg)
+        return AskContext(user_id, question.text, scope, ai_msg)
+
+    async def _save_stopped(self, ctx: AskContext) -> None:
+        ai = ctx.ai_message
+        if ai.status is not MessageStatus.STREAMING:
+            return
+        ai.stop(self._clock())  # giữ phần đã nhận (US-205)
+        try:
+            async with self._uow.for_user(ctx.user_id) as uow:
+                await uow.messages.update(ai)
+        except Exception:
+            logger.error("could not persist terminal state", extra={"event": "persist_failed"})
 
     async def _produce(
         self, ctx: AskContext, queue: asyncio.Queue[Token | Completed | BaseException | _End]

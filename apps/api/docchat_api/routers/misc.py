@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import logging
+from datetime import datetime
 from uuid import UUID
 
 from fastapi import APIRouter, BackgroundTasks, Depends, Response
 
 from docchat_api.container import Container
 from docchat_api.deps import CurrentUser, container, current_user
-from docchat_api.schemas import CitationOut, FlagIn, TelemetryIn, TelemetryOut
+from docchat_api.schemas import CitationOut, FeedbackIn, FlagIn, TelemetryIn, TelemetryOut
 from docchat_core.application.telemetry import RawEvent
 
 logger = logging.getLogger("docchat.api")
@@ -50,3 +51,26 @@ async def set_qa_enabled(
     """Kill switch (vai trò `ops`)."""
     await c.flags.set_qa_enabled(user.principal, body.enabled)
     return Response(status_code=204)
+
+
+@router.put("/messages/{message_id}/feedback", status_code=204, tags=["feedback"])
+async def put_feedback(
+    message_id: UUID,
+    body: FeedbackIn,
+    user: CurrentUser = Depends(current_user),
+    c: Container = Depends(container),
+) -> Response:
+    """Đánh giá hữu ích / không hữu ích (US-502). Chỉ nhận mã, không nhận văn bản tự do."""
+    await c.feedback.rate(user.id, message_id, body.rating, body.reason_code)
+    return Response(status_code=204)
+
+
+@router.get("/reports/mvp-metrics", tags=["reports"])
+async def mvp_metrics(
+    since: datetime | None = None,
+    until: datetime | None = None,
+    user: CurrentUser = Depends(current_user),
+    c: Container = Depends(container),
+) -> dict[str, object]:
+    """MET-001/002, KR1.2, KR2.2 tổng hợp (vai trò `evaluator`; không có nội dung người dùng)."""
+    return await c.reports.mvp(user.id, user.principal, since, until)

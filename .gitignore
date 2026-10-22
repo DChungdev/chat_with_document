@@ -30,3 +30,7 @@ Thumbs.db
 
 # Dữ liệu cục bộ
 /data/
+
+# Playwright
+apps/web/test-results/
+apps/web/playwright-report/

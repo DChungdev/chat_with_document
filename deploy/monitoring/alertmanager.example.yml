@@ -1,0 +1,15 @@
+# Mẫu Alertmanager: kênh nhận cảnh báo cấu hình được (email hoặc webhook chat). Điền giá trị qua secret, không commit.
+route:
+  receiver: ticket
+  group_by: [alertname]
+  routes:
+    - matchers: [severity="page"]
+      receiver: oncall
+receivers:
+  - name: oncall
+    webhook_configs:
+      - url_file: /etc/alertmanager/secrets/chat_webhook_url # Slack/Teams/Google Chat tương thích
+  - name: ticket
+    email_configs:
+      - to: ops@example.invalid # [TBD: kênh nhận thực tế]
+        send_resolved: true

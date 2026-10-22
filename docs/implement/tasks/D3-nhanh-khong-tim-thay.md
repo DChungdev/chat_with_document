@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | AI/BE |
 | Story liên quan | US-202 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — có test: không có nguồn thì trả “không tìm thấy” và LLM không bị gọi |
 
 ## Mô tả
 

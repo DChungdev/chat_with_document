@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE/AI |
 | Story liên quan | US-101, US-102 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — pipeline đầu-cuối có 23 test trên adapter trong bộ nhớ; bản Postgres đã viết nhưng CHƯA chạy (không có Docker) |
 
 ## Mô tả
 

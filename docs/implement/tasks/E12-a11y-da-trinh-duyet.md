@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | FE/QA |
 | Story liên quan | — (nền tảng) |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành một phần — axe (WCAG 2 A/AA/2.1) pass trên Edge cho các màn chính; CHƯA chạy Chrome/Firefox/Safari, CHƯA kiểm thử thủ công bằng trình đọc màn hình thật (NVDA/VoiceOver) |
 
 ## Mô tả
 

@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | QA |
 | Story liên quan | — (nền tảng) |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — 386 test, coverage 94.8%, ngưỡng cứng 80% trong CI (yêu cầu tối thiểu 70%) |
 
 ## Mô tả
 

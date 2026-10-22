@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | DevOps |
 | Story liên quan | — (nền tảng) |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành cấu hình — deploy/monitoring/{alerts.yml,grafana-dashboard.json,alertmanager.example.yml} có test đối chiếu với metric thật. CHƯA nạp vào Prometheus/Grafana và CHƯA mô phỏng kích hoạt cảnh báo trên staging; diễn tập kill switch: xem deploy/README.md 4.3 (đã tự động hóa phần API bằng test, chưa diễn tập trên staging) |
 
 ## Mô tả
 

@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | QA |
 | Story liên quan | US-402 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành ở tầng ứng dụng (test_isolation.py, bản bộ nhớ); RLS thật trên PostgreSQL CHƯA chạy (cần Docker) |
 
 ## Mô tả
 

@@ -10,10 +10,12 @@ from docchat_infra.persistence.repositories import (
     PgCitations,
     PgConversations,
     PgDocuments,
+    PgFeedback,
     PgIdempotency,
     PgJobs,
     PgMessages,
     PgNotices,
+    PgReports,
     PgTelemetry,
     PgUsers,
 )
@@ -32,6 +34,8 @@ class PgUnitOfWork:
     citations: PgCitations
     notices: PgNotices
     telemetry: PgTelemetry
+    feedback: PgFeedback
+    reports: PgReports
 
     def __init__(self, engine: AsyncEngine, user_id: UUID | None) -> None:
         self._engine = engine
@@ -54,6 +58,8 @@ class PgUnitOfWork:
         self.citations = PgCitations(conn, self._uid)
         self.notices = PgNotices(conn, self._uid)
         self.telemetry = PgTelemetry(conn, self._uid)
+        self.feedback = PgFeedback(conn, self._uid)
+        self.reports = PgReports(conn, self._uid)
         return self
 
     async def __aexit__(

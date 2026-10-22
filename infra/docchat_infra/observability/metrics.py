@@ -42,3 +42,16 @@ class PrometheusChatMetrics:
 
     def stage_error(self, stage: str) -> None:
         STAGE_ERRORS.labels(stage).inc()
+
+
+class PrometheusIngestMetrics:
+    """Triển khai cổng `IngestMetrics` của lõi."""
+
+    def stage_error(self, stage: str) -> None:
+        STAGE_ERRORS.labels(stage).inc()
+
+    def ingest_seconds(self, seconds: float) -> None:
+        INGEST_SECONDS.observe(seconds)
+
+    def queue_length(self, length: int) -> None:
+        INGEST_QUEUE_LENGTH.set(length)

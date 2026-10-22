@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | QA |
 | Story liên quan | US-201 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Một phần — script đo cục bộ (adapter giả) + k6 cho staging + báo cáo docs/implement/reports/performance.md. CHƯA đo được p95 ≤ 5s thật (cần Claude + pgvector trên staging) |
 
 ## Mô tả
 

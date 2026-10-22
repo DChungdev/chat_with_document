@@ -1,0 +1,66 @@
+# Prometheus alert rules (F2). Ngưỡng là ĐỀ XUẤT — hiệu chỉnh sau khi có dữ liệu staging.
+# Chỉ dùng metric trong infra/docchat_infra/observability/metrics.py (không có nhãn nội dung).
+# Kênh nhận (email/chat) cấu hình ở Alertmanager: xem alertmanager.example.yml.
+groups:
+  - name: docchat
+    rules:
+      - alert: DocchatFirstTokenSlow
+        expr: histogram_quantile(0.95, sum by (le) (rate(docchat_answer_first_token_seconds_bucket[10m]))) > 5
+        for: 10m
+        labels: { severity: page }
+        annotations:
+          summary: "p95 thời gian tới token đầu > 5s (mục tiêu MET/KR1.2)"
+          runbook: "deploy/README.md#kill-switch-và-diễn-tập"
+
+      - alert: DocchatStageErrorsHigh
+        expr: sum by (stage) (rate(docchat_stage_errors_total{stage=~"retrieve|llm"}[10m])) > 0.1
+        for: 10m
+        labels: { severity: page }
+        annotations:
+          summary: "Tỷ lệ lỗi giai đoạn {{ $labels.stage }} cao (câu trả lời thất bại)"
+
+      - alert: DocchatLlmProviderErrors
+        expr: sum(rate(docchat_stage_errors_total{stage="llm"}[5m])) > 0.2
+        for: 5m
+        labels: { severity: page }
+        annotations:
+          summary: "Nhà cung cấp LLM lỗi liên tục — cân nhắc bật kill switch qaEnabled=false"
+
+      - alert: DocchatEmbeddingProviderErrors
+        expr: sum(rate(docchat_stage_errors_total{stage="embed"}[5m])) > 0.2
+        for: 5m
+        labels: { severity: ticket }
+        annotations:
+          summary: "Nhà cung cấp embedding lỗi liên tục — tài liệu mới có thể kẹt ở Đang xử lý"
+
+      - alert: DocchatIngestBacklog
+        expr: docchat_ingest_queue_length > 20
+        for: 15m
+        labels: { severity: ticket }
+        annotations:
+          summary: "Hàng đợi ingest tồn đọng > 20 job trong 15 phút"
+
+      - alert: DocchatIngestSlow
+        expr: histogram_quantile(0.95, sum by (le) (rate(docchat_ingest_duration_seconds_bucket[30m]))) > 60
+        for: 30m
+        labels: { severity: ticket }
+        annotations:
+          summary: "p95 thời gian xử lý PDF > 60s (mục tiêu SAD 5.1)"
+
+      - alert: DocchatUngroundedRatioHigh
+        expr: |
+          sum(rate(docchat_answers_total{grounded="false"}[1h]))
+            / clamp_min(sum(rate(docchat_answers_total[1h])), 0.001) > 0.5
+        for: 1h
+        labels: { severity: ticket }
+        annotations:
+          summary: "Hơn 50% câu trả lời không có nguồn dẫn — kiểm tra ngưỡng retrieval/chất lượng index"
+
+      - alert: DocchatApiErrors5xx
+        expr: |
+          sum(rate(docchat_http_request_duration_seconds_count{status=~"5.."}[5m]))
+            / clamp_min(sum(rate(docchat_http_request_duration_seconds_count[5m])), 0.001) > 0.05
+        for: 5m
+        labels: { severity: page }
+        annotations:
+          summary: "Hơn 5% yêu cầu API trả 5xx"

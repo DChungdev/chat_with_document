@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | AI/BE |
 | Story liên quan | US-201, US-203, US-402 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — bản bộ nhớ có test ngữ nghĩa đầy đủ; SQL pgvector qua parser PostgreSQL. Test trên pgvector thật đã viết nhưng CHƯA chạy (không có Docker); chưa đo p95 ≤ 300ms trên dữ liệu lớn |
 
 ## Mô tả
 

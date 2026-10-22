@@ -3,22 +3,22 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import AsyncIterator, Sequence
 from dataclasses import dataclass
-from uuid import UUID
 
 from sqlalchemy.ext.asyncio import AsyncEngine
 
+from docchat_core.application.answering import AnsweringPipeline
 from docchat_core.application.chat import ChatService
 from docchat_core.application.citations import CitationService
 from docchat_core.application.compliance import ComplianceService
 from docchat_core.application.documents import DocumentsService
+from docchat_core.application.feedback import FeedbackService
 from docchat_core.application.flags import FlagService
+from docchat_core.application.reports import ReportService
+from docchat_core.application.retrieval import Retriever
 from docchat_core.application.telemetry import TelemetryService
 from docchat_core.config import AppConfig, Settings
-from docchat_core.domain.errors import AnswerFailed
 from docchat_core.ports import (
-    AnswerEvent,
     AnswerPipeline,
     AuthProvider,
     ConfigWriter,
@@ -27,27 +27,20 @@ from docchat_core.ports import (
     UnitOfWorkFactory,
 )
 from docchat_infra.auth import JwtAuthProvider, OidcKeyResolver
-from docchat_infra.memory import InMemoryFileStorage
+from docchat_infra.embedding import build_embedding
+from docchat_infra.llm import build_llm
 from docchat_infra.observability import hash_user_id, inject_trace_context
 from docchat_infra.observability.metrics import PrometheusChatMetrics
 from docchat_infra.persistence import (
     PgUnitOfWorkFactory,
+    PgVectorStore,
     PostgresConfigStore,
     create_engine,
 )
 from docchat_infra.ratelimit import InMemoryRateLimiter
+from docchat_infra.storage import build_storage
 
 logger = logging.getLogger("docchat.api")
-
-
-class UnavailablePipeline:
-    """Giữ chỗ cho tới khi workstream D (retrieval + LLM) được nối vào: luôn báo lỗi rõ ràng."""
-
-    async def answer(
-        self, *, user_id: UUID, question: str, document_ids: Sequence[UUID]
-    ) -> AsyncIterator[AnswerEvent]:
-        raise AnswerFailed("LLM_UNAVAILABLE", "generate", True)
-        yield  # pragma: no cover  (biến hàm thành async generator)
 
 
 @dataclass
@@ -63,6 +56,8 @@ class Container:
     citations: CitationService
     telemetry: TelemetryService
     flags: FlagService
+    feedback: FeedbackService
+    reports: ReportService
     engine: AsyncEngine | None = None
 
 
@@ -79,15 +74,6 @@ def build_auth(settings: Settings) -> AuthProvider:
     if settings.environment in {"staging", "prod"}:
         raise RuntimeError("AUTH_PROVIDER=dev không được dùng ở staging/production")
     return JwtAuthProvider(algorithms=["HS256"], key=settings.jwt_secret.get_secret_value())
-
-
-def build_storage(settings: Settings) -> FileStoragePort:
-    if settings.storage_backend == "s3":
-        raise RuntimeError("Adapter S3 thuộc task C1, chưa được triển khai")
-    if settings.environment in {"staging", "prod"}:
-        raise RuntimeError("STORAGE_BACKEND=memory không được dùng ở staging/production")
-    logger.warning("using in-memory file storage", extra={"event": "storage_memory"})
-    return InMemoryFileStorage()
 
 
 def assemble(
@@ -118,6 +104,8 @@ def assemble(
         citations=CitationService(uow_factory, config),
         telemetry=TelemetryService(uow_factory, lambda uid: hash_user_id(uid, salt)),
         flags=FlagService(config_writer, config),
+        feedback=FeedbackService(uow_factory),
+        reports=ReportService(uow_factory, config),
         engine=engine,
     )
 
@@ -133,6 +121,10 @@ def build_container(settings: Settings) -> Container:
         config_writer=store,
         auth=build_auth(settings),
         storage=build_storage(settings),
-        pipeline=UnavailablePipeline(),
+        pipeline=AnsweringPipeline(
+            Retriever(build_embedding(settings), PgVectorStore(engine), config),
+            build_llm(settings),
+            config,
+        ),
         engine=engine,
     )

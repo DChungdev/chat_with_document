@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE/AI |
 | Story liên quan | US-101, US-103 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — có test với S3 giả lập (moto); chưa thử với MinIO/S3 thật (compose đã cấu hình sẵn) |
 
 ## Mô tả
 

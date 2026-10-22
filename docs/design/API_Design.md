@@ -212,6 +212,8 @@ data: {"messageId":"8b1c…","status":"complete","grounded":true,"citationCount"
 - Khi không có đoạn đạt ngưỡng: chỉ `token` (“không tìm thấy trong tài liệu đã tải”) + `done` với `grounded=false`, `citationCount=0`.
 - **Lỗi trước khi mở stream** (JWT, kill switch, sở hữu `documentIds`, rate limit) trả JSON `problem+json` thông thường (không phải SSE): `401`, `403`, `404`, `422`, `429`, `503 QA_DISABLED`.
 - Client đóng kết nối ⇒ server hủy yêu cầu LLM, đặt `interrupted`.
+- `POST /messages/{id}/stop` ⇒ stream đang chạy kết thúc bằng `done` với `status="stopped"`, `grounded=false`, `citationCount=0`; phần đã nhận được giữ lại. Chỉ có hiệu lực khi yêu cầu tới đúng bản sao API đang giữ stream (cần định tuyến dính hoặc kênh thông báo giữa các bản sao khi chạy nhiều bản sao).
+- Nhãn nguồn `[Sx]` do LLM ghi bị **bóc khỏi `token`**; nguồn dẫn chỉ xuất hiện trong `citations` (sinh từ chunk đã truy xuất). Câu trả lời không có nhãn hợp lệ nào được báo `grounded=false`, không có trích dẫn.
 
 #### 3.4.4 `GET /citations/{id}` (IF-08)
 `200 Citation` (xem 3.4.1). Nếu tài liệu đã bị xóa: `200` với `valid=false`, `snippet=null`, `documentId=null`, `documentName=null` (UI hiện “Nguồn không còn khả dụng”, không để trống — PRD 4.2). Citation của người dùng khác ⇒ `404`.

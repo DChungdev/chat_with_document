@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | QA |
 | Story liên quan | US-101, US-102, US-103, US-201, US-202, US-301, US-302, US-401 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành ở chế độ local — 21 test Playwright (15 luồng P0 + 6 a11y) chạy Edge; có job CI (chromium). Có 1 lần thất bại không lặp lại (waitReady timeout) khi chạy toàn bộ — nghi flaky thời gian ingest, chạy lại riêng thì pass |
 
 ## Mô tả
 

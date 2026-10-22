@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | QA |
 | Story liên quan | US-301, US-302, US-103 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành ở tầng ứng dụng (test_documents_api, test_qa_e2e, test_isolation); cascade trên PostgreSQL thật CHƯA chạy |
 
 ## Mô tả
 

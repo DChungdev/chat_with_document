@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE/QA |
 | Story liên quan | US-101 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Đã có công cụ + báo cáo với embedding GIẢ LẬP (docs/implement/reports/ingest_benchmark.md). CHƯA kết luận được ≤ 60s thật: cần embedding thật + PDF mẫu thật trên staging |
 
 ## Mô tả
 

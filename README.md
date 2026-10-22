@@ -12,12 +12,41 @@ Thiết kế: [SAD](docs/design/SAD.md) · Kế hoạch: [Implement_Plan](docs/i
 | `apps/api` | FastAPI (routing, xác thực, SSE) |
 | `apps/worker` | ingestion worker |
 | `apps/web` | React + TypeScript + Vite |
+| `eval` | bộ câu hỏi chuẩn tổng hợp + harness + công cụ hiệu chỉnh retrieval (`python eval/run_eval.py`, `python eval/tune.py`) — xem [báo cáo](docs/implement/reports/) |
 | `db` | migration (Alembic chạy các tệp SQL), khởi tạo vai trò, dữ liệu dev, test CSDL |
 | `deploy` | Docker, Compose, Kubernetes, runbook — xem [deploy/README.md](deploy/README.md) |
 
-## Bắt đầu
+## Chạy local — KHÔNG cần Docker, PostgreSQL hay khóa API
 
-Cần: Python 3.12+, Node 20+ và pnpm, Docker (cho `make dev` và test tích hợp).
+Cần: Python 3.12+, Node 20+ và pnpm.
+
+```bash
+make install        # .venv + pnpm install (một lần)
+make local          # build giao diện rồi chạy API + worker + giao diện tại http://127.0.0.1:8000
+```
+
+Không có `make` (Windows PowerShell/Git Bash):
+
+```powershell
+python -m venv .venv ; .venv\Scripts\python -m pip install -e ".[dev]"
+cd apps\web ; pnpm install ; pnpm build ; cd ..\..
+$env:ENVIRONMENT = "dev" ; .venv\Scripts\python -m docchat_api.devserver
+```
+
+Mở http://127.0.0.1:8000 → nhập tên bất kỳ (dev login) → xác nhận thông báo dữ liệu → tải PDF → hỏi.
+Tài liệu API tương tác: http://127.0.0.1:8000/docs · Báo cáo đo lường (đăng nhập vai trò `evaluator`): `#/report`.
+
+Chế độ này chạy **một tiến trình**: API + worker ingest + kho dữ liệu/tệp/vector **trong bộ nhớ** (tắt là mất dữ liệu),
+embedding và LLM **giả lập** (câu trả lời là trích đoạn từ tài liệu, không phải Claude). Phù hợp để thử luồng và phát triển giao diện.
+Dùng Claude/embedding thật: đặt `LLM_PROVIDER=anthropic`, `LLM_API_KEY=...` (và `EMBEDDING_PROVIDER=http` + biến liên quan trong `.env.example`)
+— khi đó nội dung tài liệu **rời khỏi máy**, chỉ dùng dữ liệu thử đã được phép. Phát triển giao diện có hot reload:
+chạy devserver với `--no-static` và `cd apps/web && pnpm dev` (cổng 5173, proxy `/api` sang :8000).
+
+Kiểm thử toàn bộ không cần Docker: `make test` (pytest + vitest), `make e2e` (Playwright trên chế độ local).
+
+## Chạy đầy đủ với Docker (PostgreSQL + pgvector + MinIO)
+
+Cần thêm Docker (cho `make dev` và test tích hợp).
 
 ```bash
 make install            # .venv + pnpm install

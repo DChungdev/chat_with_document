@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | BE/AI |
 | Story liên quan | US-101, US-201 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — giả lập + HTTP tương thích OpenAI + retry/circuit breaker, có unit test. Nhà cung cấp THẬT chưa chọn (OQ-012/013) |
 
 ## Mô tả
 

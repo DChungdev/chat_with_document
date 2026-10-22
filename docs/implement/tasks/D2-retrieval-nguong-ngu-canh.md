@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | AI/BE |
 | Story liên quan | US-202, US-203 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — có unit test. Chưa gộp chunk liền kề (tùy chọn trong thiết kế) |
 
 ## Mô tả
 

@@ -17,6 +17,10 @@ dependencies = [
     "alembic>=1.13",
     "pyjwt[crypto]>=2.8",
     "python-multipart>=0.0.9",
+    "pypdf>=4.2",
+    "anthropic>=0.60",
+    "boto3>=1.34",
+    "httpx>=0.27",
     "prometheus-client>=0.20",
     "opentelemetry-api>=1.25",
     "opentelemetry-sdk>=1.25",
@@ -30,7 +34,7 @@ dev = [
     "pytest>=8.2",
     "pytest-asyncio>=0.23",
     "pytest-cov>=5.0",
-    "httpx>=0.27",
+    "moto[s3]>=5.0",
     "import-linter>=2.0",
     "testcontainers[postgres]>=4.7",
     "pre-commit>=3.7",
@@ -48,11 +52,11 @@ target-version = ["py312"]
 [tool.ruff]
 line-length = 100
 target-version = "py312"
-src = ["packages/core", "infra", "apps/api", "apps/worker"]
+src = ["packages/core", "infra", "apps/api", "apps/worker", "eval"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "S", "ASYNC"]
-ignore = ["S101", "E501"]  # E501: black quyết định xuống dòng; chuỗi tiếng Việt/SQL dài được phép
+ignore = ["S101", "E501", "ASYNC109"]  # E501: black quyết định xuống dòng; chuỗi tiếng Việt/SQL dài được phép
 
 [tool.ruff.lint.flake8-bugbear]
 extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.File", "fastapi.Header"]
@@ -60,7 +64,8 @@ extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.File", "f
 [tool.ruff.lint.per-file-ignores]
 "**/tests/**" = ["S105", "S106", "S608"]
 "db/migrations/**" = ["S608"]
-"infra/docchat_infra/persistence/repositories.py" = ["S608"]  # SQL tường minh, chỉ nối hằng số; giá trị luôn ràng buộc tham số
+"eval/**" = ["ASYNC230", "ASYNC240", "E731"]  # script CLI, không phải dịch vụ
+"infra/docchat_infra/persistence/*.py" = ["S608"]  # SQL tường minh, chỉ nối hằng số; giá trị luôn ràng buộc tham số
 
 [tool.mypy]
 python_version = "3.12"
@@ -69,16 +74,24 @@ mypy_path = ["packages/core", "infra", "apps/api", "apps/worker"]
 explicit_package_bases = true
 namespace_packages = true
 
+[[tool.mypy.overrides]]
+module = ["boto3.*", "botocore.*"]
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
-testpaths = ["packages/core/tests", "infra/tests", "apps/api/tests", "apps/worker/tests", "db/tests"]
+testpaths = ["packages/core/tests", "infra/tests", "apps/api/tests", "apps/worker/tests", "db/tests", "eval/tests", "deploy/tests"]
 addopts = "--import-mode=importlib -m 'not integration'"
-pythonpath = ["apps/api/tests"]
+pythonpath = ["apps/api/tests", "eval"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 markers = ["integration: cần Docker (Postgres + pgvector); chạy bằng `pytest -m integration`"]
 
 [tool.coverage.run]
 source = ["docchat_core", "docchat_infra", "docchat_api", "docchat_worker"]
+
+[tool.coverage.report]
+fail_under = 80  # G1: ngưỡng cứng trong CI (đo thực tế 95% ở 2026-10-23; yêu cầu tối thiểu của task là 70%)
+skip_empty = true
 
 [tool.importlinter]
 root_packages = ["docchat_core", "docchat_infra", "docchat_api", "docchat_worker"]

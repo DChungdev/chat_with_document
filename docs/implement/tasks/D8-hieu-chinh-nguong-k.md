@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | AI |
 | Story liên quan | US-202, US-301 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Đã có công cụ hiệu chỉnh + báo cáo (docs/implement/reports/retrieval_tuning.md) trên nhà cung cấp GIẢ LẬP; CHƯA ghi giá trị nào vào app_config vì chưa có embedding thật |
 
 ## Mô tả
 

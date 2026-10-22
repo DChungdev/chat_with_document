@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | AI/BE |
 | Story liên quan | US-202, US-203 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành — prompt chống injection + adapter Claude (client giả) + retry/timeout/circuit breaker. CHƯA gọi Claude thật (cần khóa API; nhà cung cấp chờ OQ-012/013) |
 
 ## Mô tả
 

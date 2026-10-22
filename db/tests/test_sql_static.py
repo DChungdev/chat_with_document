@@ -17,7 +17,7 @@ SQL_FILES = sorted(p.name for p in runner.SQL_DIR.glob("V*.sql"))
 
 
 def test_all_expected_files_exist() -> None:
-    for i in range(1, 6):
+    for i in range(1, 9):
         assert any(n.startswith(f"V00{i}__") for n in SQL_FILES)
         assert f"V00{i}.down.sql" in SQL_FILES
 

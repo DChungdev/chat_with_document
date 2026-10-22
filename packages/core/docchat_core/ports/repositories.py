@@ -6,8 +6,9 @@ UoW `system()` đứng ngoài ràng buộc này.
 from __future__ import annotations
 
 from collections.abc import Sequence
+from datetime import datetime
 from types import TracebackType
-from typing import Protocol
+from typing import Any, Protocol
 from uuid import UUID
 
 from docchat_core.domain import (
@@ -67,6 +68,9 @@ class MessageRepository(Protocol):
     ) -> Message | None: ...
     async def find_reply(self, parent_message_id: UUID) -> Message | None: ...
     async def set_documents(self, message_id: UUID, document_ids: Sequence[UUID]) -> None: ...
+    async def get_documents(self, message_id: UUID) -> list[UUID]:
+        """Tài liệu đã chọn cho câu hỏi (message_documents), theo thứ tự chọn."""
+        ...
 
 
 class CitationRepository(Protocol):
@@ -89,6 +93,18 @@ class TelemetryRepository(Protocol):
         ...
 
     async def add_many(self, events: Sequence[TelemetryEvent]) -> None: ...
+
+
+class FeedbackRepository(Protocol):
+    async def upsert(self, message_id: UUID, rating: str, reason_code: str | None) -> None:
+        """Đánh giá câu trả lời (up|down). Idempotent: đánh giá lại thì ghi đè."""
+        ...
+
+
+class ReportRepository(Protocol):
+    async def aggregates(self, since: datetime | None, until: datetime | None) -> dict[str, Any]:
+        """Số liệu tổng hợp từ telemetry (không có nội dung người dùng) cho báo cáo MVP."""
+        ...
 
 
 class UnitOfWork(Protocol):
@@ -120,6 +136,12 @@ class UnitOfWork(Protocol):
 
     @property
     def telemetry(self) -> TelemetryRepository: ...
+
+    @property
+    def feedback(self) -> FeedbackRepository: ...
+
+    @property
+    def reports(self) -> ReportRepository: ...
 
     async def __aenter__(self) -> UnitOfWork: ...
     async def __aexit__(

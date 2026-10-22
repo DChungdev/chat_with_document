@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | FE |
 | Story liên quan | US-301, US-302, US-203 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành ở chế độ local — có vitest + Playwright (Edge) + axe; chưa chạy trên Chrome/Firefox/Safari, chưa có Claude/backend PG thật |
 
 ## Mô tả
 

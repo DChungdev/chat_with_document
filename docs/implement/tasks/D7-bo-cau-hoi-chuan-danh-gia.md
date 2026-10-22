@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | AI/QA |
 | Story liên quan | US-202 |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Đã có bộ 52 câu tổng hợp + harness + script; chạy với nhà cung cấp GIẢ LẬP. CHƯA có bộ câu hỏi thật (OQ-009) nên chưa kết luận chất lượng thật |
 
 ## Mô tả
 

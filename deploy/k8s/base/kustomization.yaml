@@ -17,11 +17,13 @@ configMapGenerator:
       - LOG_LEVEL=INFO
       - S3_BUCKET=docchat-documents
       - S3_REGION=us-east-1
+      - S3_SSE=AES256
+      - STORAGE_BACKEND=s3
       - EMBEDDING_DIM=1024
       - APP_CONFIG_TTL_SECONDS=30
       # Mặc định giả lập cho tới khi pháp chế duyệt nhà cung cấp [TBD: OQ-012/013]
       - LLM_PROVIDER=fake
-      - EMBEDDING_PROVIDER=fake
+      - EMBEDDING_PROVIDER=fake # staging/prod từ chối "fake": chọn nhà cung cấp khi OQ-012/013 chốt
       - AUTH_PROVIDER=dev # [TBD: OQ-014]
 
 # Job migrate tham chiếu `docchat-config` theo tên cố định nên không dùng hậu tố băm

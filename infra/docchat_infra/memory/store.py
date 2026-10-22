@@ -24,6 +24,8 @@ from docchat_core.domain import (
     User,
     UserRole,
 )
+from docchat_infra.memory.base import _Repo
+from docchat_infra.memory.reports import MemFeedback, MemReports
 
 
 @dataclass
@@ -37,12 +39,17 @@ class MemoryStore:
     message_documents: dict[UUID, list[UUID]] = field(default_factory=dict)
     citations: dict[UUID, Citation] = field(default_factory=dict)
     chunk_text: dict[UUID, tuple[UUID, str]] = field(default_factory=dict)  # chunk_id → (doc, text)
+    # Chunk đầy đủ do worker ghi (kèm embedding) — để test ingest và truy xuất trong bộ nhớ.
+    chunk_rows: dict[UUID, dict[str, Any]] = field(default_factory=dict)  # chunk_id → hàng
+    job_rows: dict[UUID, dict[str, Any]] = field(default_factory=dict)  # document_id → hàng job
+    job_seq: int = 0
     notice: DataNotice | None = DataNotice("draft-0", "Thông báo dữ liệu (nháp).")
     acceptances: set[tuple[UUID, str]] = field(default_factory=set)
     telemetry: list[TelemetryEvent] = field(default_factory=list)
     allowlist: dict[str, frozenset[str]] = field(default_factory=dict)
     audit: list[tuple[UUID, str, UUID | None]] = field(default_factory=list)
     config: dict[str, Any] = field(default_factory=dict)
+    feedback: dict[UUID, tuple[str, str | None]] = field(default_factory=dict)
 
     def snapshot(self) -> dict[str, Any]:
         return copy.deepcopy(self.__dict__)
@@ -50,18 +57,6 @@ class MemoryStore:
     def restore(self, snap: dict[str, Any]) -> None:
         self.__dict__.clear()
         self.__dict__.update(snap)
-
-
-class _Repo:
-    def __init__(self, store: MemoryStore, user_id: UUID | None) -> None:
-        self.s = store
-        self._uid = user_id
-
-    @property
-    def uid(self) -> UUID:
-        if self._uid is None:  # UoW `system()` không được chạm dữ liệu của người dùng
-            raise PermissionError("no user bound to this unit of work")
-        return self._uid
 
 
 class MemUsers(_Repo):
@@ -112,6 +107,10 @@ class MemDocuments(_Repo):
         self.s.jobs.pop(document_id, None)
         for cid in [c for c, (d, _) in self.s.chunk_text.items() if d == document_id]:
             del self.s.chunk_text[cid]
+        self.s.chunk_rows = {
+            c: r for c, r in self.s.chunk_rows.items() if r["document_id"] != document_id
+        }
+        self.s.job_rows.pop(document_id, None)
         for cit_id, c in list(self.s.citations.items()):
             if c.document_id == document_id:  # FK SET NULL ⇒ valid=false; trigger xóa tên tệp
                 self.s.citations[cit_id] = replace(
@@ -124,6 +123,17 @@ class MemDocuments(_Repo):
 class MemJobs(_Repo):
     async def enqueue(self, document_id: UUID, trace_context: dict[str, str]) -> None:
         self.s.jobs[document_id] = dict(trace_context)
+        if document_id not in self.s.job_rows:
+            self.s.job_seq += 1
+            self.s.job_rows[document_id] = {
+                "id": self.s.job_seq,
+                "status": "queued",
+                "attempts": 0,
+                "run_after": None,
+                "locked_at": None,
+                "last_error": None,
+                "trace_context": dict(trace_context),
+            }
 
 
 class MemIdempotency(_Repo):
@@ -177,6 +187,12 @@ class MemMessages(_Repo):
 
     async def set_documents(self, message_id: UUID, document_ids: Sequence[UUID]) -> None:
         self.s.message_documents[message_id] = list(document_ids)
+
+    async def get_documents(self, message_id: UUID) -> list[UUID]:
+        msg = self.s.messages.get(message_id)
+        if msg is None or msg.user_id != self.uid:
+            return []
+        return list(self.s.message_documents.get(message_id, []))
 
 
 class MemCitations(_Repo):
@@ -236,6 +252,8 @@ class MemoryUnitOfWork:
         self.citations = MemCitations(store, user_id)
         self.notices = MemNotices(store, user_id)
         self.telemetry = MemTelemetry(store, user_id)
+        self.feedback = MemFeedback(store, user_id)
+        self.reports = MemReports(store, user_id)
 
     async def __aenter__(self) -> MemoryUnitOfWork:
         self._snap = self._store.snapshot()

@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | QA |
 | Story liên quan | — (nền tảng) |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Hoàn thành (test_no_content_leak.py: log, metrics, telemetry, audit, đường lỗi nhà cung cấp); chưa quét log của hạ tầng thật/trace backend |
 
 ## Mô tả
 

@@ -8,7 +8,7 @@
 | Ưu tiên | P0 |
 | Người thực hiện đề xuất | QA |
 | Story liên quan | — (nền tảng) |
-| Trạng thái | Chưa bắt đầu |
+| Trạng thái | Một phần — test tích hợp PostgreSQL/pgvector/RLS đã viết (30 test, marker integration) nhưng CHƯA chạy ở máy này (không có Docker); CI có job integration |
 
 ## Mô tả
 

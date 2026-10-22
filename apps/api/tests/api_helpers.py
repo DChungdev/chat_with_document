@@ -20,7 +20,12 @@ from docchat_core.config import AppConfig, Settings
 from docchat_core.domain import Chunk, Document, DocumentStatus
 from docchat_core.ports import AnswerEvent, CitationRef, Completed, Token
 from docchat_infra.auth import JwtAuthProvider
-from docchat_infra.memory import InMemoryFileStorage, MemoryStore, MemoryUnitOfWorkFactory
+from docchat_infra.memory import (
+    TELEMETRY_ALLOWLIST,
+    InMemoryFileStorage,
+    MemoryStore,
+    MemoryUnitOfWorkFactory,
+)
 
 SECRET = "test-secret-test-secret-test-secret-0123456789"
 PDF = b"%PDF-1.4\n1 0 obj\n<<>>\nendobj\n%%EOF\n"
@@ -165,12 +170,7 @@ def make_env(config_values: dict[str, Any] | None = None, **chat_kwargs: Any) ->
         telemetry_salt="test-salt",  # type: ignore[arg-type]
     )
     store = MemoryStore()
-    store.allowlist = {
-        "answer_completed": frozenset({"total_ms", "citation_count", "grounded"}),
-        "upload_succeeded": frozenset({"file_size", "duration_ms"}),
-        "citation_opened": frozenset({"citation_index"}),
-        "upload_failed": frozenset({"error_code", "file_size"}),
-    }
+    store.allowlist = dict(TELEMETRY_ALLOWLIST)
     storage = InMemoryFileStorage()
     cfg = DictConfig(config_values)
     pipeline = ScriptedPipeline()
