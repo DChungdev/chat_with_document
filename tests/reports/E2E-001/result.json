@@ -1,0 +1,70 @@
+{
+  "id": "E2E-001",
+  "title": "Hành trình chính của Lan",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-23T13:43:28.385Z",
+  "endedAt": "2026-10-23T13:43:35.328Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Đăng nhập dev bằng tài khoản mới",
+      "expected": "Vào được trang chính, thấy hộp thoại thông báo dữ liệu",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shot": "screenshots/01-ang-nhap-dev-bang-tai-khoan-moi.png",
+      "ms": 573
+    },
+    {
+      "n": 2,
+      "name": "Xác nhận thông báo dữ liệu",
+      "expected": "Hộp thoại đóng, nút Tải PDF lên khả dụng",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shot": "screenshots/02-xac-nhan-thong-bao-du-lieu.png",
+      "ms": 140
+    },
+    {
+      "n": 3,
+      "name": "Tải baogia.pdf",
+      "expected": "Tệp xuất hiện trong danh sách rồi chuyển Sẵn sàng",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shot": "screenshots/03-tai-baogia-pdf.png",
+      "ms": 2913
+    },
+    {
+      "n": 4,
+      "name": "Hỏi về điều khoản thanh toán",
+      "expected": "Trả lời streaming, chứa '30 ngày', có chip baogia.pdf · tr.2",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shot": "screenshots/04-hoi-ve-dieu-khoan-thanh-toan.png",
+      "ms": 2935
+    },
+    {
+      "n": 5,
+      "name": "Mở panel nguồn dẫn",
+      "expected": "Panel hiện đúng tệp, Trang 2 và đoạn gốc",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shot": "screenshots/05-mo-panel-nguon-dan.png",
+      "ms": 138
+    },
+    {
+      "n": 6,
+      "name": "Xóa baogia.pdf",
+      "expected": "Danh sách trống; chip cũ báo 'Nguồn không còn khả dụng'",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shot": "screenshots/06-xoa-baogia-pdf.png",
+      "ms": 244
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "video": "video/E2E-001.webm"
+}

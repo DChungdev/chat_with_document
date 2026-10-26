@@ -1,0 +1,59 @@
+{
+  "id": "API-006",
+  "title": "POST /documents từ chối tệp không phải PDF",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-23T13:51:10.941Z",
+  "endedAt": "2026-10-23T13:51:14.881Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Chuẩn bị: đăng nhập dev và xác nhận thông báo",
+      "expected": "Có token; acceptances → 201",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-get-data-notice.png",
+        "screenshots/02-post-data-notice-acceptances.png"
+      ],
+      "ms": 1653
+    },
+    {
+      "n": 2,
+      "name": "Tải khong-phai-pdf.pdf (nội dung văn bản thường)",
+      "expected": "400 INVALID_FILE_TYPE, problem+json, có requestId, retryable=false",
+      "status": "PASS",
+      "actual": "HTTP 400, code=INVALID_FILE_TYPE, retryable=false",
+      "shots": [
+        "screenshots/03-post-documents-tep-gia-pdf.png"
+      ],
+      "ms": 759
+    },
+    {
+      "n": 3,
+      "name": "Tải tệp .txt Content-Type text/plain",
+      "expected": "400 INVALID_FILE_TYPE",
+      "status": "PASS",
+      "actual": "HTTP 400, code=INVALID_FILE_TYPE",
+      "shots": [
+        "screenshots/04-post-documents-txt.png"
+      ],
+      "ms": 763
+    },
+    {
+      "n": 4,
+      "name": "GET /documents",
+      "expected": "Không có tài liệu nào được tạo",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/05-get-documents.png"
+      ],
+      "ms": 764
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-006.webm"
+}

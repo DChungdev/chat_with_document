@@ -61,11 +61,13 @@ def build_dev(settings: Settings) -> tuple[Container, IngestService]:
     store = MemoryStore(notice=NOTICE, allowlist=dict(TELEMETRY_ALLOWLIST))
     storage = InMemoryFileStorage()
     values = dict(DEFAULTS)
-    values.update(
-        # Điểm cosine của embedding giả (túi từ băm) thấp hơn mô hình thật: hạ ngưỡng để demo hoạt động.
-        retrieval_min_score=0.12 if settings.embedding_provider == "fake" else 0.30,
-        chunk_min_tokens=3,
-    )
+    values.update(chunk_min_tokens=3)
+    if settings.embedding_provider == "fake":
+        # Cosine của embedding giả (túi từ băm) giảm theo độ dài chunk: chunk 800 token (cả trang) chỉ
+        # đạt ~0,1 dù có đúng từ khóa ⇒ mọi câu hỏi bị "không tìm thấy". Dùng chunk ngắn + ngưỡng thấp.
+        values.update(retrieval_min_score=0.05, chunk_tokens=80, chunk_overlap_tokens=15)
+    else:
+        values.update(retrieval_min_score=0.30)
     cfg = MemoryConfigStore(values)
     config = AppConfig(cfg, ttl_seconds=1.0)
     embedder = build_embedding(settings)
