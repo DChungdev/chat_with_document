@@ -1,0 +1,72 @@
+{
+  "id": "API-016",
+  "title": "Hỏi đáp: lỗi kiểm tra trước khi mở stream",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:01:09.427Z",
+  "endedAt": "2026-10-30T12:01:16.067Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Hỏi khi chưa có tài liệu ready",
+      "expected": "422 NO_READY_DOCUMENTS (problem+json)",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-conversations.png",
+        "screenshots/02-post-messages-chua-co-tai-lieu.png"
+      ],
+      "ms": 1778
+    },
+    {
+      "n": 2,
+      "name": "Tải baogia (ready) và scan (error)",
+      "expected": "baogia ready; scan error",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/03-post-documents-baogia-pdf.png",
+        "screenshots/04-get-documents-id-baogia-pdf-sau-khi-xu-ly.png",
+        "screenshots/05-post-documents-scan-pdf.png"
+      ],
+      "ms": 2512
+    },
+    {
+      "n": 3,
+      "name": "Câu hỏi rỗng / toàn khoảng trắng",
+      "expected": "400/422 VALIDATION_ERROR",
+      "status": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "shots": [
+        "screenshots/06-post-messages-rong.png"
+      ],
+      "ms": 788
+    },
+    {
+      "n": 4,
+      "name": "Câu hỏi dài hơn maxQuestionLength",
+      "expected": "413 QUESTION_TOO_LONG",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/07-post-messages-2001-ky-tu.png"
+      ],
+      "ms": 756
+    },
+    {
+      "n": 5,
+      "name": "documentIds chứa tài liệu chưa ready (scan)",
+      "expected": "409 DOCUMENT_NOT_READY",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/08-post-messages-tai-lieu-loi.png"
+      ],
+      "ms": 805
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-016.webm"
+}

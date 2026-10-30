@@ -1,0 +1,61 @@
+{
+  "id": "API-017",
+  "title": "Hỏi đáp với documentIds của người khác → 404",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:01:17.796Z",
+  "endedAt": "2026-10-30T12:01:23.592Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Chuẩn bị: A có baogia ready; B có hội thoại",
+      "expected": "OK",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-documents-baogia-pdf.png",
+        "screenshots/02-get-documents-id-baogia-pdf-sau-khi-xu-ly.png",
+        "screenshots/03-b-post-conversations.png"
+      ],
+      "ms": 2631
+    },
+    {
+      "n": 2,
+      "name": "B hỏi với documentIds của A",
+      "expected": "404 NOT_FOUND, không SSE",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/04-b-post-messages-documentids-cua-a.png"
+      ],
+      "ms": 791
+    },
+    {
+      "n": 3,
+      "name": "B hỏi với documentIds rỗng",
+      "expected": "422 NO_READY_DOCUMENTS (không dùng tài liệu của A)",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/05-b-post-messages-khong-chi-dinh-tai-lieu.png"
+      ],
+      "ms": 777
+    },
+    {
+      "n": 4,
+      "name": "B dùng conversationId của A",
+      "expected": "404",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/06-a-post-conversations.png",
+        "screenshots/07-b-post-messages-conversation-cua-a.png"
+      ],
+      "ms": 1597
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-017.webm"
+}

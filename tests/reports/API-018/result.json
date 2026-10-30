@@ -1,0 +1,84 @@
+{
+  "id": "API-018",
+  "title": "Kill switch: 503 QA_DISABLED",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:03:18.925Z",
+  "endedAt": "2026-10-30T12:03:29.609Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Chuẩn bị: user có baogia ready + hội thoại; tài khoản ops",
+      "expected": "OK",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-documents-baogia-pdf.png",
+        "screenshots/02-get-documents-id-baogia-pdf-sau-khi-xu-ly.png",
+        "screenshots/03-post-conversations.png"
+      ],
+      "ms": 2697
+    },
+    {
+      "n": 2,
+      "name": "Ops tắt qa-enabled",
+      "expected": "204",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/04-put-admin-flags-qa-enabled-enabled-false.png"
+      ],
+      "ms": 772
+    },
+    {
+      "n": 3,
+      "name": "GET /config",
+      "expected": "qaEnabled=false",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/05-get-config-da-tat.png"
+      ],
+      "ms": 803
+    },
+    {
+      "n": 4,
+      "name": "Hỏi",
+      "expected": "503 QA_DISABLED problem+json",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/06-post-messages-kill-switch-bat.png"
+      ],
+      "ms": 773
+    },
+    {
+      "n": 5,
+      "name": "GET /documents và tải tệp mới khi đã tắt",
+      "expected": "Vẫn hoạt động (200/202)",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/07-get-documents-da-tat-hoi-dap.png",
+        "screenshots/08-post-documents-da-tat-hoi-dap.png"
+      ],
+      "ms": 1594
+    },
+    {
+      "n": 6,
+      "name": "Bật lại qa-enabled và hỏi lại",
+      "expected": "204; hỏi trả 200 SSE",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/09-put-admin-flags-qa-enabled-enabled-true.png",
+        "screenshots/10-post-messages-da-bat-lai.png"
+      ],
+      "ms": 4045
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-018.webm"
+}

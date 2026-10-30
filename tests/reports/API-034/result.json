@@ -1,0 +1,56 @@
+{
+  "id": "API-034",
+  "title": "X-Request-Id trên mọi phản hồi",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:02:55.504Z",
+  "endedAt": "2026-10-30T12:03:05.362Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Gọi 6 endpoint khác nhau (200, 201, 202, 204, 4xx, SSE)",
+      "expected": "Mỗi phản hồi có X-Request-Id",
+      "status": "PASS",
+      "actual": "200, 201, 202, 204, 404, 200",
+      "shots": [
+        "screenshots/01-post-documents-baogia-pdf.png",
+        "screenshots/02-get-documents-id-baogia-pdf-sau-khi-xu-ly.png",
+        "screenshots/03-post-conversations.png",
+        "screenshots/04-200-get-config.png",
+        "screenshots/05-201-post-conversations.png",
+        "screenshots/06-202-post-documents.png",
+        "screenshots/07-204-delete-documents-id.png",
+        "screenshots/08-404-get-documents-la.png",
+        "screenshots/09-sse-422-post-messages.png"
+      ],
+      "ms": 7478
+    },
+    {
+      "n": 2,
+      "name": "Gửi X-Request-Id: abc123",
+      "expected": "Ghi nhận: giữ nguyên hay sinh mới",
+      "status": "PASS",
+      "actual": "Phản hồi X-Request-Id=abc123 (giữ nguyên giá trị client)",
+      "shots": [
+        "screenshots/10-get-config-x-request-id-abc123.png"
+      ],
+      "ms": 786
+    },
+    {
+      "n": 3,
+      "name": "Hai yêu cầu liên tiếp",
+      "expected": "Hai giá trị khác nhau",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/11-get-config-1.png",
+        "screenshots/12-get-config-2.png"
+      ],
+      "ms": 1593
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-034.webm"
+}

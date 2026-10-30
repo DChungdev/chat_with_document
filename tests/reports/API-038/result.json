@@ -1,0 +1,83 @@
+{
+  "id": "API-038",
+  "title": "PUT /messages/{id}/feedback (P1)",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:03:55.866Z",
+  "endedAt": "2026-10-30T12:04:05.908Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Chuẩn bị: câu trả lời hoàn tất",
+      "expected": "messageId",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-documents-baogia-pdf.png",
+        "screenshots/02-get-documents-id-baogia-pdf-sau-khi-xu-ly.png",
+        "screenshots/03-post-conversations.png",
+        "screenshots/04-post-messages.png"
+      ],
+      "ms": 6093
+    },
+    {
+      "n": 2,
+      "name": "PUT feedback {rating:'up'}",
+      "expected": "204",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/05-put-feedback-rating-up.png"
+      ],
+      "ms": 790
+    },
+    {
+      "n": 3,
+      "name": "Lặp lại cùng yêu cầu",
+      "expected": "204, kết quả như nhau",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/06-put-feedback-rating-up-lan-2.png"
+      ],
+      "ms": 785
+    },
+    {
+      "n": 4,
+      "name": "{rating:'down', reasonCode}",
+      "expected": "204",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/07-put-feedback-rating-down-reasoncode.png"
+      ],
+      "ms": 791
+    },
+    {
+      "n": 5,
+      "name": "{rating:'abc'}",
+      "expected": "400/422 VALIDATION_ERROR",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/08-put-feedback-rating-abc.png"
+      ],
+      "ms": 768
+    },
+    {
+      "n": 6,
+      "name": "Message của người khác",
+      "expected": "404",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/09-b-put-feedback-message-cua-a.png"
+      ],
+      "ms": 814
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-038.webm"
+}

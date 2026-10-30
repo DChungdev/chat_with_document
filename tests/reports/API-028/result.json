@@ -1,0 +1,47 @@
+{
+  "id": "API-028",
+  "title": "POST /telemetry/events (allow-list)",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:02:28.512Z",
+  "endedAt": "2026-10-30T12:02:31.050Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Gửi answer_completed",
+      "expected": "202; accepted=1, rejected=0",
+      "status": "PASS",
+      "actual": "Chấp nhận props snake_case",
+      "shots": [
+        "screenshots/01-post-telemetry-events-props-snake-case.png"
+      ],
+      "ms": 973
+    },
+    {
+      "n": 2,
+      "name": "Gửi 17 sự kiện trong allow-list (1 lô)",
+      "expected": "accepted=17, rejected=0",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/02-post-telemetry-events-17-su-kien.png"
+      ],
+      "ms": 773
+    },
+    {
+      "n": 3,
+      "name": "Gửi 51 sự kiện trong một lô",
+      "expected": "Bị từ chối 4xx",
+      "status": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "shots": [
+        "screenshots/03-post-telemetry-events-51-su-kien.png"
+      ],
+      "ms": 790
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-028.webm"
+}

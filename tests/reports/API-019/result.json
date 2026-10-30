@@ -1,0 +1,51 @@
+{
+  "id": "API-019",
+  "title": "Câu hỏi ngoài tài liệu: grounded=false, không citation",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:01:25.331Z",
+  "endedAt": "2026-10-30T12:01:31.923Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Chuẩn bị",
+      "expected": "baogia ready + hội thoại",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-documents-baogia-pdf.png",
+        "screenshots/02-get-documents-id-baogia-pdf-sau-khi-xu-ly.png",
+        "screenshots/03-post-conversations.png"
+      ],
+      "ms": 2571
+    },
+    {
+      "n": 2,
+      "name": "Hỏi ngoài phạm vi",
+      "expected": "200 SSE; token “Không tìm thấy thông tin này”; done grounded=false, citationCount=0",
+      "status": "PASS",
+      "actual": "Văn bản: Không tìm thấy thông tin này trong các tài liệu đã tải.",
+      "shots": [
+        "screenshots/04-post-messages-ngoai-pham-vi.png"
+      ],
+      "ms": 811
+    },
+    {
+      "n": 3,
+      "name": "Hỏi câu có đáp án ngay sau đó",
+      "expected": "grounded=true, citationCount ≥ 1",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/05-post-messages-co-dap-an.png"
+      ],
+      "ms": 3210
+    }
+  ],
+  "defects": [],
+  "notes": [
+    "Việc “không gọi LLM” không quan sát được từ bên ngoài; chỉ ghi nhận hành vi quan sát được."
+  ],
+  "consoleErrors": [],
+  "video": "video/API-019.webm"
+}

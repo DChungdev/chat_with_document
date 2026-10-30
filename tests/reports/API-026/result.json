@@ -1,0 +1,50 @@
+{
+  "id": "API-026",
+  "title": "Citation sau khi xóa tài liệu → valid=false",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:02:09.764Z",
+  "endedAt": "2026-10-30T12:02:17.410Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Chuẩn bị: câu trả lời có citation",
+      "expected": "OK",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-documents-baogia-pdf.png",
+        "screenshots/02-get-documents-id-baogia-pdf-sau-khi-xu-ly.png",
+        "screenshots/03-post-conversations.png",
+        "screenshots/04-post-messages.png"
+      ],
+      "ms": 6049
+    },
+    {
+      "n": 2,
+      "name": "Xóa baogia.pdf",
+      "expected": "204",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/05-delete-documents-id.png"
+      ],
+      "ms": 796
+    },
+    {
+      "n": 3,
+      "name": "GET /citations/{id}",
+      "expected": "200; valid=false; snippet/documentId/documentName = null",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/06-get-citations-id-da-xoa-tai-lieu.png"
+      ],
+      "ms": 801
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-026.webm"
+}

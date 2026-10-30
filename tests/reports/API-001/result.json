@@ -1,0 +1,58 @@
+{
+  "id": "API-001",
+  "title": "GET /config trả giới hạn và cờ",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T11:59:43.202Z",
+  "endedAt": "2026-10-30T11:59:46.317Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "GET /config không token",
+      "expected": "401 problem+json",
+      "status": "PASS",
+      "actual": "401 code=UNAUTHENTICATED",
+      "shots": [
+        "screenshots/01-get-config-khong-token.png"
+      ],
+      "ms": 833
+    },
+    {
+      "n": 2,
+      "name": "GET /config có token (chưa xác nhận thông báo)",
+      "expected": "200; qaEnabled=true, noticeVersion, noticeAccepted=false, giới hạn 20MB/50 tệp/2000 ký tự",
+      "status": "PASS",
+      "actual": "maxFileSizeBytes=20971520, maxFiles=50, maxQuestionLength=2000, maxDocumentsPerQuestion=10",
+      "shots": [
+        "screenshots/02-get-config-co-token.png"
+      ],
+      "ms": 762
+    },
+    {
+      "n": 3,
+      "name": "Xác nhận thông báo rồi GET /config",
+      "expected": "noticeAccepted=true",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/03-get-config-sau-khi-xac-nhan.png"
+      ],
+      "ms": 774
+    },
+    {
+      "n": 4,
+      "name": "Kiểm tra header X-Request-Id",
+      "expected": "Có X-Request-Id",
+      "status": "PASS",
+      "actual": "X-Request-Id=619f487af23e4e4c8e3f968aebc2bef5",
+      "shots": [
+        "screenshots/04-get-config-header.png"
+      ],
+      "ms": 746
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-001.webm"
+}

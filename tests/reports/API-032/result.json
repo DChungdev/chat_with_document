@@ -1,0 +1,61 @@
+{
+  "id": "API-032",
+  "title": "Health & metrics endpoints",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:02:42.065Z",
+  "endedAt": "2026-10-30T12:02:45.918Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "GET /health và /api/v1/health/live không token",
+      "expected": "200 {status:ok}",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-get-health.png",
+        "screenshots/02-get-api-v1-health-live.png"
+      ],
+      "ms": 1593
+    },
+    {
+      "n": 2,
+      "name": "GET /api/v1/health/ready không token",
+      "expected": "200 ready hoặc 503 unavailable — ghi thực tế",
+      "status": "PASS",
+      "actual": "HTTP 503 {\"status\":\"unavailable\"}",
+      "shots": [
+        "screenshots/03-get-api-v1-health-ready.png"
+      ],
+      "ms": 743
+    },
+    {
+      "n": 3,
+      "name": "GET /metrics trực tiếp",
+      "expected": "200 định dạng Prometheus",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/04-get-metrics.png"
+      ],
+      "ms": 775
+    },
+    {
+      "n": 4,
+      "name": "GET /metrics với X-Forwarded-For",
+      "expected": "404",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/05-get-metrics-x-forwarded-for.png"
+      ],
+      "ms": 741
+    }
+  ],
+  "defects": [],
+  "notes": [
+    "health/ready trả HTTP 503 ({\"status\":\"unavailable\"}). Devserver không có CSDL nên 503 là hành vi kỳ vọng ở môi trường này; không coi là lỗi sản phẩm nhưng readiness với DB thật chưa được kiểm chứng."
+  ],
+  "consoleErrors": [],
+  "video": "video/API-032.webm"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "API-030",
+  "title": "GET /reports/mvp-metrics: phân quyền",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:02:38.042Z",
+  "endedAt": "2026-10-30T12:02:40.027Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "User thường GET /reports/mvp-metrics",
+      "expected": "403 FORBIDDEN",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-user-get-reports-mvp-metrics.png"
+      ],
+      "ms": 1069
+    },
+    {
+      "n": 2,
+      "name": "Evaluator GET /reports/mvp-metrics",
+      "expected": "200; có MET-001, MET-002, KR1.2, KR2.2; ghi chưa thể kết luận",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/02-evaluator-get-reports-mvp-metrics.png"
+      ],
+      "ms": 835
+    },
+    {
+      "n": 3,
+      "name": "Rà soát JSON: không có nội dung/định danh",
+      "expected": "Không có tên tệp, câu hỏi, định danh người dùng",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/03-ra-soat-json-khong-co-noi-dung-dinh-danh.png"
+      ],
+      "ms": 80
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-030.webm"
+}

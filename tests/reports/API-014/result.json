@@ -1,0 +1,58 @@
+{
+  "id": "API-014",
+  "title": "POST /conversations",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:00:56.207Z",
+  "endedAt": "2026-10-30T12:00:59.477Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "POST /conversations",
+      "expected": "201, id UUID",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-conversations-lan-1.png"
+      ],
+      "ms": 933
+    },
+    {
+      "n": 2,
+      "name": "Gọi lại cùng Idempotency-Key",
+      "expected": "Cùng hội thoại",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/02-post-conversations-cung-key.png"
+      ],
+      "ms": 805
+    },
+    {
+      "n": 3,
+      "name": "Idempotency-Key không phải UUID",
+      "expected": "400/422 problem+json",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/03-post-conversations-key-sai.png"
+      ],
+      "ms": 775
+    },
+    {
+      "n": 4,
+      "name": "Không token",
+      "expected": "401",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/04-post-conversations-khong-token.png"
+      ],
+      "ms": 756
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-014.webm"
+}

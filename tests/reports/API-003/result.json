@@ -1,0 +1,69 @@
+{
+  "id": "API-003",
+  "title": "POST /data-notice/acceptances (idempotent)",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T11:59:51.148Z",
+  "endedAt": "2026-10-30T11:59:55.008Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Lấy version từ GET /data-notice",
+      "expected": "200",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-get-data-notice.png"
+      ],
+      "ms": 836
+    },
+    {
+      "n": 2,
+      "name": "POST /data-notice/acceptances",
+      "expected": "201",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/02-post-data-notice-acceptances-lan-1.png"
+      ],
+      "ms": 777
+    },
+    {
+      "n": 3,
+      "name": "Gọi lại lần hai cùng body",
+      "expected": "201 hoặc tương đương, không 5xx",
+      "status": "PASS",
+      "actual": "HTTP 201",
+      "shots": [
+        "screenshots/03-post-data-notice-acceptances-lan-2.png"
+      ],
+      "ms": 744
+    },
+    {
+      "n": 4,
+      "name": "GET /config",
+      "expected": "noticeAccepted=true",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/04-get-config.png"
+      ],
+      "ms": 745
+    },
+    {
+      "n": 5,
+      "name": "Gửi version sai",
+      "expected": "Bị từ chối 4xx problem+json",
+      "status": "PASS",
+      "actual": "HTTP 409 code=NOTICE_VERSION_MISMATCH",
+      "shots": [
+        "screenshots/05-post-acceptances-version-sai.png"
+      ],
+      "ms": 757
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-003.webm"
+}

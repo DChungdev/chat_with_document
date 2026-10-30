@@ -1,0 +1,71 @@
+{
+  "id": "API-011",
+  "title": "GET /documents: phân trang và trạng thái",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:00:33.592Z",
+  "endedAt": "2026-10-30T12:00:39.376Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Tải baogia, hopdong, scan và đợi xử lý xong",
+      "expected": "Các tệp tới trạng thái cuối",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-documents-baogia-pdf.png",
+        "screenshots/02-post-documents-hopdong-pdf.png",
+        "screenshots/03-post-documents-scan-pdf.png"
+      ],
+      "ms": 2648
+    },
+    {
+      "n": 2,
+      "name": "GET /documents?limit=2",
+      "expected": "200; 2 phần tử; nextCursor khác null",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/04-get-documents-limit-2.png"
+      ],
+      "ms": 799
+    },
+    {
+      "n": 3,
+      "name": "GET /documents?limit=2&cursor=…",
+      "expected": "Phần tử còn lại, không trùng trang 1",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/05-get-documents-trang-2.png"
+      ],
+      "ms": 789
+    },
+    {
+      "n": 4,
+      "name": "GET /documents?limit=1000",
+      "expected": "Bị chặn/kẹp ≤ 100 (ghi thực tế)",
+      "status": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "shots": [
+        "screenshots/06-get-documents-limit-1000.png"
+      ],
+      "ms": 773
+    },
+    {
+      "n": 5,
+      "name": "Kiểm tra trạng thái từng tệp",
+      "expected": "baogia, hopdong: ready; scan: error NO_TEXT",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/07-get-documents-toan-bo.png"
+      ],
+      "ms": 775
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-011.webm"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "API-002",
+  "title": "GET /data-notice trả thông báo hiện hành",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T11:59:47.964Z",
+  "endedAt": "2026-10-30T11:59:49.543Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "GET /data-notice có token",
+      "expected": "200; version + nội dung không rỗng",
+      "status": "PASS",
+      "actual": "version=dev-1, accepted=false",
+      "shots": [
+        "screenshots/01-get-data-notice.png"
+      ],
+      "ms": 823
+    },
+    {
+      "n": 2,
+      "name": "GET /data-notice không token",
+      "expected": "401",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/02-get-data-notice-khong-token.png"
+      ],
+      "ms": 755
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-002.webm"
+}

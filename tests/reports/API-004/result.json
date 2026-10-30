@@ -1,0 +1,47 @@
+{
+  "id": "API-004",
+  "title": "POST /documents tải PDF hợp lệ → 202",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T11:59:56.670Z",
+  "endedAt": "2026-10-30T11:59:59.012Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "POST /documents baogia.pdf + Idempotency-Key",
+      "expected": "202; Location; status=processing; ≤ 2s",
+      "status": "PASS",
+      "actual": "202 trong 793 ms; Location=/api/v1/documents/c38704ff-09e3-485f-a2f1-a36c5e0d5ce9",
+      "shots": [
+        "screenshots/01-post-documents-baogia-pdf.png"
+      ],
+      "ms": 828
+    },
+    {
+      "n": 2,
+      "name": "Poll GET /documents/{id} tới ready",
+      "expected": "ready; pageCount=3; errorCode=null",
+      "status": "PASS",
+      "actual": "status=ready, pageCount=3",
+      "shots": [
+        "screenshots/02-get-documents-id-sau-xu-ly.png"
+      ],
+      "ms": 761
+    },
+    {
+      "n": 3,
+      "name": "GET /documents",
+      "expected": "Đúng 1 tài liệu với name, sizeBytes, uploadedAt, status",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/03-get-documents.png"
+      ],
+      "ms": 752
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-004.webm"
+}

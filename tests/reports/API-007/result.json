@@ -1,0 +1,47 @@
+{
+  "id": "API-007",
+  "title": "POST /documents từ chối tệp quá kích thước",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:00:15.076Z",
+  "endedAt": "2026-10-30T12:00:17.713Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Đọc giới hạn từ /config",
+      "expected": "Có maxFileSizeBytes",
+      "status": "PASS",
+      "actual": "limit=20971520",
+      "shots": [
+        "screenshots/01-get-config.png"
+      ],
+      "ms": 848
+    },
+    {
+      "n": 2,
+      "name": "Tải tệp %PDF- dài limit+1 byte",
+      "expected": "413 FILE_TOO_LARGE; detail nêu giới hạn",
+      "status": "PASS",
+      "actual": "413 detail=\"Giới hạn tối đa là 20 MB.\"",
+      "shots": [
+        "screenshots/02-post-documents-limit-1-20971521-byte.png"
+      ],
+      "ms": 837
+    },
+    {
+      "n": 3,
+      "name": "Tải tệp %PDF- kích thước limit-10 (nội dung không hợp lệ)",
+      "expected": "Không bị 413 (chứng minh ranh giới)",
+      "status": "PASS",
+      "actual": "HTTP 202",
+      "shots": [
+        "screenshots/03-post-documents-limit-10-20971510-byte.png"
+      ],
+      "ms": 950
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-007.webm"
+}

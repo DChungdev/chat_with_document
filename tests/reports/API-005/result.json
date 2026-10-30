@@ -1,0 +1,69 @@
+{
+  "id": "API-005",
+  "title": "POST /documents idempotent theo Idempotency-Key",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:00:00.690Z",
+  "endedAt": "2026-10-30T12:00:04.548Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Tải baogia.pdf với key K",
+      "expected": "202; ghi id",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-documents-lan-1-key-k.png"
+      ],
+      "ms": 841
+    },
+    {
+      "n": 2,
+      "name": "Gửi lại y hệt (cùng K)",
+      "expected": "Cùng id, không tạo mới",
+      "status": "PASS",
+      "actual": "HTTP 202, id trùng",
+      "shots": [
+        "screenshots/02-post-documents-lan-2-cung-k.png"
+      ],
+      "ms": 757
+    },
+    {
+      "n": 3,
+      "name": "GET /documents",
+      "expected": "Chỉ 1 tài liệu",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/03-get-documents.png"
+      ],
+      "ms": 760
+    },
+    {
+      "n": 4,
+      "name": "Tệp khác với cùng K",
+      "expected": "Nhất quán (trả bản ghi cũ hoặc 4xx) — ghi thực tế",
+      "status": "PASS",
+      "actual": "HTTP 202; id=trả bản ghi cũ; số tài liệu=1",
+      "shots": [
+        "screenshots/04-post-documents-hopdong-pdf-cung-k.png"
+      ],
+      "ms": 750
+    },
+    {
+      "n": 5,
+      "name": "Không có header Idempotency-Key",
+      "expected": "400/422 VALIDATION_ERROR",
+      "status": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "shots": [
+        "screenshots/05-post-documents-thieu-idempotency-key.png"
+      ],
+      "ms": 748
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-005.webm"
+}

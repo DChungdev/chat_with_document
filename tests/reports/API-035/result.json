@@ -1,0 +1,47 @@
+{
+  "id": "API-035",
+  "title": "CORS chỉ cho phép origin của SPA",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:03:07.361Z",
+  "endedAt": "2026-10-30T12:03:09.901Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "OPTIONS /api/v1/config với Origin lạ",
+      "expected": "Không có Access-Control-Allow-Origin cho origin này",
+      "status": "PASS",
+      "actual": "HTTP 405, ACAO=(không có)",
+      "shots": [
+        "screenshots/01-options-config-origin-la.png"
+      ],
+      "ms": 842
+    },
+    {
+      "n": 2,
+      "name": "GET /api/v1/config với Origin lạ",
+      "expected": "Không ACAO: * và không phản chiếu origin lạ",
+      "status": "PASS",
+      "actual": "ACAO=(không có)",
+      "shots": [
+        "screenshots/02-get-config-origin-la.png"
+      ],
+      "ms": 903
+    },
+    {
+      "n": 3,
+      "name": "Origin hợp lệ http://127.0.0.1:8000",
+      "expected": "Hoạt động bình thường",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/03-get-config-cung-origin.png"
+      ],
+      "ms": 795
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-035.webm"
+}

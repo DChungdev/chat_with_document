@@ -1,0 +1,60 @@
+{
+  "id": "API-029",
+  "title": "Telemetry từ chối sự kiện/thuộc tính ngoài allow-list",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:02:32.826Z",
+  "endedAt": "2026-10-30T12:02:36.113Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Sự kiện tên lạ",
+      "expected": "202, rejected=1",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-telemetry-events-ten-la.png"
+      ],
+      "ms": 951
+    },
+    {
+      "n": 2,
+      "name": "answer_completed kèm prop lạ chứa nội dung",
+      "expected": "Prop bị loại hoặc cả sự kiện rejected",
+      "status": "PASS",
+      "actual": "accepted=0, rejected=1 (cả sự kiện bị từ chối)",
+      "shots": [
+        "screenshots/02-post-telemetry-events-prop-la.png"
+      ],
+      "ms": 771
+    },
+    {
+      "n": 3,
+      "name": "Prop chuỗi tự do dài (> 200 ký tự)",
+      "expected": "Bị loại/từ chối",
+      "status": "PASS",
+      "actual": "accepted=1, rejected=0",
+      "shots": [
+        "screenshots/03-post-telemetry-events-chuoi-dai.png"
+      ],
+      "ms": 792
+    },
+    {
+      "n": 4,
+      "name": "user_id trong props",
+      "expected": "Bị loại",
+      "status": "PASS",
+      "actual": "accepted=1, rejected=0",
+      "shots": [
+        "screenshots/04-post-telemetry-events-user-id.png"
+      ],
+      "ms": 772
+    }
+  ],
+  "defects": [],
+  "notes": [
+    "Giá trị lưu trữ phía server không đọc được qua API; kết luận dựa trên accepted/rejected. Báo cáo /reports chỉ có số tổng hợp (xem API-030)."
+  ],
+  "consoleErrors": [],
+  "video": "video/API-029.webm"
+}

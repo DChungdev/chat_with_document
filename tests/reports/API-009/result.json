@@ -1,0 +1,47 @@
+{
+  "id": "API-009",
+  "title": "POST /documents bị chặn khi chưa xác nhận thông báo",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:00:23.149Z",
+  "endedAt": "2026-10-30T12:00:25.578Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Tải baogia.pdf khi chưa xác nhận",
+      "expected": "403 NOTICE_NOT_ACCEPTED",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-documents-chua-xac-nhan-thong-bao.png"
+      ],
+      "ms": 849
+    },
+    {
+      "n": 2,
+      "name": "GET /documents",
+      "expected": "Rỗng",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/02-get-documents.png"
+      ],
+      "ms": 773
+    },
+    {
+      "n": 3,
+      "name": "Xác nhận thông báo rồi tải lại",
+      "expected": "202",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/03-post-documents-sau-khi-xac-nhan.png"
+      ],
+      "ms": 806
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-009.webm"
+}

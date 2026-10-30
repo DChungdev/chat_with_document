@@ -1,0 +1,60 @@
+{
+  "id": "API-012",
+  "title": "GET /documents/{id}: tồn tại và không tồn tại",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:00:41.139Z",
+  "endedAt": "2026-10-30T12:00:46.141Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "A: GET /documents/{id}",
+      "expected": "200, đúng schema Document",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-documents-baogia-pdf.png",
+        "screenshots/02-get-documents-id-baogia-pdf-sau-khi-xu-ly.png",
+        "screenshots/03-a-get-documents-id.png"
+      ],
+      "ms": 2662
+    },
+    {
+      "n": 2,
+      "name": "B: GET /documents/{id của A}",
+      "expected": "404 NOT_FOUND",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/04-b-get-documents-id-cua-a.png"
+      ],
+      "ms": 790
+    },
+    {
+      "n": 3,
+      "name": "A: GET /documents/<uuid ngẫu nhiên>",
+      "expected": "404",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/05-a-get-documents-uuid-la.png"
+      ],
+      "ms": 776
+    },
+    {
+      "n": 4,
+      "name": "A: GET /documents/khong-phai-uuid",
+      "expected": "400/422 problem+json",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/06-a-get-documents-khong-phai-uuid.png"
+      ],
+      "ms": 773
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-012.webm"
+}

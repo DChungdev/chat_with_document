@@ -1,0 +1,46 @@
+{
+  "id": "API-008",
+  "title": "POST /documents vượt số tệp tối đa",
+  "result": "FAIL",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:00:19.466Z",
+  "endedAt": "2026-10-30T12:00:21.115Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Đọc maxFiles từ /config",
+      "expected": "Giá trị (mặc định 50)",
+      "status": "PASS",
+      "actual": "maxFiles=50",
+      "shots": [
+        "screenshots/01-get-config.png"
+      ],
+      "ms": 845
+    },
+    {
+      "n": 2,
+      "name": "Tải lặp PDF nhỏ tới khi đạt maxFiles",
+      "expected": "Mọi lần đều 202",
+      "status": "FAIL",
+      "actual": "Bị chặn bởi HTTP 429 sau 20 lượt (trước maxFiles=50)\n\nexpect(received).toBeNull()\n\nReceived: {\"at\": 21, \"body\": \"{\\\"type\\\":\\\"https://docs.example/errors/rate-limited\\\",\\\"title\\\":\\\"Quá nhiều yêu cầu\\\",\\\"status\\\":429,\\\"code\\\":\\\"RATE_LIMITED\\\",\\\"detail\\\":\\\"Bạn thao tác quá nhanh, vui lòng thử lại sau.\\\",\\\"retryable\\\":true,\\\"requestId\\\":\\\"7ef4b657d6c4439c8da9fa473541f8e7\\\"}\", \"retryAfter\": \"3600\", \"status\": 429}",
+      "shots": [
+        "screenshots/02-fail-tai-lap-pdf-nho-toi-khi-dat-maxfiles.png"
+      ],
+      "ms": 804
+    },
+    {
+      "n": 3,
+      "name": "Tải thêm 1 tệp",
+      "expected": "409 LIMIT_EXCEEDED",
+      "status": "SKIP",
+      "actual": "Bỏ qua do bước trước thất bại",
+      "shots": []
+    }
+  ],
+  "defects": [
+    "Xung đột giữa hai giới hạn: rate limit tải lên (HTTP 429, Retry-After=3600s) chặn ở lượt 21, TRƯỚC khi đạt maxFiles=50. Vì vậy giới hạn số tệp (409 LIMIT_EXCEEDED) không thể kiểm chứng bằng một người dùng. Không né bằng cách sửa mã."
+  ],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-008.webm"
+}

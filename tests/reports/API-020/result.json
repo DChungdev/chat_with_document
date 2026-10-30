@@ -1,0 +1,62 @@
+{
+  "id": "API-020",
+  "title": "Hỏi đáp idempotent theo clientMessageId",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:01:33.643Z",
+  "endedAt": "2026-10-30T12:01:43.411Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Chuẩn bị",
+      "expected": "baogia ready + hội thoại",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-documents-baogia-pdf.png",
+        "screenshots/02-get-documents-id-baogia-pdf-sau-khi-xu-ly.png",
+        "screenshots/03-post-conversations.png"
+      ],
+      "ms": 2561
+    },
+    {
+      "n": 2,
+      "name": "Hỏi với clientMessageId = M",
+      "expected": "200 SSE hoàn tất",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/04-post-messages-m-lan-1.png"
+      ],
+      "ms": 3245
+    },
+    {
+      "n": 3,
+      "name": "Gửi lại cùng M và cùng nội dung",
+      "expected": "Không 5xx; ghi hành vi thực tế",
+      "status": "PASS",
+      "actual": "HTTP 200; SSE message→citations→done",
+      "shots": [
+        "screenshots/05-post-messages-m-lan-2.png"
+      ],
+      "ms": 777
+    },
+    {
+      "n": 4,
+      "name": "Hỏi với clientMessageId mới",
+      "expected": "200 SSE bình thường",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/06-post-messages-m-moi.png"
+      ],
+      "ms": 3184
+    }
+  ],
+  "defects": [],
+  "notes": [
+    "Chưa có endpoint đọc lịch sử (xem API-039) nên không xác nhận được số câu hỏi lưu; chỉ kết luận từ phản hồi."
+  ],
+  "consoleErrors": [],
+  "video": "video/API-020.webm"
+}

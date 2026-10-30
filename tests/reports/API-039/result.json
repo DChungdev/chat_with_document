@@ -1,0 +1,42 @@
+{
+  "id": "API-039",
+  "title": "GET /conversations/{id}/messages — lịch sử (P1)",
+  "result": "FAIL",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:04:07.668Z",
+  "endedAt": "2026-10-30T12:04:14.472Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Chuẩn bị: hội thoại có 1 câu hỏi đã trả lời",
+      "expected": "OK",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-documents-baogia-pdf.png",
+        "screenshots/02-get-documents-id-baogia-pdf-sau-khi-xu-ly.png",
+        "screenshots/03-post-conversations.png",
+        "screenshots/04-post-messages.png"
+      ],
+      "ms": 6019
+    },
+    {
+      "n": 2,
+      "name": "GET /conversations/{id}/messages",
+      "expected": "200 {items} gồm câu hỏi và câu trả lời (kèm citations)",
+      "status": "FAIL",
+      "actual": "Endpoint lịch sử chưa được triển khai\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: 200\nReceived: 404",
+      "shots": [
+        "screenshots/05-get-conversations-id-messages.png",
+        "screenshots/06-fail-get-conversations-id-messages.png"
+      ],
+      "ms": 785
+    }
+  ],
+  "defects": [
+    "API Design 3.3 (IF-06) liệt kê GET /conversations/{id}/messages (lịch sử hội thoại, US-204) nhưng endpoint trả HTTP 404. Có thể do chưa triển khai (P1) hoặc phụ thuộc OQ-012; cần PO xác nhận phạm vi. Mức: Minor (P1, chưa thuộc R1)."
+  ],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-039.webm"
+}

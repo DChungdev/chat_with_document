@@ -1,0 +1,72 @@
+{
+  "id": "API-031",
+  "title": "PUT /admin/flags/qa-enabled: phân quyền",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:04:31.412Z",
+  "endedAt": "2026-10-30T12:04:38.089Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "User: PUT {enabled:false}",
+      "expected": "403; /config vẫn qaEnabled=true",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-user-put-qa-enabled-false.png",
+        "screenshots/02-get-config.png"
+      ],
+      "ms": 2012
+    },
+    {
+      "n": 2,
+      "name": "Evaluator: PUT {enabled:false}",
+      "expected": "403",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/03-evaluator-put-qa-enabled-false.png"
+      ],
+      "ms": 770
+    },
+    {
+      "n": 3,
+      "name": "Ops: false rồi true",
+      "expected": "Cả hai 204; /config phản ánh",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/04-ops-put-qa-enabled-false.png",
+        "screenshots/05-ops-put-qa-enabled-true.png",
+        "screenshots/06-get-config-da-bat-lai.png"
+      ],
+      "ms": 2375
+    },
+    {
+      "n": 4,
+      "name": "Body sai {enabled:\"abc\"}",
+      "expected": "400 VALIDATION_ERROR",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/07-ops-put-body-sai.png"
+      ],
+      "ms": 761
+    },
+    {
+      "n": 5,
+      "name": "Dọn dẹp: bảo đảm qaEnabled=true",
+      "expected": "204",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/08-ops-put-qa-enabled-true-don-dep.png"
+      ],
+      "ms": 758
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-031.webm"
+}

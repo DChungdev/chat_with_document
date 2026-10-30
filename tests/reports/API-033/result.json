@@ -1,0 +1,64 @@
+{
+  "id": "API-033",
+  "title": "Mô hình lỗi RFC 7807 thống nhất",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:02:47.913Z",
+  "endedAt": "2026-10-30T12:02:53.732Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Gây các lỗi 401, 404, 400, 413, 422, 403",
+      "expected": "Mỗi phản hồi là application/problem+json",
+      "status": "PASS",
+      "actual": "401→401, 404→404, 400→400, 413→413, 422→422, 403→403",
+      "shots": [
+        "screenshots/01-post-conversations.png",
+        "screenshots/02-401-khong-token.png",
+        "screenshots/03-404-id-la.png",
+        "screenshots/04-400-tep-gia-ten-chua-sentinel.png",
+        "screenshots/05-413-cau-hoi-qua-dai-chua-sentinel.png",
+        "screenshots/06-422-chua-co-tai-lieu-ready.png",
+        "screenshots/07-403-chua-xac-nhan-thong-bao.png"
+      ],
+      "ms": 5713
+    },
+    {
+      "n": 2,
+      "name": "Kiểm tra từng body",
+      "expected": "Có type,title,status(=HTTP),code,detail,retryable,requestId",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/08-kiem-tra-tung-body.png"
+      ],
+      "ms": 34
+    },
+    {
+      "n": 3,
+      "name": "detail không chứa sentinel",
+      "expected": "Không chứa TC-SENTINEL-123",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/09-detail-khong-chua-sentinel.png"
+      ],
+      "ms": 37
+    },
+    {
+      "n": 4,
+      "name": "requestId trùng X-Request-Id",
+      "expected": "Trùng nhau",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/10-requestid-trung-x-request-id.png"
+      ],
+      "ms": 35
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-033.webm"
+}

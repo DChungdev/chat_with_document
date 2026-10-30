@@ -1,0 +1,64 @@
+{
+  "id": "API-023",
+  "title": "Hỏi đáp trên nhiều tài liệu",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:01:45.251Z",
+  "endedAt": "2026-10-30T12:01:59.318Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Chuẩn bị: baogia + hopdong ready",
+      "expected": "OK",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/01-post-documents-baogia-pdf.png",
+        "screenshots/02-get-documents-id-baogia-pdf-sau-khi-xu-ly.png",
+        "screenshots/03-post-documents-hopdong-pdf.png",
+        "screenshots/04-get-documents-id-hopdong-pdf-sau-khi-xu-ly.png",
+        "screenshots/05-post-conversations.png"
+      ],
+      "ms": 4190
+    },
+    {
+      "n": 2,
+      "name": "Hỏi phí bảo trì với cả 2 documentIds",
+      "expected": "citations có hopdong.pdf",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/06-post-messages-phi-bao-tri.png"
+      ],
+      "ms": 3354
+    },
+    {
+      "n": 3,
+      "name": "Hỏi thanh toán với cả 2 documentIds",
+      "expected": "citations có baogia.pdf trang 2",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/07-post-messages-thanh-toan.png"
+      ],
+      "ms": 3183
+    },
+    {
+      "n": 4,
+      "name": "Câu hỏi cần cả hai tài liệu",
+      "expected": "Ghi số tài liệu trong citations",
+      "status": "PASS",
+      "actual": "Tài liệu trong citations: hopdong.pdf",
+      "shots": [
+        "screenshots/08-post-messages-can-ca-hai.png"
+      ],
+      "ms": 3339
+    }
+  ],
+  "defects": [],
+  "notes": [
+    "Câu hỏi tổng hợp chỉ dẫn 1 tài liệu (hopdong.pdf). FakeLLM trích câu tốt nhất nên đây là hạn chế của FakeLLM, không kết luận lỗi sản phẩm; cần LLM thật (RAG-002)."
+  ],
+  "consoleErrors": [],
+  "video": "video/API-023.webm"
+}

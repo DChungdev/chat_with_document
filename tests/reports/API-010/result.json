@@ -1,0 +1,58 @@
+{
+  "id": "API-010",
+  "title": "Rate limit tải lên → 429 + Retry-After",
+  "result": "PASS",
+  "baseUrl": "http://127.0.0.1:8000",
+  "startedAt": "2026-10-30T12:00:27.385Z",
+  "endedAt": "2026-10-30T12:00:31.842Z",
+  "steps": [
+    {
+      "n": 1,
+      "name": "Gửi liên tiếp các yêu cầu tải PDF nhỏ tới khi gặp lỗi",
+      "expected": "Các lượt đầu 202",
+      "status": "PASS",
+      "actual": "20 lượt 202 trước khi bị chặn",
+      "shots": [
+        "screenshots/01-gui-lien-tiep-cac-yeu-cau-tai-pdf-nho-toi-khi-gap-.png"
+      ],
+      "ms": 2014
+    },
+    {
+      "n": 2,
+      "name": "Quan sát lượt bị giới hạn",
+      "expected": "429 RATE_LIMITED + Retry-After > 0",
+      "status": "PASS",
+      "actual": "429, Retry-After=3599s; số lượt thực tế trước khi bị chặn = 20 (thiết kế đề xuất: 20/giờ)",
+      "shots": [
+        "screenshots/02-post-documents-bi-gioi-han.png"
+      ],
+      "ms": 787
+    },
+    {
+      "n": 3,
+      "name": "GET /documents cùng token",
+      "expected": "Vẫn 200",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/03-get-documents-cung-token.png"
+      ],
+      "ms": 804
+    },
+    {
+      "n": 4,
+      "name": "Tài khoản khác tải 1 tệp",
+      "expected": "202 (giới hạn theo người dùng)",
+      "status": "PASS",
+      "actual": "Đúng như mong đợi",
+      "shots": [
+        "screenshots/04-post-documents-tai-khoan-khac.png"
+      ],
+      "ms": 852
+    }
+  ],
+  "defects": [],
+  "notes": [],
+  "consoleErrors": [],
+  "video": "video/API-010.webm"
+}
